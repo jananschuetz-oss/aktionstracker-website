@@ -856,27 +856,28 @@
       <div class="col-lg-7">
         <div class="bg-white rounded-xl p-4 p-lg-5">
           <h4 class="mb-4" style="color:var(--blau);font-weight:700">Demo anfragen</h4>
-          <form class="contact-form" onsubmit="handleForm(event)">
+          <form class="contact-form" name="demo-anfrage" method="POST" data-netlify="true" onsubmit="handleForm(event)">
+            <input type="hidden" name="form-name" value="demo-anfrage">
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label small fw-bold text-secondary">Ihr Name *</label>
-                <input type="text" class="form-control" placeholder="Max Mustermann" required>
+                <input type="text" name="name" class="form-control" placeholder="Max Mustermann" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label small fw-bold text-secondary">Unternehmen *</label>
-                <input type="text" class="form-control" placeholder="Musterfirma GmbH" required>
+                <input type="text" name="unternehmen" class="form-control" placeholder="Musterfirma GmbH" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label small fw-bold text-secondary">E-Mail *</label>
-                <input type="email" class="form-control" placeholder="max@musterfirma.de" required>
+                <input type="email" name="email" class="form-control" placeholder="max@musterfirma.de" required>
               </div>
               <div class="col-md-6">
                 <label class="form-label small fw-bold text-secondary">Telefon</label>
-                <input type="tel" class="form-control" placeholder="+49 ...">
+                <input type="tel" name="telefon" class="form-control" placeholder="+49 ...">
               </div>
               <div class="col-12">
                 <label class="form-label small fw-bold text-secondary">Anzahl Außendienstler</label>
-                <select class="form-control">
+                <select name="teamgroesse" class="form-control">
                   <option>1–5 Mitarbeiter</option>
                   <option>6–10 Mitarbeiter</option>
                   <option>11–20 Mitarbeiter</option>
@@ -884,7 +885,7 @@
               </div>
               <div class="col-12">
                 <label class="form-label small fw-bold text-secondary">Ihre Nachricht</label>
-                <textarea class="form-control" rows="3" placeholder="Kurze Beschreibung Ihres Teams und Ihrer Anforderungen..."></textarea>
+                <textarea name="nachricht" class="form-control" rows="3" placeholder="Kurze Beschreibung Ihres Teams und Ihrer Anforderungen..."></textarea>
               </div>
               <div class="col-12">
                 <button type="submit" class="btn btn-amber w-100 py-2 fw-bold">
@@ -971,7 +972,7 @@
         <p>Jan Anschütz · Fasanenstr. 21 · 41751 Viersen<br>
         E-Mail: <a href="mailto:anschuetz.info@gmail.com">anschuetz.info@gmail.com</a> · Tel: +49 151 54607420</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 2 Verarbeitete Daten</h6>
-        <p><strong>Kontaktformular:</strong> Wenn Sie das Formular absenden, öffnet sich Ihr E-Mail-Programm mit den eingegebenen Daten vorausgefüllt (Name, Firma, E-Mail, Telefon, Teamgröße, Nachricht). Die Daten werden nicht durch unsere Website verarbeitet oder gespeichert – die Übertragung erfolgt ausschließlich über Ihre eigene E-Mail-Anwendung. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).</p>
+        <p><strong>Kontaktformular:</strong> Wenn Sie das Formular absenden, werden die eingegebenen Daten (Name, Firma, E-Mail, Telefon, Teamgröße, Nachricht) über den Dienst Netlify Forms (Netlify, Inc., 512 2nd Street, San Francisco, CA 94107, USA) an uns übermittelt und dort temporär gespeichert. Netlify verarbeitet die Daten auf Basis von Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">netlify.com/privacy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).</p>
         <p><strong>Externe Ressourcen (CDN):</strong> Diese Website lädt Gestaltungsressourcen von jsDelivr (jsdelivr.net). Dabei kann Ihre IP-Adresse an deren Server übertragen werden. Weitere Informationen: <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noopener noreferrer">jsdelivr.com/privacy-policy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
         <p><strong>Cookies &amp; Tracking:</strong> Diese Website verwendet keine Cookies und kein Tracking.</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 3 Ihre Rechte</h6>
@@ -1000,23 +1001,26 @@ function setBilling(mode) {
   btnA.style.color      = isAnnual ? '#fff' : '#555';
 }
 
-function handleForm(e) {
+async function handleForm(e) {
   e.preventDefault();
-  const f = e.target;
-  const name   = f.querySelector('input[placeholder="Max Mustermann"]').value;
-  const firma  = f.querySelector('input[placeholder="Musterfirma GmbH"]').value;
-  const email  = f.querySelector('input[type="email"]').value;
-  const tel    = f.querySelector('input[type="tel"]').value;
-  const anzahl = f.querySelector('select').value;
-  const msg    = f.querySelector('textarea').value;
-  const subj   = encodeURIComponent('Demo-Anfrage Aktions Tracker – ' + firma);
-  const body   = encodeURIComponent(
-    'Name: ' + name + '\nFirma: ' + firma + '\nE-Mail: ' + email +
-    '\nTelefon: ' + tel + '\nTeamgröße: ' + anzahl + '\n\nNachricht:\n' + msg
-  );
-  window.location.href = 'mailto:anschuetz.info@gmail.com?subject=' + subj + '&body=' + body;
-  f.style.display = 'none';
-  document.getElementById('formSuccess').style.display = 'block';
+  const form = e.target;
+  const btn  = form.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Wird gesendet…';
+  try {
+    const data = new URLSearchParams(new FormData(form)).toString();
+    await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: data,
+    });
+    form.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  } catch (err) {
+    btn.disabled = false;
+    btn.innerHTML = '<i class="bi bi-send me-2"></i>Demo anfragen';
+    alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an anschuetz.info@gmail.com');
+  }
 }
 
 // Smooth scroll for nav links
