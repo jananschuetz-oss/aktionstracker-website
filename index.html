@@ -101,48 +101,105 @@
       50%      { opacity:.5; transform:scale(1.4); }
     }
 
-    /* ── Mockup ── */
-    .mockup-wrap {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      padding: 1.5rem;
-      backdrop-filter: blur(4px);
-    }
-    .mockup-bar {
-      background: rgba(255,255,255,.08);
-      border-radius: 8px;
-      padding: .6rem 1rem;
-      margin-bottom: 1rem;
+    /* ── Phone Mockup ── */
+    .phone-frame-wrap {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: .5rem;
+      padding: 1.5rem 0;
     }
-    .mockup-dot { width:10px;height:10px;border-radius:50%; }
-    .mockup-url {
-      background: rgba(255,255,255,.1);
-      border-radius: 4px;
-      padding: .2rem .75rem;
-      font-size: .75rem;
+    .phone-frame {
+      width: 268px;
+      background: #fff;
+      border-radius: 38px;
+      border: 7px solid #08121e;
+      box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.07);
+      overflow: hidden;
+      transform: perspective(900px) rotateY(-8deg) rotateX(2deg);
+      transition: transform .4s ease;
+    }
+    .phone-frame:hover { transform: perspective(900px) rotateY(-2deg) rotateX(1deg); }
+    .phone-notch {
+      background: #08121e;
+      height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 4px;
+    }
+    .phone-notch-pill { width: 72px; height: 5px; background: #1a3a5c; border-radius: 3px; }
+    .phone-status {
+      background: #1a3a5c;
       color: rgba(255,255,255,.6);
-      flex: 1;
+      padding: .2rem .8rem;
+      font-size: .6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
-    .kpi-card {
-      background: rgba(255,255,255,.08);
+    .phone-app-header {
+      background: #1a3a5c;
+      padding: .55rem .75rem .65rem;
+    }
+    .phone-filter-row {
+      background: #fff;
+      padding: .4rem .6rem;
+      display: flex;
+      gap: .3rem;
+      align-items: center;
+      border-bottom: 1px solid #edf1f7;
+    }
+    .ph-badge {
+      background: #f0f4fa;
+      color: #555;
+      font-size: .58rem;
+      padding: .15rem .45rem;
+      border-radius: 20px;
+      border: 1px solid #dde6f3;
+    }
+    .ph-badge.active { background: #1a3a5c; color: #fff; border-color: #1a3a5c; }
+    .phone-list { background: #f4f7fb; padding: .4rem .4rem 0; }
+    .ph-card {
+      background: #fff;
       border-radius: 10px;
-      padding: .9rem 1rem;
+      padding: .55rem .65rem;
+      margin-bottom: .35rem;
+      border: 1px solid #e8eef6;
     }
-    .kpi-card .kpi-val { font-size: 1.6rem; font-weight: 800; }
-    .kpi-card .kpi-lbl { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: .1rem; }
-    .kpi-card.blue  .kpi-val { color: #5bc0de; }
-    .kpi-card.amber .kpi-val { color: var(--amber-hell); }
-    .kpi-card.green .kpi-val { color: #4cdb7a; }
-    .kpi-card.purple .kpi-val { color: #b88af5; }
-    .bar-row { margin-top: .75rem; }
-    .bar-label { display: flex; justify-content: space-between; font-size: .72rem; color: rgba(255,255,255,.6); margin-bottom: .3rem; }
-    .bar-bg { background: rgba(255,255,255,.12); border-radius: 4px; height: 8px; }
-    .bar-fill { border-radius: 4px; height: 8px; }
+    .ph-type-badge {
+      font-size: .56rem;
+      font-weight: 700;
+      padding: .15rem .42rem;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .ph-type-badge.bestell { background: #fdf3e0; color: #93500a; }
+    .ph-type-badge.aufbau  { background: #e6f9ee; color: #1a6b39; }
+    .ph-type-badge.besuch  { background: #e8f0fb; color: #1a3a5c; }
+    .phone-nav {
+      background: #1a3a5c;
+      display: flex;
+      padding: .3rem 0 .45rem;
+    }
+    .ph-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: .5rem;
+      color: rgba(255,255,255,.4);
+      gap: 1px;
+    }
+    .ph-nav-item i { font-size: .82rem; }
+    .ph-nav-item.active { color: var(--amber-hell); }
+    .ph-nav-item.eintragen {
+      color: #fff;
+      background: var(--amber);
+      border-radius: 9px 9px 0 0;
+      margin: -5px .12rem 0;
+      padding-top: .35rem;
+    }
+    @media (max-width: 991.98px) { .phone-frame-wrap { display: none; } }
 
     /* ── Sections ── */
     section { padding: 80px 0; }
@@ -420,50 +477,68 @@
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="mockup-wrap">
-          <div class="mockup-bar">
-            <div class="mockup-dot" style="background:#ff5f57"></div>
-            <div class="mockup-dot" style="background:#febc2e"></div>
-            <div class="mockup-dot" style="background:#28c840"></div>
-            <div class="mockup-url">app.ihre-domain.de</div>
-          </div>
-          <!-- Mini-Dashboard Mockup -->
-          <div style="color:#fff;font-size:.78rem">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <strong style="font-size:.9rem">Dashboard – Jahr 2026</strong>
-              <span style="background:var(--amber);border-radius:6px;padding:.2rem .6rem;font-size:.7rem">Alle Mitarbeiter</span>
-            </div>
-            <div class="kpi-grid mb-3">
-              <div class="kpi-card blue">
-                <div class="kpi-val">512</div>
-                <div class="kpi-lbl"><i class="bi bi-display me-1"></i>Displays gesamt</div>
-              </div>
-              <div class="kpi-card amber">
-                <div class="kpi-val">31.840</div>
-                <div class="kpi-lbl"><i class="bi bi-box-seam me-1"></i>Kisten gesamt</div>
-              </div>
-              <div class="kpi-card green">
-                <div class="kpi-val">328</div>
-                <div class="kpi-lbl"><i class="bi bi-shop me-1"></i>Besuche gesamt</div>
-              </div>
-              <div class="kpi-card purple">
-                <div class="kpi-val">5</div>
-                <div class="kpi-lbl"><i class="bi bi-people me-1"></i>Aktive Mitarbeiter</div>
+        <div class="phone-frame-wrap">
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+            <div class="phone-status">
+              <span>08:18</span>
+              <div style="display:flex;gap:3px;align-items:center">
+                <i class="bi bi-reception-4"></i>
+                <i class="bi bi-wifi"></i>
+                <span>90 %</span>
               </div>
             </div>
-            <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:.8rem">
-              <div class="d-flex justify-content-between mb-2" style="font-size:.72rem;color:rgba(255,255,255,.6)">
-                <span>Zielerreichung Team 2026</span>
-                <span style="color:#4cdb7a;font-weight:700">54 %</span>
+            <div class="phone-app-header">
+              <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-list me-1"></i> Aktivitäten</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:1px">Alle Einträge</div>
+            </div>
+            <div class="phone-filter-row">
+              <span class="ph-badge active">2026</span>
+              <span class="ph-badge">Alle Monate</span>
+              <span class="ph-badge">KW Alle</span>
+              <span style="margin-left:auto;font-size:.6rem;color:#999">350 Einträge</span>
+            </div>
+            <div class="phone-list">
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
+                  <span class="ph-type-badge bestell">Bestellung</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · KW 24 · Mannheim</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">60</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
-              <div class="bar-row">
-                <div class="bar-label"><span><i class="bi bi-display"></i> Displays 512 / 900</span><span style="color:#4cdb7a">57%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width:57%;background:var(--blau-mid)"></div></div>
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
+                  <span class="ph-type-badge aufbau">Aufbau</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · KW 23 · Nürnberg</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">0</strong> <span style="color:#bbb">Displays</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">9</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
-              <div class="bar-row mt-2">
-                <div class="bar-label"><span><i class="bi bi-box-seam"></i> Kisten 31.840 / 56.000</span><span style="color:#f5a623">57%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width:57%;background:var(--amber)"></div></div>
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Gasthaus Zum Löwen</div>
+                  <span class="ph-type-badge besuch">Besuch</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>03.06.26 · KW 23 · München</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">2</strong> <span style="color:#bbb">Displays</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">24</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
+            </div>
+            <div class="phone-nav">
+              <div class="ph-nav-item"><i class="bi bi-speedometer2"></i><span>Dashboard</span></div>
+              <div class="ph-nav-item active"><i class="bi bi-list-ul"></i><span>Aktivitäten</span></div>
+              <div class="ph-nav-item eintragen"><i class="bi bi-plus-circle-fill"></i><span>Eintragen</span></div>
+              <div class="ph-nav-item"><i class="bi bi-graph-up-arrow"></i><span>Vergleich</span></div>
+              <div class="ph-nav-item"><i class="bi bi-box-arrow-right"></i><span>Abmelden</span></div>
             </div>
           </div>
         </div>
@@ -532,15 +607,15 @@
         <div class="feature-card">
           <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
           <h4>Aktivitäten erfassen</h4>
-          <p>Kundenbesuche, Displays, Bestellungen und Notizen in Sekunden eintragen – direkt vor Ort vom Smartphone.</p>
+          <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst. Direkt vor Ort vom Smartphone, inkl. Notizen und Foto-Nachweis.</p>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4">
         <div class="feature-card">
-          <div class="feature-icon blue"><i class="bi bi-tags"></i></div>
-          <h4>Aktivitätstypen</h4>
-          <p>Aufbau, Besuch oder Bestellung – jede Aktivität wird mit dem passenden Typ erfasst. Auswertungen zeigen auf einen Blick, was wirklich im Feld passiert.</p>
+          <div class="feature-icon amber"><i class="bi bi-clipboard-check"></i></div>
+          <h4>Bestellungs-Pipeline</h4>
+          <p>Bestellungen vom Außendienst direkt im Tool erfassen und verfolgen – von der Aufnahme bis zur Lieferung. Offene Bestellungen immer im Blick, kein Zettelchaos.</p>
         </div>
       </div>
 
@@ -569,14 +644,6 @@
         </div>
       </div>
 
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon red"><i class="bi bi-phone"></i></div>
-          <h4>App fürs Smartphone – kein App Store nötig</h4>
-          <p>Auf dem Homescreen speichern für schnellen Zugriff. Kein Download, kein Update-Stress – läuft auf iOS und Android.</p>
-        </div>
-      </div>
-
       <!-- Reihe 3: Management & Führung -->
       <div class="col-md-6 col-lg-4">
         <div class="feature-card">
@@ -591,14 +658,6 @@
           <div class="feature-icon amber"><i class="bi bi-envelope-at"></i></div>
           <h4>Automatischer Wochenbericht</h4>
           <p>Jeden Montag landet eine Zusammenfassung per E-Mail beim Verkaufsleiter – Besuche, Kisten, Displays und Vorwochenvergleich. Kein manuelles Reporting nötig.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon amber"><i class="bi bi-clipboard-check"></i></div>
-          <h4>Bestellungs-Pipeline</h4>
-          <p>Bestellungen vom Außendienst direkt im Tool erfassen und verfolgen – von der Aufnahme bis zur Lieferung. Offene Bestellungen immer im Blick, kein Zettelchaos.</p>
         </div>
       </div>
 
