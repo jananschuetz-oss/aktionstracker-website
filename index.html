@@ -256,7 +256,15 @@
     .stat-shock.stat-danger .stat-num { color: #f87171; }
     .stat-shock.stat-warn .stat-num { color: #fbbf24; }
     .stat-shock.stat-muted .stat-num { color: rgba(255,255,255,.3); }
+    .stat-shock.stat-teal { background: rgba(44,196,176,.1); border: 1px solid rgba(44,196,176,.25); }
+    .stat-shock.stat-teal .stat-num { color: #2cc4b0; }
+    .stat-shock.stat-amber-fact { background: rgba(245,166,35,.1); border: 1px solid rgba(245,166,35,.25); }
+    .stat-shock.stat-amber-fact .stat-num { color: #f5a623; }
+    .stat-shock.stat-green-fact { background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.2); }
+    .stat-shock.stat-green-fact .stat-num { color: #4ade80; }
     .stat-label { font-size: .88rem; color: rgba(255,255,255,.5); margin-top: .6rem; line-height: 1.5; }
+    .trust-bar { background: #07151f; border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); padding: .85rem 0; }
+    .trust-item { font-size: .82rem; color: rgba(255,255,255,.42); display: inline-flex; align-items: center; gap: .4rem; }
 
     /* ── Features ── */
     .feature-card {
@@ -488,7 +496,7 @@
           </a>
         </div>
         <div class="mt-4 d-flex flex-wrap gap-4" style="font-size:.83rem;color:rgba(255,255,255,.5)">
-          <span>Ab 99 €/Monat</span>
+          <span>Ab 99 € – 229 €/Monat je nach Teamgröße</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
           <span>Monatlich kündbar</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
@@ -566,6 +574,18 @@
   </div>
 </section>
 
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+      <span class="trust-item"><i class="bi bi-geo-alt-fill me-1" style="color:#2cc4b0"></i>Entwickelt in Deutschland</span>
+      <span class="trust-item"><i class="bi bi-shield-check me-1" style="color:#2cc4b0"></i>DSGVO-konform</span>
+      <span class="trust-item"><i class="bi bi-cloud-check me-1" style="color:#2cc4b0"></i>Hosting in Europa</span>
+      <span class="trust-item"><i class="bi bi-person-lines-fill me-1" style="color:#2cc4b0"></i>Persönlicher Ansprechpartner</span>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════ PROBLEM ════════════════════════════ -->
 <section class="problem-section">
   <div class="container">
@@ -640,31 +660,31 @@
 
     </div>
 
-    <!-- Schock-Zahlen (Option C) -->
-    <div class="row g-4 mb-4">
-      <div class="col-md-4">
-        <div class="stat-shock stat-danger">
-          <div class="stat-num">3,5h</div>
-          <div class="stat-label">wöchentlicher Aufwand für manuelles Reporting</div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="stat-shock stat-warn">
-          <div class="stat-num">74%</div>
-          <div class="stat-label">der Außendienstler erfassen nicht täglich</div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="stat-shock stat-muted">
-          <div class="stat-num">0%</div>
-          <div class="stat-label">Echtzeit-Transparenz für die Geschäftsführung</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center pt-2">
+    <div class="text-center py-3">
       <span style="font-size:.95rem;color:rgba(255,255,255,.45)">Es gibt einen besseren Weg.</span>
       <span style="color:#f5a623;margin-left:.4rem">→</span>
+    </div>
+
+    <!-- Produkteigene Fakten -->
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="stat-shock stat-teal">
+          <div class="stat-num">&lt; 60s</div>
+          <div class="stat-label">eine Aktivität erfassen — direkt beim Kunden</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-shock stat-amber-fact">
+          <div class="stat-num">Mo 07:00</div>
+          <div class="stat-label">automatischer Wochenbericht in Ihrer Inbox</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-shock stat-green-fact">
+          <div class="stat-num">1 Woche</div>
+          <div class="stat-label">bis Ihr Außendienst live erfasst und transparent ist</div>
+        </div>
+      </div>
     </div>
 
   </div>
