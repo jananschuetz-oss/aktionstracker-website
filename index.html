@@ -228,16 +228,34 @@
     }
 
     /* ── Problem ── */
-    .problem-section { background: var(--hell); }
-    .pain-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem;
-      border-left: 4px solid #e74c3c;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-    }
-    .pain-card h5 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .4rem; }
-    .pain-card p { font-size: .88rem; color: #666; margin: 0; }
+    .problem-section { background: #09192a; color: #fff; }
+    .chaos-card { background: #0f2237; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; overflow: hidden; height: 100%; }
+    .chaos-card-head { background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.08); padding: .55rem 1rem; font-size: .78rem; color: rgba(255,255,255,.55); }
+    .chat-thread { padding: .6rem .75rem; display: flex; flex-direction: column; gap: .4rem; }
+    .chat-msg { padding: .4rem .65rem; border-radius: 10px; font-size: .82rem; line-height: 1.5; max-width: 90%; color: #e5e5e5; }
+    .chat-msg.recv { background: rgba(255,255,255,.07); border-radius: 2px 10px 10px 10px; }
+    .chat-msg.sent { background: rgba(46,109,164,.3); border-radius: 10px 2px 10px 10px; align-self: flex-end; }
+    .chat-name { display: block; font-size: .68rem; color: #4ade80; font-weight: 600; margin-bottom: 1px; }
+    .chat-unread { font-size: .72rem; color: rgba(245,166,35,.8); text-align: center; padding: .35rem; border-top: 1px solid rgba(255,255,255,.06); margin-top: .2rem; }
+    .excel-tbl { width: 100%; border-collapse: collapse; font-size: .8rem; }
+    .excel-tbl th { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); padding: .3rem .5rem; text-align: left; font-size: .72rem; font-weight: 600; }
+    .excel-tbl td { padding: .3rem .5rem; color: #e5e5e5; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .excel-tbl td.ok { color: #4ade80; }
+    .excel-tbl td.miss { color: #f87171; background: rgba(248,113,113,.1); text-align: center; }
+    .excel-footer { font-size: .7rem; color: rgba(255,255,255,.3); margin-top: .75rem; font-style: italic; }
+    .email-inner { padding: .75rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .email-meta { font-size: .72rem; color: rgba(255,255,255,.4); line-height: 1.8; }
+    .email-text { font-size: .82rem; color: #e5e5e5; line-height: 1.6; padding: .55rem .75rem; background: rgba(245,158,11,.08); border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; }
+    .email-thread { font-size: .7rem; color: rgba(255,255,255,.28); line-height: 1.9; padding-top: .5rem; border-top: 1px solid rgba(255,255,255,.06); }
+    .stat-shock { border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .stat-shock.stat-danger { background: rgba(248,113,113,.1); border: 1px solid rgba(248,113,113,.25); }
+    .stat-shock.stat-warn { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); }
+    .stat-shock.stat-muted { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); }
+    .stat-num { font-size: 2.8rem; font-weight: 800; line-height: 1; }
+    .stat-shock.stat-danger .stat-num { color: #f87171; }
+    .stat-shock.stat-warn .stat-num { color: #fbbf24; }
+    .stat-shock.stat-muted .stat-num { color: rgba(255,255,255,.3); }
+    .stat-label { font-size: .88rem; color: rgba(255,255,255,.5); margin-top: .6rem; line-height: 1.5; }
 
     /* ── Features ── */
     .feature-card {
@@ -552,37 +570,104 @@
 <!-- ═══════════════════════════════════════ PROBLEM ════════════════════════════ -->
 <section class="problem-section">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-4">
       <div class="section-label">Das Problem</div>
-      <h2 class="section-title">Außendienst ohne digitales Tracking?<br>Das kennen wir.</h2>
-      <p class="section-sub mx-auto mt-2">Viele Teams verlieren täglich wertvolle Zeit und Transparenz, weil Aktivitäten manuell oder gar nicht erfasst werden.</p>
+      <h2 style="color:#fff;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:0">Kennen Sie das?</h2>
     </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-file-earmark-excel me-2" style="color:#e74c3c"></i>Excel-Chaos</h5>
-          <p>Getrennte Tabellen je Mitarbeiter, inkonsistente Formate, wochenlange Verzögerungen beim Reporting.</p>
+
+    <!-- Screenshot-Chaos (Option A) -->
+    <div class="row g-4 mb-4">
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-whatsapp me-1" style="color:#25d366"></i>Gruppe "Außendienst" · 17:43
+          </div>
+          <div class="chat-thread">
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Was hat Harald heute gemacht? Wie viele Besuche?</div>
+            <div class="chat-msg sent">Weiß nicht, frag ihn direkt 🤷</div>
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Display bei Lidl – steht das??</div>
+            <div class="chat-msg sent">Glaub schon? Kann nicht mehr sagen</div>
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Wo ist eigentlich die Exceltabelle von dieser Woche?!</div>
+            <div class="chat-unread">3 ungelesene Nachrichten ↓</div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-eye-slash me-2" style="color:#e74c3c"></i>Kein Überblick</h5>
-          <p>Führungskräfte wissen nicht, welcher Rep was macht – ohne wöchentliche Meetings bleibt vieles im Dunkeln.</p>
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-file-earmark-spreadsheet me-1" style="color:#1d7a45"></i>Besuche_KW24_final_v3.xlsx
+          </div>
+          <div class="p-3">
+            <table class="excel-tbl">
+              <thead>
+                <tr><th>Name</th><th>KW23</th><th>KW24</th><th>KW25</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Müller</td><td class="ok">3</td><td class="miss">—</td><td class="ok">2</td></tr>
+                <tr><td>Fischer</td><td class="miss">—</td><td class="ok">4</td><td class="miss">—</td></tr>
+                <tr><td>Schmidt</td><td class="miss">—</td><td class="miss">—</td><td class="ok">1</td></tr>
+                <tr><td>Weber</td><td class="ok">5</td><td class="miss">—</td><td class="miss">—</td></tr>
+              </tbody>
+            </table>
+            <div class="excel-footer">Letzte Änderung: Mo 18:34 · "final_v3"</div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-bullseye me-2" style="color:#e74c3c"></i>Ziele unklar</h5>
-          <p>Jahresziele existieren im Kopf der Führung, nicht transparent für jeden Mitarbeiter mit aktuellem Stand.</p>
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-envelope me-1"></i>AW: Re: Re: Wochenbericht KW23
+          </div>
+          <div class="email-inner">
+            <div class="email-meta">
+              Von: Chef &lt;gf@firma.de&gt;<br>
+              An: Alle &lt;team@firma.de&gt;<br>
+              Mo, 10. Jun · 09:12
+            </div>
+            <div class="email-text">
+              <i class="bi bi-exclamation-triangle me-1" style="color:#f59e0b"></i>Wo bleibt der Bericht von KW 23? Ich frage jetzt zum <strong>dritten Mal</strong>. Bitte bis 12 Uhr.
+            </div>
+            <div class="email-thread">
+              — Fischer, 09:08: hab keine zahlen von allen<br>
+              — Müller, Fr 17:45: kommt noch<br>
+              — Weber, Do: ...
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-phone-slash me-2" style="color:#e74c3c"></i>Kein mobiler Zugriff</h5>
-          <p>Aktivitäten werden im Auto oder abends erfasst – komplizierte Desktop-Tools sind da keine Option.</p>
+
+    </div>
+
+    <!-- Schock-Zahlen (Option C) -->
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="stat-shock stat-danger">
+          <div class="stat-num">3,5h</div>
+          <div class="stat-label">wöchentlicher Aufwand für manuelles Reporting</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-shock stat-warn">
+          <div class="stat-num">74%</div>
+          <div class="stat-label">der Außendienstler erfassen nicht täglich</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-shock stat-muted">
+          <div class="stat-num">0%</div>
+          <div class="stat-label">Echtzeit-Transparenz für die Geschäftsführung</div>
         </div>
       </div>
     </div>
+
+    <div class="text-center pt-2">
+      <span style="font-size:.95rem;color:rgba(255,255,255,.45)">Es gibt einen besseren Weg.</span>
+      <span style="color:#f5a623;margin-left:.4rem">→</span>
+    </div>
+
   </div>
 </section>
 
