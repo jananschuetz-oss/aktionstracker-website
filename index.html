@@ -296,32 +296,42 @@
     /* ── Wie es funktioniert ── */
     .how-section { background: var(--blau); color: #fff; }
     .how-section .section-title { color: #fff; }
-    .step-num {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--amber);
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
-      flex-shrink: 0;
-    }
-    .step-card {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
+    .step-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr 1fr;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
       border-radius: 14px;
-      padding: 1.75rem;
-      height: 100%;
+      overflow: hidden;
     }
-    .step-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-    .step-card p { font-size: .88rem; color: rgba(255,255,255,.7); margin: 0; line-height: 1.6; }
-    .connector {
-      display: none;
+    .step-num {
+      background: var(--amber);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800; color: #fff;
     }
-    @media (min-width:768px) {
-      .connector { display: flex; align-items: center; justify-content: center; }
+    .step-col { padding: 1.1rem 1.4rem; }
+    .step-col.you-col { border-right: 1px solid rgba(255,255,255,.08); }
+    .step-col-lbl { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: .35rem; }
+    .step-col-lbl.you { color: #2cc4b0; }
+    .step-col-lbl.us  { color: var(--amber); }
+    .step-col h4 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+    .step-col p  { font-size: .82rem; color: rgba(255,255,255,.55); margin: 0; line-height: 1.5; }
+    @media (max-width: 575px) {
+      .step-row { grid-template-columns: 2.5rem 1fr; }
+      .step-num { grid-row: span 2; }
+      .step-col.you-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
     }
+    /* ── FAQ Kategorien ── */
+    .faq-cat-wrap { border-bottom: 2px solid #2cc4b0; margin-bottom: .5rem; }
+    .faq-cat-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: none;
+      padding: .7rem 0; font-size: 1rem; font-weight: 700; color: #1a3a5c;
+      cursor: pointer; text-align: left;
+    }
+    .faq-cat-btn:hover { color: #2cc4b0; }
+    .faq-cat-icon { font-size: .85rem; transition: transform .2s; flex-shrink: 0; }
+    .faq-cat-btn[aria-expanded="true"] .faq-cat-icon { transform: rotate(180deg); }
 
     /* ── Zielgruppe ── */
     .audience-section { background: var(--hell); }
@@ -696,7 +706,7 @@
         <div class="feature-card">
           <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
           <h4>Aktivitäten erfassen</h4>
-          <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst. Direkt vor Ort vom Smartphone, inkl. Notizen und Foto-Nachweis.</p>
+          <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst, direkt vor Ort vom Smartphone. Mitarbeiter planen vorab ihre Verkaufsstellen – die Leitung sieht geplante vs. tatsächlich besuchte Standorte auf einen Blick.</p>
         </div>
       </div>
 
@@ -818,28 +828,50 @@
       <h2 class="section-title">In 3 Schritten startklar</h2>
       <p class="section-sub mx-auto mt-2" style="color:rgba(255,255,255,.7)">Kein IT-Projekt, keine langen Einführungen. Ihr Team kann innerhalb eines Tages loslegen.</p>
     </div>
-    <div class="row g-4 align-items-stretch">
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h4>Stammdaten einrichten</h4>
-          <p>Wir richten alles für Sie ein – Sie liefern nur Ihre Mitarbeiterliste und Kundenadressen als Excel. Kein manuelles Eintippen, kein IT-Aufwand.</p>
+    <div class="d-flex flex-column gap-3">
+
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie tun</div>
+          <h4>Mitarbeiterliste + Kundenadressen schicken</h4>
+          <p>Einmal als Excel – dauert 30 Minuten auf Ihrer Seite.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was wir tun</div>
+          <h4>Alles einrichten – Sie schauen zu</h4>
+          <p>System, Zugänge, Zuordnungen, Stammdaten-Import. Fertig.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h4>Aktivitäten erfassen</h4>
-          <p>Jeder Mitarbeiter trägt Kundenbesuche, Displays und Bestellungen direkt vom Smartphone ein – vor Ort oder unterwegs.</p>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Ihr Team tut</div>
+          <h4>Besuche, Displays, Bestellungen erfassen</h4>
+          <p>60 Sekunden vom Smartphone – vor Ort oder am Abend danach.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was passiert</div>
+          <h4>Sofort im Dashboard sichtbar</h4>
+          <p>Wochenbericht läuft automatisch – kein Nachfragen mehr.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h4>Ergebnisse analysieren</h4>
-          <p>Verkaufsleiter und Geschäftsführung sehen sofort den Stand – nach Mitarbeiter, Woche, Monat oder Jahresvergleich.</p>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie sehen</div>
+          <h4>KPIs nach Mitarbeiter, Woche &amp; Monat</h4>
+          <p>Immer aktuell – auch unterwegs per Smartphone.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was Sie nicht mehr tun</div>
+          <h4>Nachfragen, Excel zusammenstellen, warten</h4>
+          <p>Die Zahlen kommen zu Ihnen – jeden Montag automatisch.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1087,17 +1119,20 @@
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="section-title">Häufige Fragen</h2>
-      <p class="section-subtitle">Kaufentscheidung, Rollen, Betrieb, Technik und DSGVO</p>
+      <p class="section-subtitle">Klicken Sie auf eine Kategorie, um die Fragen aufzuklappen</p>
     </div>
 
     <div class="row justify-content-center">
       <div class="col-lg-9">
 
         <!-- Kaufentscheidung -->
-        <h5 class="fw-bold mb-3" style="color:#1a3a5c;border-bottom:2px solid #2cc4b0;padding-bottom:.4rem">
-          Kaufentscheidung
-        </h5>
-        <div class="accordion mb-4" id="faqKauf">
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-kauf" aria-expanded="false">
+            <span>Kaufentscheidung</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-kauf" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqKauf">
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
@@ -1171,12 +1206,17 @@
           </div>
 
         </div>
+          </div>
+        </div>
 
         <!-- Rollen & Rechte -->
-        <h5 class="fw-bold mb-3" style="color:#1a3a5c;border-bottom:2px solid #2cc4b0;padding-bottom:.4rem">
-          Rollen & Rechte
-        </h5>
-        <div class="accordion mb-4" id="faqRollen">
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-rollen" aria-expanded="false">
+            <span>Rollen &amp; Rechte</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-rollen" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqRollen">
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
@@ -1291,12 +1331,17 @@
           </div>
 
         </div>
+          </div>
+        </div>
 
         <!-- Funktionen & Betrieb -->
-        <h5 class="fw-bold mb-3" style="color:#1a3a5c;border-bottom:2px solid #2cc4b0;padding-bottom:.4rem">
-          Funktionen & Betrieb
-        </h5>
-        <div class="accordion mb-4" id="faqBetrieb">
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-betrieb" aria-expanded="false">
+            <span>Funktionen &amp; Betrieb</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-betrieb" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqBetrieb">
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
@@ -1379,13 +1424,48 @@
             </div>
           </div>
 
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b7">
+                Gibt es auch einen Monatsbericht?
+              </button>
+            </h2>
+            <div id="faq-b7" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Ja. Am ersten jeden Monats um 07:00 Uhr wird automatisch ein <strong>Monatsbericht für den Vormonat</strong> verschickt – mit KPIs, Mitarbeiter-Ranking und Monatstrend.</p>
+                <p class="mb-2">Besonderheit: Der Bericht enthält als E-Mail-Anhang ein <strong>ZIP mit allen Fotos des Vormonats</strong>. Das ist wichtig, weil Besuchsfotos nach einer konfigurierbaren Aufbewahrungszeit automatisch vom Server gelöscht werden – der Monatsbericht stellt sicher, dass alle Bilder vorher gesichert sind.</p>
+                <p class="mb-0 text-muted small">Empfänger des Monatsberichts können separat konfiguriert werden – unabhängig vom Wochenbericht.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b8">
+                Was ist die Besuchsplanung?
+              </button>
+            </h2>
+            <div id="faq-b8" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Die Besuchsplanung ist kein Routenplaner. Der Mitarbeiter markiert zu Beginn seines Arbeitstages, welche Verkaufsstellen er anfährt – eine Art digitale Tagesliste. Er plant selbst, ohne Vorgabe einer optimalen Route.</p>
+                <p class="mb-2">Geschäftsführer und Verkaufsleiter sehen im Dashboard, wie viele Standorte ein Mitarbeiter geplant und wie viele er tatsächlich besucht hat. Das schafft Transparenz ohne Mikromanagement: Nicht jede Planabweichung ist ein Problem – aber auffällige Muster werden sichtbar.</p>
+                <p class="mb-0 text-muted small">Die Funktion ist optional aktivierbar (Einstellung: Besuchsplanung an/aus).</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
         </div>
 
-        <!-- Dateneingabe & Qualität -->
-        <h5 class="fw-bold mb-3" style="color:#1a3a5c;border-bottom:2px solid #2cc4b0;padding-bottom:.4rem">
-          Dateneingabe & Datenqualität
-        </h5>
-        <div class="accordion mb-4" id="faqDaten">
+        <!-- Dateneingabe & Datenqualität -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-daten" aria-expanded="false">
+            <span>Dateneingabe &amp; Datenqualität</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-daten" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqDaten">
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
@@ -1395,8 +1475,9 @@
             </h2>
             <div id="faq-d1" class="accordion-collapse collapse" data-bs-parent="#faqDaten">
               <div class="accordion-body">
-                <p class="mb-2">Ja – und das ist bewusst so. Außendienstler haben oft kein Netz beim Kunden oder machen sechs Besuche am Tag und tragen am Abend nach. Das System blockiert legitime Nacherfassung nicht.</p>
-                <p class="mb-2">Was Sie als GF sehen können: das <strong>Erstelldatum</strong> eines Eintrags steht immer separat neben dem Besuchsdatum. So ist sofort sichtbar, ob ein Besuch „heute, 18:00 Uhr" oder „heute, Montag 09:00 Uhr" eingetragen wurde.</p>
+                <p class="mb-2">Ja – und das ist bewusst so. Außendienstler machen oft sechs Besuche am Tag und tragen am Abend nach. Das System blockiert legitime Nacherfassung nicht.</p>
+                <p class="mb-2">Der erlaubte Zeitraum für rückwirkendes Eintragen ist <strong>individuell einstellbar</strong>. Standard: Mitarbeiter können nur Einträge für den heutigen Tag nachtragen. Geschäftsführer und Verkaufsleiter können dagegen auch Einträge für vergangene Tage erfassen – z. B. um fehlende Aktivitäten nachzupflegen oder Korrekturen vorzunehmen.</p>
+                <p class="mb-2">Was Sie als GF zusätzlich sehen können: das <strong>Erstelldatum</strong> eines Eintrags steht immer separat neben dem Besuchsdatum. So ist sofort sichtbar, ob ein Besuch „heute, 18:00 Uhr" oder „heute, Montag 09:00 Uhr" eingetragen wurde.</p>
                 <p class="mb-0 text-muted small">Tipp: Auffällig viele Einträge mit großem Zeitabstand zwischen Besuchs- und Erstelldatum sind ein Gesprächsthema für das nächste 1:1 – nicht automatisch ein Problem.</p>
               </div>
             </div>
@@ -1445,11 +1526,17 @@
 
         </div>
 
+          </div>
+        </div>
+
         <!-- Technik, DSGVO & Sicherheit -->
-        <h5 class="fw-bold mb-3" style="color:#1a3a5c;border-bottom:2px solid #2cc4b0;padding-bottom:.4rem">
-          Technik, DSGVO & Sicherheit
-        </h5>
-        <div class="accordion" id="faqTechnik">
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-technik" aria-expanded="false">
+            <span>Technik, DSGVO &amp; Sicherheit</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-technik" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqTechnik">
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
@@ -1542,6 +1629,8 @@
             </div>
           </div>
 
+        </div>
+          </div>
         </div>
 
       </div>
