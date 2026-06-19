@@ -52,6 +52,10 @@
       font-weight: 600;
     }
     .btn-amber:hover { background: var(--amber-hell); color: #fff; }
+    .btn-ghost-hero { color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.2); background: transparent; font-weight: 500; }
+    .btn-ghost-hero:hover { background: rgba(255,255,255,.07); color: #fff; border-color: rgba(255,255,255,.35); }
+    .hero-badge-niche { background: rgba(44,122,123,.2); border-color: rgba(44,122,123,.5); color: #7de8e8; }
+    .hero-teaser { display: inline-block; background: rgba(44,196,176,.12); border: 1px solid rgba(44,196,176,.35); border-radius: 8px; padding: .5rem 1.1rem; font-size: .98rem; color: #2cc4b0; font-style: italic; margin-top: 1.25rem; }
 
     /* ── Hero ── */
     .hero {
@@ -101,48 +105,105 @@
       50%      { opacity:.5; transform:scale(1.4); }
     }
 
-    /* ── Mockup ── */
-    .mockup-wrap {
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      padding: 1.5rem;
-      backdrop-filter: blur(4px);
-    }
-    .mockup-bar {
-      background: rgba(255,255,255,.08);
-      border-radius: 8px;
-      padding: .6rem 1rem;
-      margin-bottom: 1rem;
+    /* ── Phone Mockup ── */
+    .phone-frame-wrap {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: .5rem;
+      padding: 1.5rem 0;
     }
-    .mockup-dot { width:10px;height:10px;border-radius:50%; }
-    .mockup-url {
-      background: rgba(255,255,255,.1);
-      border-radius: 4px;
-      padding: .2rem .75rem;
-      font-size: .75rem;
+    .phone-frame {
+      width: 268px;
+      background: #fff;
+      border-radius: 38px;
+      border: 7px solid #08121e;
+      box-shadow: 0 30px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.07);
+      overflow: hidden;
+      transform: perspective(900px) rotateY(-8deg) rotateX(2deg);
+      transition: transform .4s ease;
+    }
+    .phone-frame:hover { transform: perspective(900px) rotateY(-2deg) rotateX(1deg); }
+    .phone-notch {
+      background: #08121e;
+      height: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 4px;
+    }
+    .phone-notch-pill { width: 72px; height: 5px; background: #1a3a5c; border-radius: 3px; }
+    .phone-status {
+      background: #1a3a5c;
       color: rgba(255,255,255,.6);
-      flex: 1;
+      padding: .2rem .8rem;
+      font-size: .6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
-    .kpi-card {
-      background: rgba(255,255,255,.08);
+    .phone-app-header {
+      background: #1a3a5c;
+      padding: .55rem .75rem .65rem;
+    }
+    .phone-filter-row {
+      background: #fff;
+      padding: .4rem .6rem;
+      display: flex;
+      gap: .3rem;
+      align-items: center;
+      border-bottom: 1px solid #edf1f7;
+    }
+    .ph-badge {
+      background: #f0f4fa;
+      color: #555;
+      font-size: .58rem;
+      padding: .15rem .45rem;
+      border-radius: 20px;
+      border: 1px solid #dde6f3;
+    }
+    .ph-badge.active { background: #1a3a5c; color: #fff; border-color: #1a3a5c; }
+    .phone-list { background: #f4f7fb; padding: .4rem .4rem 0; }
+    .ph-card {
+      background: #fff;
       border-radius: 10px;
-      padding: .9rem 1rem;
+      padding: .55rem .65rem;
+      margin-bottom: .35rem;
+      border: 1px solid #e8eef6;
     }
-    .kpi-card .kpi-val { font-size: 1.6rem; font-weight: 800; }
-    .kpi-card .kpi-lbl { font-size: .72rem; color: rgba(255,255,255,.55); margin-top: .1rem; }
-    .kpi-card.blue  .kpi-val { color: #5bc0de; }
-    .kpi-card.amber .kpi-val { color: var(--amber-hell); }
-    .kpi-card.green .kpi-val { color: #4cdb7a; }
-    .kpi-card.purple .kpi-val { color: #b88af5; }
-    .bar-row { margin-top: .75rem; }
-    .bar-label { display: flex; justify-content: space-between; font-size: .72rem; color: rgba(255,255,255,.6); margin-bottom: .3rem; }
-    .bar-bg { background: rgba(255,255,255,.12); border-radius: 4px; height: 8px; }
-    .bar-fill { border-radius: 4px; height: 8px; }
+    .ph-type-badge {
+      font-size: .56rem;
+      font-weight: 700;
+      padding: .15rem .42rem;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .ph-type-badge.bestell { background: #fdf3e0; color: #93500a; }
+    .ph-type-badge.aufbau  { background: #e6f9ee; color: #1a6b39; }
+    .ph-type-badge.besuch  { background: #e8f0fb; color: #1a3a5c; }
+    .phone-nav {
+      background: #1a3a5c;
+      display: flex;
+      padding: .3rem 0 .45rem;
+    }
+    .ph-nav-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: .5rem;
+      color: rgba(255,255,255,.4);
+      gap: 1px;
+    }
+    .ph-nav-item i { font-size: .82rem; }
+    .ph-nav-item.active { color: var(--amber-hell); }
+    .ph-nav-item.eintragen {
+      color: #fff;
+      background: var(--amber);
+      border-radius: 9px 9px 0 0;
+      margin: -5px .12rem 0;
+      padding-top: .35rem;
+    }
+    @media (max-width: 991.98px) { .phone-frame-wrap { display: none; } }
 
     /* ── Sections ── */
     section { padding: 80px 0; }
@@ -168,16 +229,42 @@
     }
 
     /* ── Problem ── */
-    .problem-section { background: var(--hell); }
-    .pain-card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 1.5rem;
-      border-left: 4px solid #e74c3c;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-    }
-    .pain-card h5 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .4rem; }
-    .pain-card p { font-size: .88rem; color: #666; margin: 0; }
+    .problem-section { background: #09192a; color: #fff; }
+    .chaos-card { background: #0f2237; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; overflow: hidden; height: 100%; }
+    .chaos-card-head { background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.08); padding: .55rem 1rem; font-size: .78rem; color: rgba(255,255,255,.55); }
+    .chat-thread { padding: .6rem .75rem; display: flex; flex-direction: column; gap: .4rem; }
+    .chat-msg { padding: .4rem .65rem; border-radius: 10px; font-size: .82rem; line-height: 1.5; max-width: 90%; color: #e5e5e5; }
+    .chat-msg.recv { background: rgba(255,255,255,.07); border-radius: 2px 10px 10px 10px; }
+    .chat-msg.sent { background: rgba(46,109,164,.3); border-radius: 10px 2px 10px 10px; align-self: flex-end; }
+    .chat-name { display: block; font-size: .68rem; color: #4ade80; font-weight: 600; margin-bottom: 1px; }
+    .chat-unread { font-size: .72rem; color: rgba(245,166,35,.8); text-align: center; padding: .35rem; border-top: 1px solid rgba(255,255,255,.06); margin-top: .2rem; }
+    .excel-tbl { width: 100%; border-collapse: collapse; font-size: .8rem; }
+    .excel-tbl th { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); padding: .3rem .5rem; text-align: left; font-size: .72rem; font-weight: 600; }
+    .excel-tbl td { padding: .3rem .5rem; color: #e5e5e5; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .excel-tbl td.ok { color: #4ade80; }
+    .excel-tbl td.miss { color: #f87171; background: rgba(248,113,113,.1); text-align: center; }
+    .excel-footer { font-size: .7rem; color: rgba(255,255,255,.3); margin-top: .75rem; font-style: italic; }
+    .email-inner { padding: .75rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .email-meta { font-size: .72rem; color: rgba(255,255,255,.4); line-height: 1.8; }
+    .email-text { font-size: .82rem; color: #e5e5e5; line-height: 1.6; padding: .55rem .75rem; background: rgba(245,158,11,.08); border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; }
+    .email-thread { font-size: .7rem; color: rgba(255,255,255,.28); line-height: 1.9; padding-top: .5rem; border-top: 1px solid rgba(255,255,255,.06); }
+    .stat-shock { border-radius: 12px; padding: 1.5rem; text-align: center; }
+    .stat-shock.stat-danger { background: rgba(248,113,113,.1); border: 1px solid rgba(248,113,113,.25); }
+    .stat-shock.stat-warn { background: rgba(251,191,36,.08); border: 1px solid rgba(251,191,36,.2); }
+    .stat-shock.stat-muted { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); }
+    .stat-num { font-size: 2.8rem; font-weight: 800; line-height: 1; }
+    .stat-shock.stat-danger .stat-num { color: #f87171; }
+    .stat-shock.stat-warn .stat-num { color: #fbbf24; }
+    .stat-shock.stat-muted .stat-num { color: rgba(255,255,255,.3); }
+    .stat-shock.stat-teal { background: rgba(44,196,176,.1); border: 1px solid rgba(44,196,176,.25); }
+    .stat-shock.stat-teal .stat-num { color: #2cc4b0; }
+    .stat-shock.stat-amber-fact { background: rgba(245,166,35,.1); border: 1px solid rgba(245,166,35,.25); }
+    .stat-shock.stat-amber-fact .stat-num { color: #f5a623; }
+    .stat-shock.stat-green-fact { background: rgba(74,222,128,.08); border: 1px solid rgba(74,222,128,.2); }
+    .stat-shock.stat-green-fact .stat-num { color: #4ade80; }
+    .stat-label { font-size: .88rem; color: rgba(255,255,255,.5); margin-top: .6rem; line-height: 1.5; }
+    .trust-bar { background: #07151f; border-top: 1px solid rgba(255,255,255,.06); border-bottom: 1px solid rgba(255,255,255,.06); padding: .85rem 0; }
+    .trust-item { font-size: .82rem; color: rgba(255,255,255,.42); display: inline-flex; align-items: center; gap: .4rem; }
 
     /* ── Features ── */
     .feature-card {
@@ -209,32 +296,42 @@
     /* ── Wie es funktioniert ── */
     .how-section { background: var(--blau); color: #fff; }
     .how-section .section-title { color: #fff; }
-    .step-num {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--amber);
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1rem;
-      flex-shrink: 0;
-    }
-    .step-card {
-      background: rgba(255,255,255,.07);
-      border: 1px solid rgba(255,255,255,.12);
+    .step-row {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr 1fr;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
       border-radius: 14px;
-      padding: 1.75rem;
-      height: 100%;
+      overflow: hidden;
     }
-    .step-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
-    .step-card p { font-size: .88rem; color: rgba(255,255,255,.7); margin: 0; line-height: 1.6; }
-    .connector {
-      display: none;
+    .step-num {
+      background: var(--amber);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; font-weight: 800; color: #fff;
     }
-    @media (min-width:768px) {
-      .connector { display: flex; align-items: center; justify-content: center; }
+    .step-col { padding: 1.1rem 1.4rem; }
+    .step-col.you-col { border-right: 1px solid rgba(255,255,255,.08); }
+    .step-col-lbl { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: .35rem; }
+    .step-col-lbl.you { color: #2cc4b0; }
+    .step-col-lbl.us  { color: var(--amber); }
+    .step-col h4 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+    .step-col p  { font-size: .82rem; color: rgba(255,255,255,.55); margin: 0; line-height: 1.5; }
+    @media (max-width: 575px) {
+      .step-row { grid-template-columns: 2.5rem 1fr; }
+      .step-num { grid-row: span 2; }
+      .step-col.you-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
     }
+    /* ── FAQ Kategorien ── */
+    .faq-cat-wrap { border-bottom: 2px solid #2cc4b0; margin-bottom: .5rem; }
+    .faq-cat-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; background: none; border: none;
+      padding: .7rem 0; font-size: 1rem; font-weight: 700; color: #1a3a5c;
+      cursor: pointer; text-align: left;
+    }
+    .faq-cat-btn:hover { color: #2cc4b0; }
+    .faq-cat-icon { font-size: .85rem; transition: transform .2s; flex-shrink: 0; }
+    .faq-cat-btn[aria-expanded="true"] .faq-cat-icon { transform: rotate(180deg); }
 
     /* ── Zielgruppe ── */
     .audience-section { background: var(--hell); }
@@ -376,6 +473,7 @@
         <li class="nav-item"><a class="nav-link" href="#zielgruppe">Für wen</a></li>
         <li class="nav-item"><a class="nav-link" href="#wie">Wie es funktioniert</a></li>
         <li class="nav-item"><a class="nav-link" href="#preise">Preise</a></li>
+        <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
         <li class="nav-item ms-lg-3">
           <a class="btn btn-amber btn-sm px-3" href="#kontakt">
             <i class="bi bi-envelope me-1"></i>Demo anfragen
@@ -391,79 +489,94 @@
   <div class="container">
     <div class="row align-items-center g-5">
       <div class="col-lg-6">
-        <div class="hero-badge">
-          <span class="dot"></span>
-          Jetzt als Web-App verfügbar – kein Download nötig
+        <div class="hero-badge hero-badge-niche">
+          <span class="dot" style="background:#2cc4b0"></span>
+          Für Getränke- &amp; FMCG-Außendienst
         </div>
         <h1>
-          Außendienst-Aktivitäten<br>
-          <span>einfach tracken.</span><br>
-          Ziele im Blick behalten.
+          Was hat Ihr Außendienst<br>
+          heute wirklich <span>getan?</span>
         </h1>
-        <p class="lead mt-3 mb-4">
-          Der Aktions Tracker hilft kleinen und mittleren Unternehmen im Direktvertrieb,
-          Kundenbesuche, Bestellungen und Displays digital zu erfassen –
-          transparent für Team und Führung.
-        </p>
-        <div class="d-flex flex-wrap gap-3">
+        <div class="hero-teaser">Wie wäre es mit Echtzeit-Zahlen?</div>
+        <div class="d-flex flex-wrap gap-3 mt-3">
           <a href="#kontakt" class="btn btn-amber btn-lg px-4">
-            <i class="bi bi-rocket-takeoff me-2"></i>Demo anfragen
+            <i class="bi bi-rocket-takeoff me-2"></i>Kostenlose Demo anfragen
           </a>
-          <a href="#features" class="btn btn-outline-light btn-lg px-4">
-            Mehr erfahren <i class="bi bi-arrow-down ms-1"></i>
+          <a href="#preise" class="btn btn-outline-light btn-lg px-4">
+            Preise ansehen <i class="bi bi-arrow-down ms-1"></i>
           </a>
         </div>
-        <div class="mt-4 d-flex flex-wrap gap-4" style="font-size:.83rem;color:rgba(255,255,255,.65)">
-          <span><i class="bi bi-check2 me-1" style="color:#4cdb7a"></i>Keine Installation</span>
-          <span><i class="bi bi-check2 me-1" style="color:#4cdb7a"></i>Läuft auf jedem Smartphone</span>
-          <span><i class="bi bi-check2 me-1" style="color:#4cdb7a"></i>Als App installierbar</span>
+        <div class="mt-4 d-flex flex-wrap gap-4" style="font-size:.83rem;color:rgba(255,255,255,.5)">
+          <span>Ab 99 € – 229 €/Monat je nach Teamgröße</span>
+          <span style="color:rgba(255,255,255,.25)">·</span>
+          <span>Monatlich kündbar</span>
+          <span style="color:rgba(255,255,255,.25)">·</span>
+          <span>1 Woche bis live</span>
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="mockup-wrap">
-          <div class="mockup-bar">
-            <div class="mockup-dot" style="background:#ff5f57"></div>
-            <div class="mockup-dot" style="background:#febc2e"></div>
-            <div class="mockup-dot" style="background:#28c840"></div>
-            <div class="mockup-url">app.ihre-domain.de</div>
-          </div>
-          <!-- Mini-Dashboard Mockup -->
-          <div style="color:#fff;font-size:.78rem">
-            <div class="d-flex justify-content-between align-items-center mb-3">
-              <strong style="font-size:.9rem">Dashboard – Jahr 2025</strong>
-              <span style="background:var(--amber);border-radius:6px;padding:.2rem .6rem;font-size:.7rem">Alle Mitarbeiter</span>
-            </div>
-            <div class="kpi-grid mb-3">
-              <div class="kpi-card blue">
-                <div class="kpi-val">512</div>
-                <div class="kpi-lbl"><i class="bi bi-display me-1"></i>Displays gesamt</div>
-              </div>
-              <div class="kpi-card amber">
-                <div class="kpi-val">31.840</div>
-                <div class="kpi-lbl"><i class="bi bi-box-seam me-1"></i>Kisten gesamt</div>
-              </div>
-              <div class="kpi-card green">
-                <div class="kpi-val">328</div>
-                <div class="kpi-lbl"><i class="bi bi-shop me-1"></i>Besuche gesamt</div>
-              </div>
-              <div class="kpi-card purple">
-                <div class="kpi-val">5</div>
-                <div class="kpi-lbl"><i class="bi bi-people me-1"></i>Aktive Mitarbeiter</div>
+        <div class="phone-frame-wrap">
+          <div class="phone-frame">
+            <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+            <div class="phone-status">
+              <span>08:18</span>
+              <div style="display:flex;gap:3px;align-items:center">
+                <i class="bi bi-reception-4"></i>
+                <i class="bi bi-wifi"></i>
+                <span>90 %</span>
               </div>
             </div>
-            <div style="background:rgba(255,255,255,.07);border-radius:8px;padding:.8rem">
-              <div class="d-flex justify-content-between mb-2" style="font-size:.72rem;color:rgba(255,255,255,.6)">
-                <span>Zielerreichung Team 2025</span>
-                <span style="color:#4cdb7a;font-weight:700">54 %</span>
+            <div class="phone-app-header">
+              <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-list me-1"></i> Aktivitäten</div>
+              <div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:1px">Alle Einträge</div>
+            </div>
+            <div class="phone-filter-row">
+              <span class="ph-badge active">2026</span>
+              <span class="ph-badge">Alle Monate</span>
+              <span class="ph-badge">KW Alle</span>
+              <span style="margin-left:auto;font-size:.6rem;color:#999">350 Einträge</span>
+            </div>
+            <div class="phone-list">
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
+                  <span class="ph-type-badge bestell">Bestellung</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · KW 24 · Mannheim</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">60</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
-              <div class="bar-row">
-                <div class="bar-label"><span><i class="bi bi-display"></i> Displays 512 / 900</span><span style="color:#4cdb7a">57%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width:57%;background:var(--blau-mid)"></div></div>
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
+                  <span class="ph-type-badge aufbau">Aufbau</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · KW 23 · Nürnberg</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">0</strong> <span style="color:#bbb">Displays</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">9</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
-              <div class="bar-row mt-2">
-                <div class="bar-label"><span><i class="bi bi-box-seam"></i> Kisten 31.840 / 56.000</span><span style="color:#f5a623">57%</span></div>
-                <div class="bar-bg"><div class="bar-fill" style="width:57%;background:var(--amber)"></div></div>
+              <div class="ph-card">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Gasthaus Zum Löwen</div>
+                  <span class="ph-type-badge besuch">Besuch</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>03.06.26 · KW 23 · München</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">2</strong> <span style="color:#bbb">Displays</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">24</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
               </div>
+            </div>
+            <div class="phone-nav">
+              <div class="ph-nav-item"><i class="bi bi-speedometer2"></i><span>Dashboard</span></div>
+              <div class="ph-nav-item active"><i class="bi bi-list-ul"></i><span>Aktivitäten</span></div>
+              <div class="ph-nav-item eintragen"><i class="bi bi-plus-circle-fill"></i><span>Eintragen</span></div>
+              <div class="ph-nav-item"><i class="bi bi-graph-up-arrow"></i><span>Vergleich</span></div>
+              <div class="ph-nav-item"><i class="bi bi-box-arrow-right"></i><span>Abmelden</span></div>
             </div>
           </div>
         </div>
@@ -472,40 +585,101 @@
   </div>
 </section>
 
+<!-- Trust Bar -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="d-flex flex-wrap justify-content-center gap-4">
+      <span class="trust-item"><i class="bi bi-geo-alt-fill me-1" style="color:#2cc4b0"></i>Entwickelt in Deutschland</span>
+      <span class="trust-item"><i class="bi bi-shield-check me-1" style="color:#2cc4b0"></i>DSGVO-konform</span>
+      <span class="trust-item"><i class="bi bi-cloud-check me-1" style="color:#2cc4b0"></i>Hosting in Europa</span>
+      <span class="trust-item"><i class="bi bi-person-lines-fill me-1" style="color:#2cc4b0"></i>Persönlicher Ansprechpartner</span>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════════════════════════════════════ PROBLEM ════════════════════════════ -->
 <section class="problem-section">
   <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-4">
       <div class="section-label">Das Problem</div>
-      <h2 class="section-title">Außendienst ohne digitales Tracking?<br>Das kennen wir.</h2>
-      <p class="section-sub mx-auto mt-2">Viele Teams verlieren täglich wertvolle Zeit und Transparenz, weil Aktivitäten manuell oder gar nicht erfasst werden.</p>
+      <h2 style="color:#fff;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2;margin-bottom:0">Kennen Sie das?</h2>
     </div>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-file-earmark-excel me-2" style="color:#e74c3c"></i>Excel-Chaos</h5>
-          <p>Getrennte Tabellen je Mitarbeiter, inkonsistente Formate, wochenlange Verzögerungen beim Reporting.</p>
+
+    <!-- Screenshot-Chaos (Option A) -->
+    <div class="row g-4 mb-4">
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-whatsapp me-1" style="color:#25d366"></i>Gruppe "Außendienst" · 17:43
+          </div>
+          <div class="chat-thread">
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Was hat Harald heute gemacht? Wie viele Besuche?</div>
+            <div class="chat-msg sent">Weiß nicht, frag ihn direkt 🤷</div>
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Display bei Lidl – steht das??</div>
+            <div class="chat-msg sent">Glaub schon? Kann nicht mehr sagen</div>
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Wo ist eigentlich die Exceltabelle von dieser Woche?!</div>
+            <div class="chat-unread">3 ungelesene Nachrichten ↓</div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-eye-slash me-2" style="color:#e74c3c"></i>Kein Überblick</h5>
-          <p>Führungskräfte wissen nicht, welcher Rep was macht – ohne wöchentliche Meetings bleibt vieles im Dunkeln.</p>
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-file-earmark-spreadsheet me-1" style="color:#1d7a45"></i>Besuche_KW24_final_v3.xlsx
+          </div>
+          <div class="p-3">
+            <table class="excel-tbl">
+              <thead>
+                <tr><th>Name</th><th>KW23</th><th>KW24</th><th>KW25</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Müller</td><td class="ok">3</td><td class="miss">—</td><td class="ok">2</td></tr>
+                <tr><td>Fischer</td><td class="miss">—</td><td class="ok">4</td><td class="miss">—</td></tr>
+                <tr><td>Schmidt</td><td class="miss">—</td><td class="miss">—</td><td class="ok">1</td></tr>
+                <tr><td>Weber</td><td class="ok">5</td><td class="miss">—</td><td class="miss">—</td></tr>
+              </tbody>
+            </table>
+            <div class="excel-footer">Letzte Änderung: Mo 18:34 · "final_v3"</div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-bullseye me-2" style="color:#e74c3c"></i>Ziele unklar</h5>
-          <p>Jahresziele existieren im Kopf der Führung, nicht transparent für jeden Mitarbeiter mit aktuellem Stand.</p>
+
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head">
+            <i class="bi bi-envelope me-1"></i>AW: Re: Re: Wochenbericht KW23
+          </div>
+          <div class="email-inner">
+            <div class="email-meta">
+              Von: Chef &lt;gf@firma.de&gt;<br>
+              An: Alle &lt;team@firma.de&gt;<br>
+              Mo, 10. Jun · 09:12
+            </div>
+            <div class="email-text">
+              <i class="bi bi-exclamation-triangle me-1" style="color:#f59e0b"></i>Wo bleibt der Bericht von KW 23? Ich frage jetzt zum <strong>dritten Mal</strong>. Bitte bis 12 Uhr.
+            </div>
+            <div class="email-thread">
+              — Fischer, 09:08: hab keine zahlen von allen<br>
+              — Müller, Fr 17:45: kommt noch<br>
+              — Weber, Do: ...
+            </div>
+          </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="pain-card">
-          <h5><i class="bi bi-phone-slash me-2" style="color:#e74c3c"></i>Kein mobiler Zugriff</h5>
-          <p>Aktivitäten werden im Auto oder abends erfasst – komplizierte Desktop-Tools sind da keine Option.</p>
-        </div>
+
+    </div>
+
+    <div class="text-center pt-5 pb-2">
+      <div style="font-size:1.05rem;color:rgba(255,255,255,.55);margin-bottom:.6rem;letter-spacing:.01em">
+        Schluss mit Raten und Nachfragen.
+      </div>
+      <div style="font-size:clamp(2rem,4.5vw,3rem);font-weight:800;color:#2cc4b0;letter-spacing:-.01em;line-height:1.1">
+        Aktions Tracker
       </div>
     </div>
+
   </div>
 </section>
 
@@ -532,7 +706,15 @@
         <div class="feature-card">
           <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
           <h4>Aktivitäten erfassen</h4>
-          <p>Kundenbesuche, Displays, Bestellungen und Notizen in Sekunden eintragen – direkt vor Ort vom Smartphone.</p>
+          <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst, direkt vor Ort vom Smartphone. Mitarbeiter planen vorab ihre Verkaufsstellen – die Leitung sieht geplante vs. tatsächlich besuchte Standorte auf einen Blick.</p>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="feature-card">
+          <div class="feature-icon amber"><i class="bi bi-clipboard-check"></i></div>
+          <h4>Bestellungs-Pipeline</h4>
+          <p>Bestellungen vom Außendienst direkt im Tool erfassen und verfolgen – von der Aufnahme bis zur Lieferung. Offene Bestellungen immer im Blick, kein Zettelchaos.</p>
         </div>
       </div>
 
@@ -564,16 +746,8 @@
       <div class="col-md-6 col-lg-4">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-map"></i></div>
-          <h4>Gebiets-Karte</h4>
+          <h4>Geographische Karte</h4>
           <p>Alle Verkaufsstellen auf einer interaktiven Karte – farbig je Mitarbeiter. Zuordnung per Klick ändern, Heatmap zeigt wo die meisten Aktivitäten stattfinden.</p>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon red"><i class="bi bi-phone"></i></div>
-          <h4>App fürs Smartphone – kein App Store nötig</h4>
-          <p>Auf dem Homescreen speichern für schnellen Zugriff. Kein Download, kein Update-Stress – läuft auf iOS und Android.</p>
         </div>
       </div>
 
@@ -598,7 +772,7 @@
         <div class="feature-card">
           <div class="feature-icon purple"><i class="bi bi-people"></i></div>
           <h4>Rollen & Rechte</h4>
-          <p>Admin, Verkaufsleiter und Außendienstler sehen genau das, was sie brauchen – nicht mehr, nicht weniger.</p>
+          <p>Admin, Verkaufsleiter und Außendienstler sehen genau das, was sie brauchen. Verkaufsleiter-Accounts sind optional – viele Geschäftsführer führen ihr Team direkt über den Admin-Account.</p>
         </div>
       </div>
 
@@ -662,28 +836,50 @@
       <h2 class="section-title">In 3 Schritten startklar</h2>
       <p class="section-sub mx-auto mt-2" style="color:rgba(255,255,255,.7)">Kein IT-Projekt, keine langen Einführungen. Ihr Team kann innerhalb eines Tages loslegen.</p>
     </div>
-    <div class="row g-4 align-items-stretch">
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h4>Stammdaten einrichten</h4>
-          <p>Mitarbeiter, Verkaufsstellen und Produkte / FMCG-Artikel einmalig anlegen – per Excel-Import oder direkt im Admin-Panel.</p>
+    <div class="d-flex flex-column gap-3">
+
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie tun</div>
+          <h4>Mitarbeiterliste + Kundenadressen schicken</h4>
+          <p>Einmal als Excel – dauert 30 Minuten auf Ihrer Seite.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was wir tun</div>
+          <h4>Alles einrichten – Sie schauen zu</h4>
+          <p>System, Zugänge, Zuordnungen, Stammdaten-Import. Fertig.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h4>Aktivitäten erfassen</h4>
-          <p>Jeder Mitarbeiter trägt Kundenbesuche, Displays und Bestellungen direkt vom Smartphone ein – vor Ort oder unterwegs.</p>
+
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Ihr Team tut</div>
+          <h4>Besuche, Displays, Bestellungen erfassen</h4>
+          <p>60 Sekunden vom Smartphone – vor Ort oder am Abend danach.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was passiert</div>
+          <h4>Sofort im Dashboard sichtbar</h4>
+          <p>Wochenbericht läuft automatisch – kein Nachfragen mehr.</p>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h4>Ergebnisse analysieren</h4>
-          <p>Verkaufsleiter und Geschäftsführung sehen sofort den Stand – nach Mitarbeiter, Woche, Monat oder Jahresvergleich.</p>
+
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie sehen</div>
+          <h4>KPIs nach Mitarbeiter, Woche &amp; Monat</h4>
+          <p>Immer aktuell – auch unterwegs per Smartphone.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was Sie nicht mehr tun</div>
+          <h4>Nachfragen, Excel zusammenstellen, warten</h4>
+          <p>Die Zahlen kommen zu Ihnen – jeden Montag automatisch.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -863,7 +1059,7 @@
       </div>
       <div class="row g-4 justify-content-center">
 
-        <!-- Add-on: Gebiets-Karte -->
+        <!-- Add-on: Geographische Karte -->
         <div class="col-md-6 col-lg-5">
           <div style="background:#fff;border:2px solid #e2eaf3;border-radius:1.1rem;padding:1.8rem 2rem;height:100%">
             <div class="d-flex align-items-center gap-3 mb-3">
@@ -871,7 +1067,7 @@
                 <i class="bi bi-map" style="font-size:1.35rem;color:var(--blau)"></i>
               </div>
               <div>
-                <div style="font-weight:700;font-size:1.1rem;color:var(--blau)">Gebiets-Karte</div>
+                <div style="font-weight:700;font-size:1.1rem;color:var(--blau)">Geographische Karte</div>
                 <div class="billing-monthly" style="color:#555;font-size:.9rem">+39 €<span class="text-muted">/Monat</span></div>
                 <div class="billing-annual" style="display:none;color:#555;font-size:.9rem">+390 €<span class="text-muted">/Jahr</span></div>
               </div>
@@ -897,8 +1093,8 @@
               </div>
               <div>
                 <div style="font-weight:700;font-size:1.1rem;color:var(--blau)">Aktivitäten-Heatmap</div>
-                <div class="billing-monthly" style="color:#555;font-size:.9rem">+29 €<span class="text-muted">/Monat</span> <span style="font-size:.78rem;color:#999">(+ Gebiets-Karte)</span></div>
-                <div class="billing-annual" style="display:none;color:#555;font-size:.9rem">+290 €<span class="text-muted">/Jahr</span> <span style="font-size:.78rem;color:#999">(+ Gebiets-Karte)</span></div>
+                <div class="billing-monthly" style="color:#555;font-size:.9rem">+29 €<span class="text-muted">/Monat</span> <span style="font-size:.78rem;color:#999">(+ Geographische Karte)</span></div>
+                <div class="billing-annual" style="display:none;color:#555;font-size:.9rem">+290 €<span class="text-muted">/Jahr</span> <span style="font-size:.78rem;color:#999">(+ Geographische Karte)</span></div>
               </div>
             </div>
             <ul style="list-style:none;padding:0;margin:0;font-size:.92rem;color:#333;line-height:1.9">
@@ -907,7 +1103,7 @@
               <li><i class="bi bi-check-circle-fill me-2" style="color:#27ae60"></i>Kombinierte Karten-Ansicht – sofort erkennbar wo das Team aktiv ist</li>
             </ul>
             <div class="mt-3 pt-2" style="border-top:1px solid #f5e8cc;font-size:.82rem;color:#777">
-              <i class="bi bi-info-circle me-1"></i>Im Pro-Paket bereits inklusive. Erfordert Gebiets-Karte.
+              <i class="bi bi-info-circle me-1"></i>Im Pro-Paket bereits inklusive. Erfordert Geographische Karte.
             </div>
           </div>
         </div>
@@ -916,12 +1112,544 @@
     </div>
     <!-- ── /Add-ons ── -->
 
-    <p class="text-center text-muted small mt-5">
+    <!-- Ohne-VKL-Hinweis -->
+    <div class="text-center mt-4">
+      <span style="font-size:.88rem;color:#666;background:#f0f4fa;border:1px solid #dde6f3;border-radius:2rem;padding:.4rem 1.25rem;display:inline-block">
+        <i class="bi bi-check2-circle me-1" style="color:#27ae60"></i>
+        <strong>Kein Verkaufsleiter im Team?</strong> Kein Problem — VKL-Accounts sind optional. Leitung und Admin sind in jedem Paket inklusive und zählen nicht ans Mitarbeiterlimit.
+      </span>
+    </div>
+
+    <p class="text-center text-muted small mt-4">
       <i class="bi bi-info-circle me-1"></i>
       Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Mehrwertsteuer ausgewiesen.
       Individuelle Anpassungen auf Anfrage.<br>
       <span style="font-size:.8rem">* Jahrespakete laufen bis Ende der bezahlten Laufzeit. Bei Kündigung durch den Kunden erfolgt keine anteilige Rückerstattung. Bei Kündigung durch uns erstatten wir verbleibende volle Monate anteilig.</span>
     </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FAQ ═══════════════════════════════ -->
+<section id="faq" style="padding:4rem 0;background:#f7fafc">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Häufige Fragen</h2>
+      <p class="section-subtitle">Klicken Sie auf eine Kategorie, um die Fragen aufzuklappen</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+
+        <!-- Kaufentscheidung -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-kauf" aria-expanded="false">
+            <span>Kaufentscheidung</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-kauf" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqKauf">
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k1">
+                Was kostet der Aktions Tracker im Vergleich zu anderen Systemen?
+              </button>
+            </h2>
+            <div id="faq-k1" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Vergleichbare Tools wie Skynamo oder Salesdock kosten <strong>30–60 € pro Nutzer und Monat</strong>. Bei 10 Außendienstlern sind das 300–600 € monatlich – ohne Einrichtungsgebühr.</p>
+                <p class="mb-2">Der Aktions Tracker arbeitet mit <strong>Pauschalpaketen</strong> statt nutzungsbasierter Abrechnung. Das Team-Paket (bis 12 Außendienstler) kostet 159 €/Monat pauschal – plus einmaliger Einrichtung von 499 €.</p>
+                <p class="mb-0 text-muted small">VKL- und Leitungs-Accounts sind in allen Paketen unbegrenzt inklusive und zählen nicht ans Mitarbeiter-Limit.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k2">
+                Gibt es eine Mindestlaufzeit oder Kündigungsfrist?
+              </button>
+            </h2>
+            <div id="faq-k2" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Die Mindestlaufzeit beträgt 12 Monate. Danach ist der Vertrag monatlich kündbar. Es gibt keine automatische Verlängerung um ein weiteres Jahr – nur Monat für Monat.</p>
+                <p class="mb-0 text-muted small">Details zu Laufzeit und Kündigung stehen im individuellen Servicevertrag.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k3">
+                Kann ich erst testen, bevor ich buche?
+              </button>
+            </h2>
+            <div id="faq-k3" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Ja. Unter <a href="https://aktionstracker-demo-production.up.railway.app" target="_blank" rel="noopener">aktionstracker-demo-production.up.railway.app</a> steht eine vollständige Demo-Umgebung bereit – mit Beispieldaten, allen Rollen und allen Funktionen. Kein Account, keine E-Mail nötig.</p>
+                <p class="mb-0">Zusätzlich bieten wir einen kostenlosen 30-Minuten-Videocall an, in dem wir Ihr konkretes Setup durchspielen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k4">
+                Was passiert mit unseren Daten, wenn wir kündigen?
+              </button>
+            </h2>
+            <div id="faq-k4" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Vor Vertragsende stellen wir Ihnen einen vollständigen <strong>Excel-Export aller Daten</strong> zur Verfügung – Aktivitäten, Mitarbeiter, Verkaufsstellen, Bestellungen. Kein Datenverlust.</p>
+                <p class="mb-0">Nach Ablauf der Frist werden alle Daten unwiderruflich gelöscht. Wir behalten nichts zurück.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k5">
+                Ab wie vielen Mitarbeitern lohnt sich das Tool?
+              </button>
+            </h2>
+            <div id="faq-k5" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Der Aktions Tracker ist für Teams von <strong>3 bis 20 Außendienstlern</strong> ausgelegt. Darunter lässt sich die Transparenz oft noch mit einfacheren Mitteln herstellen. Darüber empfehlen sich vollwertige CRM-Systeme.</p>
+                <p class="mb-0">Besonders gut passt das Tool, wenn Ihnen schnelle Übersicht, einfache Bedienung und faires Pricing wichtiger sind als eine 500-Feature-Plattform, die niemand richtig nutzt.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+        <!-- Rollen & Rechte -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-rollen" aria-expanded="false">
+            <span>Rollen &amp; Rechte</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-rollen" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqRollen">
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r1">
+                Was kann ein Außendienst-Mitarbeiter?
+              </button>
+            </h2>
+            <div id="faq-r1" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                <p class="mb-2">Ein Mitarbeiter-Account ist auf die eigene Arbeit beschränkt:</p>
+                <ul class="mb-0">
+                  <li>Eigene Besuche, Fotos und Notizen eintragen</li>
+                  <li>Eigene Aktivitäten anzeigen und bearbeiten</li>
+                  <li>Eigenen Jahresfortschritt (Mein Zielkurs) sehen</li>
+                  <li>Eigene Vertretung eintragen (z. B. Urlaub)</li>
+                  <li>Neue Verkaufsstellen anlegen</li>
+                  <li>Passwort selbst ändern – jederzeit, ohne Rückfrage beim GF</li>
+                </ul>
+                <p class="mt-2 mb-0 text-muted small">Kein Zugriff auf Team-Daten, Excel-Export oder Einstellungen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r2">
+                Was kann ein Verkaufsleiter (VKL)?
+              </button>
+            </h2>
+            <div id="faq-r2" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                <p class="mb-2">Der VKL-Account gibt einem Teamleiter volle Sicht auf sein Team – ohne Admin-Rechte auf das gesamte System:</p>
+                <ul class="mb-2">
+                  <li>Alle Aktivitäten des eigenen Teams anzeigen</li>
+                  <li>Wochenbericht empfangen und Empfänger konfigurieren</li>
+                  <li>Bestellungs-Pipeline des Teams einsehen</li>
+                  <li>Mitarbeiter-Vergleich und Excel-Export (eigenes Team)</li>
+                  <li>Zielzahlen für eigene Mitarbeiter setzen</li>
+                  <li>Vertretungen für eigene Mitarbeiter eintragen</li>
+                </ul>
+                <p class="mb-2">Mit dem VKL+-Paket kommen zusätzlich hinzu:</p>
+                <ul class="mb-0">
+                  <li>Neue Außendienst-Mitarbeiter anlegen (eigenes Team)</li>
+                  <li>Passwörter eigener Mitarbeiter zurücksetzen</li>
+                  <li>Neue Verkaufsstellen anlegen</li>
+                  <li>Team-Verwaltungs-Seite mit Mitglieder-Übersicht</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r3">
+                Was bleibt dem Geschäftsführer / Admin vorbehalten?
+              </button>
+            </h2>
+            <div id="faq-r3" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                <ul class="mb-0">
+                  <li>VKL-Accounts anlegen und alle Teams einsehen</li>
+                  <li>Team-Vergleichs-Dashboard (alle Teams auf einen Blick)</li>
+                  <li>Systemeinstellungen, Branding, Admin-Panel</li>
+                  <li>Abrechnung und Vertrag</li>
+                  <li>Datenbank-Export und Backup</li>
+                  <li>Excel-Export über alle Teams</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r4">
+                Müssen wir zwingend Verkaufsleiter-Accounts anlegen?
+              </button>
+            </h2>
+            <div id="faq-r4" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                Nein. VKL-Accounts sind vollständig optional. Viele Geschäftsführer führen ihr Team direkt über den Admin-Account und brauchen keine zusätzliche Ebene. Sie können jederzeit nachträglich einen VKL-Account hinzufügen, wenn das Team wächst.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r5">
+                Wie funktioniert das Passwort-Management?
+              </button>
+            </h2>
+            <div id="faq-r5" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                <p class="mb-2">Jeder Mitarbeiter kann sein Passwort jederzeit selbst ändern – entweder über das Profil-Menü oder über den „Passwort vergessen"-Link auf dem Login (setzt eine hinterlegte E-Mail voraus).</p>
+                <p class="mb-0">VKL-Accounts können Passwörter der eigenen Mitarbeiter zurücksetzen, ohne den GF fragen zu müssen – z. B. bei Gerätewechsel oder wenn kein E-Mail-Konto hinterlegt ist.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-r6">
+                Können mehrere Teams mit je eigenem Verkaufsleiter arbeiten?
+              </button>
+            </h2>
+            <div id="faq-r6" class="accordion-collapse collapse" data-bs-parent="#faqRollen">
+              <div class="accordion-body">
+                <p class="mb-2">Ja. Der Aktions Tracker unterstützt mehrere Teams parallel – jedes mit einem eigenen VKL-Account. Jeder VKL sieht ausschließlich sein eigenes Team; die Leitung sieht alle Teams auf einmal über das Admin-Panel und das Team-Vergleichs-Dashboard.</p>
+                <p class="mb-2">Der Wochenbericht wird in diesem Fall automatisch aufgeteilt: jeder VKL bekommt den Bericht seines Teams, die Geschäftsführung bekommt einen Gesamtbericht über alle Teams.</p>
+                <p class="mb-0 text-muted small">Teams und Zuordnungen können jederzeit im Admin-Panel angepasst werden.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+        <!-- Funktionen & Betrieb -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-betrieb" aria-expanded="false">
+            <span>Funktionen &amp; Betrieb</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-betrieb" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqBetrieb">
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b1">
+                Wann und wie kommt der Wochenbericht?
+              </button>
+            </h2>
+            <div id="faq-b1" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Der Wochenbericht wird automatisch <strong>jeden Montag um 07:00 Uhr</strong> per E-Mail verschickt. Er enthält die Zahlen der abgelaufenen Woche: Besuche, Einheiten, Displays, Wochenvergleich und Mitarbeiter-Ranking.</p>
+                <p class="mb-0">Empfänger können im Admin-Panel frei konfiguriert werden – GF, VKL, beide, oder weitere Adressen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b2">
+                Kann ich den Wochenbericht manuell auslösen?
+              </button>
+            </h2>
+            <div id="faq-b2" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                Ja. Im Admin-Panel unter Einstellungen → Wochenbericht gibt es einen „Jetzt senden"-Button. Der Bericht wird sofort an alle konfigurierten Empfänger geschickt – nützlich zum Testen oder für außerordentliche Updates.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b3">
+                Wie füge ich später neue Mitarbeiter hinzu?
+              </button>
+            </h2>
+            <div id="faq-b3" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Im Admin-Panel unter „Mitarbeiter" auf „Neu anlegen" klicken. Name, Kürzel, Rolle und Team auswählen – fertig. Der Mitarbeiter erhält automatisch das konfigurierte Standard-Passwort und kann sich sofort einloggen.</p>
+                <p class="mb-0 text-muted small">Mit VKL+-Rechten können Verkaufsleiter Mitarbeiter ihres eigenen Teams selbst anlegen, ohne den GF einzubeziehen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b4">
+                Was passiert, wenn ein Mitarbeiter das Unternehmen verlässt?
+              </button>
+            </h2>
+            <div id="faq-b4" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Den Account im Admin-Panel auf „inaktiv" setzen – der Mitarbeiter kann sich nicht mehr einloggen, alle seine Aktivitäten bleiben aber vollständig erhalten und auswertbar.</p>
+                <p class="mb-0 text-muted small">Aktive Accounts zählen ans Mitarbeiter-Limit. Inaktive Accounts verbrauchen keinen Platz – kein manuelles Löschen nötig.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b5">
+                Wie ändere ich den Wochenbericht-Empfänger?
+              </button>
+            </h2>
+            <div id="faq-b5" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                Admin-Panel → Einstellungen → Wochenbericht. Dort können bis zu drei Empfänger-E-Mail-Adressen hinterlegt werden. Die Änderung gilt ab dem nächsten automatischen Versand.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b6">
+                Kann ich Produkte und Einheiten nachträglich anpassen?
+              </button>
+            </h2>
+            <div id="faq-b6" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                Ja, jederzeit. Produkte, Mengeneinheiten (Kisten, Kartons, Paletten…) und Display-Typen werden im Admin-Panel verwaltet und können ohne Datenverlust geändert werden. Bereits erfasste Aktivitäten bleiben unberührt.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b7">
+                Gibt es auch einen Monatsbericht?
+              </button>
+            </h2>
+            <div id="faq-b7" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Ja. Am ersten jeden Monats um 07:00 Uhr wird automatisch ein <strong>Monatsbericht für den Vormonat</strong> verschickt – mit KPIs, Mitarbeiter-Ranking und Monatstrend.</p>
+                <p class="mb-2">Besonderheit: Der Bericht enthält als E-Mail-Anhang ein <strong>ZIP mit allen Fotos des Vormonats</strong>. Das ist wichtig, weil Besuchsfotos nach einer konfigurierbaren Aufbewahrungszeit automatisch vom Server gelöscht werden – der Monatsbericht stellt sicher, dass alle Bilder vorher gesichert sind.</p>
+                <p class="mb-0 text-muted small">Empfänger des Monatsberichts können separat konfiguriert werden – unabhängig vom Wochenbericht.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-b8">
+                Was ist die Besuchsplanung?
+              </button>
+            </h2>
+            <div id="faq-b8" class="accordion-collapse collapse" data-bs-parent="#faqBetrieb">
+              <div class="accordion-body">
+                <p class="mb-2">Die Besuchsplanung ist kein Routenplaner. Der Mitarbeiter markiert zu Beginn seines Arbeitstages, welche Verkaufsstellen er anfährt – eine Art digitale Tagesliste. Er plant selbst, ohne Vorgabe einer optimalen Route.</p>
+                <p class="mb-2">Geschäftsführer und Verkaufsleiter sehen im Dashboard, wie viele Standorte ein Mitarbeiter geplant und wie viele er tatsächlich besucht hat. Das schafft Transparenz ohne Mikromanagement: Nicht jede Planabweichung ist ein Problem – aber auffällige Muster werden sichtbar.</p>
+                <p class="mb-0 text-muted small">Die Funktion ist optional aktivierbar (Einstellung: Besuchsplanung an/aus).</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+        <!-- Dateneingabe & Datenqualität -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-daten" aria-expanded="false">
+            <span>Dateneingabe &amp; Datenqualität</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-daten" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqDaten">
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-d1">
+                Können Mitarbeiter Besuche rückwirkend eintragen?
+              </button>
+            </h2>
+            <div id="faq-d1" class="accordion-collapse collapse" data-bs-parent="#faqDaten">
+              <div class="accordion-body">
+                <p class="mb-2">Ja – und das ist bewusst so. Außendienstler machen oft sechs Besuche am Tag und tragen am Abend nach. Das System blockiert legitime Nacherfassung nicht.</p>
+                <p class="mb-2">Der erlaubte Zeitraum für rückwirkendes Eintragen ist <strong>individuell einstellbar</strong>. Standard: Mitarbeiter können nur Einträge für den heutigen Tag nachtragen. Geschäftsführer und Verkaufsleiter können dagegen auch Einträge für vergangene Tage erfassen – z. B. um fehlende Aktivitäten nachzupflegen oder Korrekturen vorzunehmen.</p>
+                <p class="mb-2">Was Sie als GF zusätzlich sehen können: das <strong>Erstelldatum</strong> eines Eintrags steht immer separat neben dem Besuchsdatum. So ist sofort sichtbar, ob ein Besuch „heute, 18:00 Uhr" oder „heute, Montag 09:00 Uhr" eingetragen wurde.</p>
+                <p class="mb-0 text-muted small">Tipp: Auffällig viele Einträge mit großem Zeitabstand zwischen Besuchs- und Erstelldatum sind ein Gesprächsthema für das nächste 1:1 – nicht automatisch ein Problem.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-d2">
+                Was passiert, wenn ein Mitarbeiter offline ist?
+              </button>
+            </h2>
+            <div id="faq-d2" class="accordion-collapse collapse" data-bs-parent="#faqDaten">
+              <div class="accordion-body">
+                Der Aktions Tracker ist offline-fähig. Aktivitäten werden lokal gespeichert und automatisch synchronisiert, sobald wieder eine Verbindung besteht. Der Mitarbeiter bemerkt keinen Unterschied im Arbeitsablauf.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-d3">
+                Können wir unsere bestehende Kundenliste übernehmen?
+              </button>
+            </h2>
+            <div id="faq-d3" class="accordion-collapse collapse" data-bs-parent="#faqDaten">
+              <div class="accordion-body">
+                <p class="mb-2">Ja – und das ist der empfohlene Weg. Schicken Sie uns Ihre Excel-Liste (Name und Adresse der Standorte) möglichst vor dem Go-Live an <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a>. Wir importieren alle Verkaufsstellen für Sie, kostenlos und ohne Aufwand auf Ihrer Seite.</p>
+                <p class="mb-0">So können Ihre Mitarbeiter vom ersten Tag an mit den richtigen Verkaufsstellen loslegen – kein manuelles Nachpflegen nötig.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-d4">
+                Was passiert mit Einträgen eines ausgeschiedenen Mitarbeiters?
+              </button>
+            </h2>
+            <div id="faq-d4" class="accordion-collapse collapse" data-bs-parent="#faqDaten">
+              <div class="accordion-body">
+                <p class="mb-2">Alle Aktivitäten bleiben vollständig erhalten – auch wenn der Mitarbeiter-Account deaktiviert ist. Historische Auswertungen, Jahresvergleiche und Berichte laufen weiter ohne Lücke.</p>
+                <p class="mb-0 text-muted small">Der Mitarbeiter taucht im Dropdown-Filter weiterhin auf, damit Sie gezielt auf seine alten Daten zugreifen können.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+          </div>
+        </div>
+
+        <!-- Technik, DSGVO & Sicherheit -->
+        <div class="faq-cat-wrap mb-2">
+          <button class="faq-cat-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cat-technik" aria-expanded="false">
+            <span>Technik, DSGVO &amp; Sicherheit</span>
+            <i class="bi bi-chevron-down faq-cat-icon"></i>
+          </button>
+          <div id="cat-technik" class="collapse">
+        <div class="accordion mb-1 mt-2" id="faqTechnik">
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t1">
+                Muss ich eine App installieren?
+              </button>
+            </h2>
+            <div id="faq-t1" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                Nein. Der Aktions Tracker läuft im Browser – auf iPhone, Android, Tablet oder PC. Optional kann die Web-App als Icon auf dem Homescreen gespeichert werden, dann verhält sie sich wie eine native App. Kein App Store, keine Updates manuell einspielen.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t2">
+                Wie schnell sind wir startklar?
+              </button>
+            </h2>
+            <div id="faq-t2" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                In der Regel 5–7 Werktage nach Vertragsabschluss. Wir richten alles ein: System, Ihre Mitarbeiter, Ihre Kundenliste. Sie erhalten fertig konfigurierte Zugangsdaten – kein technisches Vorwissen nötig.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t3">
+                Wo werden unsere Daten gespeichert?
+              </button>
+            </h2>
+            <div id="faq-t3" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                Alle Daten liegen auf Servern in der EU (DSGVO-konform). Automatische tägliche Backups sind inklusive. Sie können Ihre Daten jederzeit als Excel-Export herunterladen.
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t4">
+                Ist der Aktions Tracker DSGVO-konform?
+              </button>
+            </h2>
+            <div id="faq-t4" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                <p class="mb-2">Ja. Der Aktions Tracker ist auf DSGVO-Konformität ausgelegt:</p>
+                <ul class="mb-2">
+                  <li>Hosting ausschließlich auf EU-Servern (Railway, Frankfurt)</li>
+                  <li>Es werden nur für den Betrieb notwendige Daten erfasst</li>
+                  <li>Kein Tracking, keine Werbung, kein Datenweitergabe an Dritte</li>
+                  <li>Auftragsverarbeitungsvertrag (AVV) wird auf Anfrage bereitgestellt</li>
+                </ul>
+                <p class="mb-0 text-muted small">Für Fragen zur DSGVO-Dokumentation melden Sie sich unter info@aktionstracker.de.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t5">
+                Wer hat Zugriff auf unsere Daten?
+              </button>
+            </h2>
+            <div id="faq-t5" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                <p class="mb-2">Ausschließlich Sie und Ihre Mitarbeiter – entsprechend ihren Rollen. Kein anderer Kunde sieht Ihre Daten.</p>
+                <p class="mb-0">Der Anbieter (Jan Anschütz) hat technischen Zugriff auf die Infrastruktur (Deployment, Backups, Fehlerbehebung), greift aber ohne Ihren expliziten Auftrag nicht auf Inhaltsdaten zu.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-t6">
+                Wie sind Passwörter und Verbindungen gesichert?
+              </button>
+            </h2>
+            <div id="faq-t6" class="accordion-collapse collapse" data-bs-parent="#faqTechnik">
+              <div class="accordion-body">
+                <ul class="mb-0">
+                  <li>Alle Verbindungen laufen über HTTPS/TLS – keine unverschlüsselte Übertragung</li>
+                  <li>Passwörter werden nie im Klartext gespeichert, sondern mit bcrypt gehasht</li>
+                  <li>Alle Datenbankabfragen sind parametrisiert (SQL-Injection-Schutz)</li>
+                  <li>Sessions laufen automatisch ab; kein dauerhaftes Token auf dem Gerät</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -939,6 +1667,7 @@
           <li style="color:rgba(255,255,255,.8)"><i class="bi bi-check2-circle" style="color:#4cdb7a"></i> Einrichtung innerhalb von 1–2 Werktagen</li>
           <li style="color:rgba(255,255,255,.8)"><i class="bi bi-check2-circle" style="color:#4cdb7a"></i> Persönlicher Ansprechpartner</li>
           <li style="color:rgba(255,255,255,.8)"><i class="bi bi-check2-circle" style="color:#4cdb7a"></i> Anpassbar an Ihre Produkte und Prozesse</li>
+          <li style="color:rgba(255,255,255,.8)"><i class="bi bi-check2-circle" style="color:#4cdb7a"></i> Bestehende Kundenliste? Wir importieren sie kostenlos für Sie</li>
         </ul>
       </div>
       <div class="col-lg-7">
@@ -1007,7 +1736,7 @@
         <div>Außendienst-Software für den Direktvertrieb</div>
       </div>
       <div class="col-md-4 text-md-center">
-        <a href="mailto:anschuetz.info@gmail.com" class="me-3">
+        <a href="#kontakt" class="me-3">
           <i class="bi bi-envelope me-1"></i>Kontakt
         </a>
         <a href="#" data-bs-toggle="modal" data-bs-target="#datenschutzModal" class="me-3">Datenschutz</a>
@@ -1033,7 +1762,7 @@
         <h6 class="fw-bold" style="color:var(--blau)">Anbieter</h6>
         <p>Jan Anschütz<br>Einzelunternehmer<br>Fasanenstr. 21<br>41751 Viersen</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Kontakt</h6>
-        <p>Telefon: +49 151 54607420<br>E-Mail: <a href="mailto:anschuetz.info@gmail.com">anschuetz.info@gmail.com</a><br>Website: <a href="https://aktionstracker.de" target="_blank" rel="noopener">aktionstracker.de</a></p>
+        <p>Telefon: +49 151 54607420<br>E-Mail: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a><br>Website: <a href="https://aktionstracker.de" target="_blank" rel="noopener">aktionstracker.de</a></p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h6>
         <p>Jan Anschütz, Fasanenstr. 21, 41751 Viersen</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Steuerlicher Hinweis</h6>
@@ -1058,7 +1787,7 @@
         <p class="text-muted small">gemäß Art. 13 DSGVO (EU) 2016/679</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 1 Verantwortlicher</h6>
         <p>Jan Anschütz · Fasanenstr. 21 · 41751 Viersen<br>
-        E-Mail: <a href="mailto:anschuetz.info@gmail.com">anschuetz.info@gmail.com</a> · Tel: +49 151 54607420</p>
+        E-Mail: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a> · Tel: +49 151 54607420</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 2 Verarbeitete Daten</h6>
         <p><strong>Kontaktformular:</strong> Wenn Sie das Formular absenden, werden die eingegebenen Daten (Name, Firma, E-Mail, Telefon, Teamgröße, Nachricht) über den Dienst Netlify Forms (Netlify, Inc., 512 2nd Street, San Francisco, CA 94107, USA) an uns übermittelt und dort temporär gespeichert. Netlify verarbeitet die Daten auf Basis von Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">netlify.com/privacy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).</p>
         <p><strong>Externe Ressourcen (CDN):</strong> Diese Website lädt Gestaltungsressourcen von jsDelivr (jsdelivr.net). Dabei kann Ihre IP-Adresse an deren Server übertragen werden. Weitere Informationen: <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noopener noreferrer">jsdelivr.com/privacy-policy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
@@ -1066,7 +1795,7 @@
         <p><strong>Cookies:</strong> Google Analytics setzt technische Cookies zur Analysezwecken (_ga, _ga_*). Diese werden nach 2 Jahren gelöscht.</p>
         <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 3 Ihre Rechte</h6>
         <p>Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Widerspruch (Art. 21 DSGVO) sowie Beschwerde bei der zuständigen Aufsichtsbehörde (Art. 77 DSGVO).<br>
-        Kontakt: <a href="mailto:anschuetz.info@gmail.com">anschuetz.info@gmail.com</a></p>
+        Kontakt: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a></p>
         <p class="text-muted small mt-3 mb-0">Stand: Juni 2026</p>
       </div>
       <div class="modal-footer">
@@ -1108,7 +1837,7 @@ async function handleForm(e) {
   } catch (err) {
     btn.disabled = false;
     btn.innerHTML = '<i class="bi bi-send me-2"></i>Demo anfragen';
-    alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an anschuetz.info@gmail.com');
+    alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@aktionstracker.de');
   }
 }
 
