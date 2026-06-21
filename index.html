@@ -502,7 +502,7 @@
           Was hat Ihr Außendienst<br>
           heute wirklich <span>getan?</span>
         </h1>
-        <div class="hero-teaser">Wie wäre es mit Echtzeit-Zahlen?</div>
+        <div class="hero-teaser">Echtzeit-Einblick. Kein Nachfragen mehr.</div>
         <div class="d-flex flex-wrap gap-3 mt-3">
           <a href="#kontakt" class="btn btn-amber btn-lg px-4">
             <i class="bi bi-rocket-takeoff me-2"></i>Kostenloses Gespräch anfragen
@@ -520,7 +520,7 @@
         <div class="mt-4 d-flex flex-wrap gap-4" style="font-size:.83rem;color:rgba(255,255,255,.5)">
           <span>Ab 99 €/Monat Pauschale – kein Pro-Kopf-Preis</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
-          <span>Monatlich kündbar</span>
+          <span>12 Mon. Mindestlaufzeit, danach mtl. kündbar</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
           <span>1 Woche bis live</span>
         </div>
@@ -1855,33 +1855,17 @@
           <form class="contact-form" name="demo-anfrage" method="POST" data-netlify="true" onsubmit="handleForm(event)">
             <input type="hidden" name="form-name" value="demo-anfrage">
             <div class="row g-3">
-              <div class="col-md-6">
+              <div class="col-12">
                 <label class="form-label small fw-bold text-secondary">Ihr Name *</label>
                 <input type="text" name="name" class="form-control" placeholder="Max Mustermann" required>
               </div>
-              <div class="col-md-6">
-                <label class="form-label small fw-bold text-secondary">Unternehmen *</label>
-                <input type="text" name="unternehmen" class="form-control" placeholder="Musterfirma GmbH" required>
-              </div>
-              <div class="col-md-6">
+              <div class="col-12">
                 <label class="form-label small fw-bold text-secondary">E-Mail *</label>
                 <input type="email" name="email" class="form-control" placeholder="max@musterfirma.de" required>
               </div>
-              <div class="col-md-6">
+              <div class="col-12">
                 <label class="form-label small fw-bold text-secondary">Telefon</label>
                 <input type="tel" name="telefon" class="form-control" placeholder="+49 ...">
-              </div>
-              <div class="col-12">
-                <label class="form-label small fw-bold text-secondary">Anzahl Außendienstler</label>
-                <select name="teamgroesse" class="form-control">
-                  <option>1–5 Mitarbeiter</option>
-                  <option>6–10 Mitarbeiter</option>
-                  <option>11–20 Mitarbeiter</option>
-                </select>
-              </div>
-              <div class="col-12">
-                <label class="form-label small fw-bold text-secondary">Ihre Nachricht</label>
-                <textarea name="nachricht" class="form-control" rows="3" placeholder="Kurze Beschreibung Ihres Teams und Ihrer Anforderungen..."></textarea>
               </div>
               <div class="col-12">
                 <button type="submit" class="btn btn-amber w-100 py-2 fw-bold">
