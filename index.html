@@ -970,6 +970,20 @@ var lbData = {
 };
 var lbTab = 'ma', lbIdx = 0;
 
+// Klick auf Carousel-Bild → Lightbox öffnen
+document.addEventListener('click', function(e) {
+  var img = e.target.closest('#carousel-ma img, #carousel-vkl img');
+  if (!img) return;
+  var inMa = !!img.closest('#carousel-ma');
+  var tab = inMa ? 'ma' : 'vkl';
+  // aktiven Slide-Index ermitteln
+  var carouselEl = document.getElementById(inMa ? 'carousel-ma' : 'carousel-vkl');
+  var activeItem = carouselEl.querySelector('.carousel-item.active');
+  var items = carouselEl.querySelectorAll('.carousel-item');
+  var idx = Array.from(items).indexOf(activeItem);
+  openLightbox(tab, idx);
+});
+
 function openLightbox(tab, idx) {
   lbTab = tab; lbIdx = idx;
   renderLightbox();
