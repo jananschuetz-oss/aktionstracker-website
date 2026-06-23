@@ -453,6 +453,78 @@
       color: #555;
     }
     .check-list li i { color: #27ae60; margin-top: .15rem; flex-shrink: 0; }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.92);
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-height: 82vh;
+      max-width: 90vw;
+      border-radius: 10px;
+      box-shadow: 0 8px 48px rgba(0,0,0,.6);
+      object-fit: contain;
+    }
+    .lb-caption {
+      text-align: center;
+      margin-top: 1rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .lb-caption small {
+      display: block;
+      color: rgba(255,255,255,.55);
+      font-weight: 400;
+      font-size: .85rem;
+      margin-top: .2rem;
+    }
+    .lb-arrow {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,.12);
+      border: none;
+      color: #fff;
+      font-size: 1.6rem;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .lb-arrow:hover { background: rgba(255,255,255,.25); }
+    .lb-arrow.prev { left: 1rem; }
+    .lb-arrow.next { right: 1rem; }
+    .lb-close {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,.12);
+      border: none;
+      color: #fff;
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .lb-close:hover { background: rgba(255,255,255,.25); }
+    .carousel-item img { cursor: zoom-in; }
   </style>
 </head>
 <body>
@@ -879,6 +951,55 @@ function switchCarouselTab(tab) {
     bootstrap.Carousel.getOrCreateInstance(cvkl).cycle();
   }
 }
+
+// ── Lightbox ──
+var lbData = {
+  ma: [
+    { src: 'img/ma-dashboard.png',    title: 'Dashboard',           desc: 'Tagesübersicht mit offenen Bestellungen und Besuchsplan' },
+    { src: 'img/ma-besuchsplan.png',  title: 'Tagesplan',           desc: 'Geplante Stationen für den Tag — sortiert, klar, abgehakt' },
+    { src: 'img/ma-aktivitaeten.png', title: 'Aktivitäten',         desc: 'Alle Einträge auf einen Blick — mit Notizen und Typ' },
+    { src: 'img/ma-historie.png',     title: 'Historie',            desc: 'Verlauf jeder Station abrufbar — direkt vor dem Besuch' },
+    { src: 'img/ma-eintragen.png',    title: 'Aktivität eintragen', desc: 'Aufbau, Bestellung oder Besuch — in 60 Sekunden erledigt' }
+  ],
+  vkl: [
+    { src: 'img/vkl-dashboard.png',    title: 'Team-Dashboard',     desc: 'KPIs des gesamten Teams — live und ohne Nachfragen' },
+    { src: 'img/vkl-ziele.png',        title: 'Zielverfolgung',     desc: 'Jeder Mitarbeiter auf einen Blick — Soll vs. Ist' },
+    { src: 'img/vkl-besuchsplan.png',  title: 'Besuchsplanung',     desc: 'Wer besucht heute welche Stationen? Übersicht für alle' },
+    { src: 'img/vkl-mitarbeiter.png',  title: 'Mitarbeiter & Urlaub', desc: 'Vertretungsregelungen und Urlaubsanträge zentral verwalten' }
+  ]
+};
+var lbTab = 'ma', lbIdx = 0;
+
+function openLightbox(tab, idx) {
+  lbTab = tab; lbIdx = idx;
+  renderLightbox();
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbNav(dir) {
+  var items = lbData[lbTab];
+  lbIdx = (lbIdx + dir + items.length) % items.length;
+  renderLightbox();
+}
+function renderLightbox() {
+  var item = lbData[lbTab][lbIdx];
+  var items = lbData[lbTab];
+  document.getElementById('lb-img').src = item.src;
+  document.getElementById('lb-img').alt = item.title;
+  document.getElementById('lb-title').textContent = item.title;
+  document.getElementById('lb-desc').textContent = item.desc;
+  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + items.length;
+}
+document.addEventListener('keydown', function(e) {
+  if (!document.getElementById('lightbox').classList.contains('open')) return;
+  if (e.key === 'ArrowLeft')  lbNav(-1);
+  if (e.key === 'ArrowRight') lbNav(1);
+  if (e.key === 'Escape')     closeLightbox();
+});
 </script>
 
 <!-- ═══════════════════════════════════════ FRÜH-KONTAKT ══════════════════════ -->
@@ -2091,6 +2212,27 @@ function switchCarouselTab(tab) {
     </div>
   </div>
 </section>
+
+<!-- ═══════════════════════════════════════ LIGHTBOX ═══════════════════════════ -->
+<div id="lightbox" role="dialog" aria-modal="true" onclick="if(event.target===this)closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Schließen">
+    <i class="bi bi-x-lg"></i>
+  </button>
+  <button class="lb-arrow prev" onclick="lbNav(-1)" aria-label="Zurück">
+    <i class="bi bi-chevron-left"></i>
+  </button>
+  <div style="display:flex;flex-direction:column;align-items:center">
+    <img id="lb-img" src="" alt="">
+    <div class="lb-caption">
+      <span id="lb-title"></span>
+      <small id="lb-desc"></small>
+      <small id="lb-counter" style="color:rgba(255,255,255,.3);margin-top:.4rem"></small>
+    </div>
+  </div>
+  <button class="lb-arrow next" onclick="lbNav(1)" aria-label="Weiter">
+    <i class="bi bi-chevron-right"></i>
+  </button>
+</div>
 
 <!-- ═══════════════════════════════════════ FOOTER ════════════════════════════ -->
 <footer>
