@@ -999,6 +999,11 @@ function lbNav(dir) {
   lbIdx = (lbIdx + dir + items.length) % items.length;
   renderLightbox();
 }
+function lbSwitchTab(tab) {
+  lbTab = tab;
+  lbIdx = 0;
+  renderLightbox();
+}
 function renderLightbox() {
   var item = lbData[lbTab][lbIdx];
   var items = lbData[lbTab];
@@ -1007,6 +1012,12 @@ function renderLightbox() {
   document.getElementById('lb-title').textContent = item.title;
   document.getElementById('lb-desc').textContent = item.desc;
   document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + items.length;
+  var tma  = document.getElementById('lb-tab-ma');
+  var tvkl = document.getElementById('lb-tab-vkl');
+  tma.style.background  = lbTab === 'ma'  ? 'var(--blau)' : 'transparent';
+  tma.style.color       = lbTab === 'ma'  ? '#fff' : 'rgba(255,255,255,.6)';
+  tvkl.style.background = lbTab === 'vkl' ? 'var(--blau)' : 'transparent';
+  tvkl.style.color      = lbTab === 'vkl' ? '#fff' : 'rgba(255,255,255,.6)';
 }
 document.addEventListener('keydown', function(e) {
   if (!document.getElementById('lightbox').classList.contains('open')) return;
@@ -2235,7 +2246,17 @@ document.addEventListener('keydown', function(e) {
   <button class="lb-arrow prev" onclick="lbNav(-1)" aria-label="Zurück">
     <i class="bi bi-chevron-left"></i>
   </button>
-  <div style="display:flex;flex-direction:column;align-items:center">
+  <div style="display:flex;flex-direction:column;align-items:center;max-width:90vw">
+    <div style="display:flex;gap:.5rem;margin-bottom:1rem;background:rgba(255,255,255,.1);border-radius:10px;padding:.3rem">
+      <button id="lb-tab-ma" onclick="lbSwitchTab('ma')"
+        style="border:none;border-radius:7px;padding:.45rem 1.2rem;font-weight:700;font-size:.88rem;cursor:pointer;background:var(--blau);color:#fff;transition:all .2s">
+        <i class="bi bi-person-fill me-1"></i>Außendienst
+      </button>
+      <button id="lb-tab-vkl" onclick="lbSwitchTab('vkl')"
+        style="border:none;border-radius:7px;padding:.45rem 1.2rem;font-weight:700;font-size:.88rem;cursor:pointer;background:transparent;color:rgba(255,255,255,.6);transition:all .2s">
+        <i class="bi bi-briefcase-fill me-1"></i>Verkaufsleiter
+      </button>
+    </div>
     <img id="lb-img" src="" alt="">
     <div class="lb-caption">
       <span id="lb-title"></span>
