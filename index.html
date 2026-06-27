@@ -2396,12 +2396,20 @@ async function handleForm(e) {
     });
     form.style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+    gtag('event', 'contact_form_submit', { event_category: 'lead', event_label: 'Kontaktformular' });
   } catch (err) {
     btn.disabled = false;
     btn.innerHTML = '<i class="bi bi-send me-2"></i>Nachricht senden';
     alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder schreiben Sie direkt an info@aktionstracker.de');
   }
 }
+
+// Demo-Link Tracking
+document.querySelectorAll('a[href*="demo.aktionstracker.de"]').forEach(a => {
+  a.addEventListener('click', () => {
+    gtag('event', 'demo_click', { event_category: 'engagement', event_label: a.closest('section')?.id || 'unbekannt' });
+  });
+});
 
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {
