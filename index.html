@@ -100,6 +100,10 @@
       border-radius: 50%;
       animation: pulse 2s infinite;
     }
+    @keyframes hero-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
     @keyframes pulse {
       0%,100% { opacity:1; transform:scale(1); }
       50%      { opacity:.5; transform:scale(1.4); }
@@ -674,6 +678,11 @@
           </div>
         </div>
       </div>
+    </div>
+    <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%)">
+      <a href="#features" style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);color:rgba(255,255,255,0.7);text-decoration:none;animation:hero-bounce 1.6s ease-in-out infinite" aria-label="Nach unten scrollen">
+        <i class="bi bi-chevron-down" style="font-size:1.1rem"></i>
+      </a>
     </div>
   </div>
 </section>
