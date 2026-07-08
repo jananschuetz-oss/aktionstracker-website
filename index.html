@@ -213,40 +213,240 @@
       .phone-frame:hover { transform: none; }
     }
 
-    /* ── Live-Eintrag-Animation im Phone Mockup: zeigt "Echtzeit" statt es nur zu behaupten ── */
-    .ph-card.ph-card-live {
-      max-height: 0;
-      margin-bottom: 0;
-      padding-top: 0;
-      padding-bottom: 0;
+    /* ── Zwei-Handy-Loop: Mitarbeiter trägt ein → Verkaufsleiter sieht's live ──────
+       Ein 13s-Zyklus. Linkes Handy: Liste → Formular (Felder füllen sich) → Speichern
+       → zurück zur Liste (neuer Eintrag oben). Rechtes Handy: Dashboard reagiert im
+       exakt selben Moment mit Toast, KPI-Anstieg und neuem Feed-Eintrag. */
+    .hero-phones {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.1rem;
+      padding: 1.5rem 0;
+    }
+    .hero-phones .phone-frame-wrap { padding: 0; }
+    .hero-phones .phone-frame { width: 208px; }
+    .hero-phones .phone-left  { transform: perspective(900px) rotateY(10deg) rotateX(2deg); }
+    .hero-phones .phone-right { transform: perspective(900px) rotateY(-10deg) rotateX(2deg); }
+    .hero-phones .phone-frame:hover { transform: perspective(900px) rotateY(0) rotateX(1deg); }
+    .hero-phones-arrow {
+      color: rgba(255,255,255,.3);
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    @media (max-width: 991.98px) {
+      .hero-phones { flex-direction: column; padding: .3rem 0 .8rem; gap: .15rem; }
+      .hero-phones .phone-frame { width: 200px; transform: none !important; }
+      .hero-phones .phone-screens { height: 190px; }
+      .hero-phones .ph-card:nth-child(4) { display: none; }
+      .hero-phones .ph-vkl-list .ph-card:last-child { display: none; }
+      .hero-phones-arrow { transform: rotate(90deg); font-size: 1rem; }
+    }
+
+    /* Bühne für den Bildschirmwechsel im linken Handy (Liste ⇄ Formular) */
+    .phone-screens { position: relative; height: 250px; background: #f4f7fb; }
+    .phone-screen { position: absolute; inset: 0; overflow: hidden; }
+    .phone-screen-list { animation: phScreenList 13s ease-in-out infinite; }
+    .phone-screen-form { animation: phScreenForm 13s ease-in-out infinite; }
+    @keyframes phScreenList {
+      0%, 8%    { opacity: 1; visibility: visible; }
+      13%       { opacity: 0; visibility: hidden; }
+      38%       { opacity: 0; visibility: hidden; }
+      43%, 100% { opacity: 1; visibility: visible; }
+    }
+    @keyframes phScreenForm {
+      0%, 8%    { opacity: 0; visibility: hidden; }
+      13%       { opacity: 1; visibility: visible; }
+      38%       { opacity: 1; visibility: visible; }
+      43%, 100% { opacity: 0; visibility: hidden; }
+    }
+
+    /* "Eintragen" Tap-Ring (linkes Handy, Moment 1) */
+    .ph-nav-item.eintragen { position: relative; }
+    .ph-nav-item.eintragen::after {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 12px;
+      border: 2px solid #fff;
       opacity: 0;
-      overflow: hidden;
-      border-width: 0;
-      animation: phLiveEntry 7s ease-in-out infinite;
+      animation: phTapRing 13s ease-in-out infinite;
+    }
+    @keyframes phTapRing {
+      0%, 5%   { opacity: 0; transform: scale(1); }
+      7%       { opacity: .9; transform: scale(.94); }
+      11%      { opacity: 0; transform: scale(1.3); }
+      100%     { opacity: 0; }
+    }
+
+    /* Formular-Felder füllen sich nacheinander */
+    .ph-form-field { margin-bottom: .55rem; }
+    .ph-form-field label {
+      display: block;
+      font-size: .56rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: #8a97a6;
+      margin-bottom: .2rem;
+    }
+    .ph-form-value {
+      background: #fff;
+      border: 1px solid #dde6f3;
+      border-radius: 7px;
+      padding: .4rem .5rem;
+      font-size: .68rem;
+      font-weight: 700;
+      color: #1a3a5c;
+      min-height: 1.5em;
+      opacity: 0;
+      transform: translateY(3px);
+      animation: phFieldFill 13s ease-in-out infinite;
+    }
+    .ph-form-value.f2, .ph-form-value.f3 { animation-name: phFieldFill2; }
+    @keyframes phFieldFill {
+      0%, 15%   { opacity: 0; transform: translateY(3px); }
+      19%, 100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes phFieldFill2 {
+      0%, 26%   { opacity: 0; transform: translateY(3px); }
+      30%, 100% { opacity: 1; transform: translateY(0); }
+    }
+    .ph-type-pill {
+      display: inline-block;
+      font-size: .6rem;
+      font-weight: 700;
+      padding: .3rem .55rem;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid #dde6f3;
+      color: #8a97a6;
+    }
+    .ph-type-pill.ph-type-selected {
+      background: #fdf3e0;
+      border-color: var(--amber);
+      color: #93500a;
+      animation: phTypeSelect 13s ease-in-out infinite;
+    }
+    @keyframes phTypeSelect {
+      0%, 21%   { background: #fff; border-color: #dde6f3; color: #8a97a6; }
+      25%, 100% { background: #fdf3e0; border-color: var(--amber); color: #93500a; }
+    }
+    .ph-form-save {
+      margin-top: .7rem;
+      background: var(--amber);
+      color: #fff;
+      text-align: center;
+      font-size: .68rem;
+      font-weight: 700;
+      padding: .5rem;
+      border-radius: 8px;
+      position: relative;
+    }
+    .ph-form-save::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 12px;
+      border: 2px solid #fff;
+      opacity: 0;
+      animation: phSaveTap 13s ease-in-out infinite;
+    }
+    @keyframes phSaveTap {
+      0%, 33%  { opacity: 0; transform: scale(1); }
+      35%      { opacity: .9; transform: scale(.95); }
+      39%      { opacity: 0; transform: scale(1.25); }
+      100%     { opacity: 0; }
+    }
+
+    /* Neuer Eintrag oben in der Liste (linkes Handy) – erscheint bereits hervorgehoben,
+       sobald die Liste nach dem Speichern wieder eingeblendet wird */
+    .phone-list { position: relative; }
+    .ph-card.ph-card-live {
+      max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;
+      opacity: 0; overflow: hidden; border-width: 0; box-shadow: none;
+      animation: phLiveEntry 13s ease-in-out infinite;
     }
     @keyframes phLiveEntry {
-      0%, 4%   { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; }
-      10%      { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff8e8; }
-      16%      { background: #fff8e8; }
-      28%      { background: #fff; }
-      88%      { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff; }
-      96%, 100% { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; }
+      0%, 41%   { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; box-shadow: none; }
+      44%       { max-height: 90px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff2cf; box-shadow: 0 6px 18px rgba(200,134,10,.28); }
+      52%       { background: #fff2cf; box-shadow: 0 6px 18px rgba(200,134,10,.28); }
+      64%       { background: #fff; box-shadow: none; }
+      92%       { max-height: 90px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff; box-shadow: none; }
+      97%, 100% { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; box-shadow: none; }
     }
     .ph-live-pulse {
-      display: inline-block;
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: #27ae60;
-      margin-right: 4px;
+      display: inline-block; width: 6px; height: 6px; border-radius: 50%;
+      background: #27ae60; margin-right: 4px;
       animation: phLivePulse 1.6s ease-in-out infinite;
     }
     @keyframes phLivePulse {
       0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(39,174,96,.5); }
       50%      { opacity: .6; box-shadow: 0 0 0 4px rgba(39,174,96,0); }
     }
+
+    /* ── Rechtes Handy: Verkaufsleiter-Dashboard reagiert live ── */
+    .ph-kpi-row { display: flex; gap: .4rem; margin-bottom: .55rem; }
+    .ph-kpi {
+      flex: 1; background: #fff; border: 1px solid #e8eef6; border-radius: 9px;
+      padding: .45rem .5rem; position: relative;
+    }
+    .ph-kpi-num { font-size: .95rem; font-weight: 800; color: #1a3a5c; position: relative; }
+    .ph-kpi-label { font-size: .55rem; color: #8a97a6; margin-top: .1rem; }
+    .ph-kpi-plus {
+      position: absolute; top: -2px; left: 100%; margin-left: 3px;
+      font-size: .55rem; font-weight: 800; color: #fff;
+      background: #27ae60; border-radius: 8px; padding: .05rem .3rem;
+      white-space: nowrap; opacity: 0; transform: translateY(2px);
+      animation: phKpiPlus 13s ease-in-out infinite;
+    }
+    @keyframes phKpiPlus {
+      0%, 40%   { opacity: 0; transform: translateY(2px); }
+      44%       { opacity: 1; transform: translateY(-3px); }
+      60%       { opacity: 1; transform: translateY(-3px); }
+      68%, 100% { opacity: 0; transform: translateY(-6px); }
+    }
+    .ph-vkl-section-label {
+      font-size: .56rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .03em; color: #8a97a6; margin: 0 0 .3rem;
+    }
+    .ph-card.ph-card-vkl-new {
+      max-height: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0;
+      opacity: 0; overflow: hidden; border-width: 0; box-shadow: none;
+      animation: phVklEntry 13s ease-in-out infinite;
+    }
+    @keyframes phVklEntry {
+      0%, 42%   { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; box-shadow: none; }
+      46%       { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .5rem; padding-bottom: .5rem; border-width: 1px; background: #e6f9ee; box-shadow: 0 6px 18px rgba(39,174,96,.22); }
+      54%       { background: #e6f9ee; box-shadow: 0 6px 18px rgba(39,174,96,.22); }
+      66%       { background: #fff; box-shadow: none; }
+      92%       { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .5rem; padding-bottom: .5rem; border-width: 1px; background: #fff; box-shadow: none; }
+      97%, 100% { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; box-shadow: none; }
+    }
+    .ph-vkl-toast {
+      position: absolute; top: 6px; left: 50%; transform: translate(-50%, -8px);
+      background: #1a3a5c; color: #fff; font-size: .58rem; font-weight: 700;
+      padding: .3rem .6rem; border-radius: 20px; box-shadow: 0 6px 16px rgba(0,0,0,.25);
+      white-space: nowrap; opacity: 0; z-index: 3;
+      animation: phVklToast 13s ease-in-out infinite;
+    }
+    @keyframes phVklToast {
+      0%, 40%   { opacity: 0; transform: translate(-50%, -8px); }
+      44%       { opacity: 1; transform: translate(-50%, 4px); }
+      58%       { opacity: 1; transform: translate(-50%, 4px); }
+      64%, 100% { opacity: 0; transform: translate(-50%, -8px); }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .ph-card-live { animation: none; max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; }
-      .ph-live-pulse { animation: none; }
+      .phone-screen-list, .phone-screen-form,
+      .ph-nav-item.eintragen::after, .ph-form-value, .ph-type-pill.ph-type-selected,
+      .ph-form-save::after, .ph-card-live, .ph-live-pulse,
+      .ph-kpi-plus, .ph-card-vkl-new, .ph-vkl-toast { animation: none; }
+      .phone-screen-list { opacity: 1; visibility: visible; }
+      .phone-screen-form { opacity: 0; visibility: hidden; }
+      .ph-form-value, .ph-type-pill.ph-type-selected { opacity: 1; transform: none; }
+      .ph-card-live, .ph-card-vkl-new { opacity: 0; max-height: 0; }
+      .ph-kpi-plus, .ph-vkl-toast { opacity: 0; }
     }
 
     /* ── Sections ── */
@@ -628,7 +828,7 @@
 <section class="hero">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-6">
+      <div class="col-lg-5">
         <div class="hero-badge hero-badge-niche">
           <span class="dot" style="background:#2cc4b0"></span>
           Für Getränke- &amp; FMCG-Außendienst
@@ -661,84 +861,175 @@
           <span>1 Woche bis live</span>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="phone-frame-wrap">
-          <div class="phone-frame">
-            <div class="phone-notch"><div class="phone-notch-pill"></div></div>
-            <div class="phone-status">
-              <span>08:18</span>
-              <div style="display:flex;gap:3px;align-items:center">
-                <i class="bi bi-reception-4"></i>
-                <i class="bi bi-wifi"></i>
-                <span>90 %</span>
-              </div>
-            </div>
-            <div class="phone-app-header">
-              <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-list me-1"></i> Aktivitäten</div>
-              <div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:1px">Alle Einträge</div>
-            </div>
-            <div class="phone-filter-row">
-              <span class="ph-badge active">2026</span>
-              <span class="ph-badge">Alle Monate</span>
-              <span class="ph-badge">KW Alle</span>
-              <span style="margin-left:auto;font-size:.6rem;color:#999"><span class="ph-live-pulse"></span>Live</span>
-            </div>
-            <div class="phone-list">
-              <div class="ph-card ph-card-live">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
-                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
-                  <span class="ph-type-badge aufbau">Aufbau</span>
-                </div>
-                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>gerade eben · Dortmund</div>
-                <div style="display:flex;gap:.6rem">
-                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
-                  <span style="font-size:.68rem"><strong style="color:#c8860a">18</strong> <span style="color:#bbb">Kisten</span></span>
+      <div class="col-lg-7">
+        <div class="hero-phones">
+
+          <!-- Linkes Handy: Mitarbeiter trägt eine Aktivität ein -->
+          <div class="phone-frame-wrap">
+            <div class="phone-frame phone-left">
+              <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+              <div class="phone-status">
+                <span>08:18</span>
+                <div style="display:flex;gap:3px;align-items:center">
+                  <i class="bi bi-reception-4"></i>
+                  <i class="bi bi-wifi"></i>
+                  <span>90 %</span>
                 </div>
               </div>
-              <div class="ph-card">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
-                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
-                  <span class="ph-type-badge bestell">Bestellung</span>
+              <div class="phone-screens">
+                <!-- Screen A: Aktivitätenliste -->
+                <div class="phone-screen phone-screen-list">
+                  <div class="phone-app-header">
+                    <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-list me-1"></i> Aktivitäten</div>
+                    <div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:1px">Alle Einträge</div>
+                  </div>
+                  <div class="phone-filter-row">
+                    <span class="ph-badge active">2026</span>
+                    <span class="ph-badge">Alle Monate</span>
+                    <span style="margin-left:auto;font-size:.6rem;color:#999"><span class="ph-live-pulse"></span>Live</span>
+                  </div>
+                  <div class="phone-list">
+                    <div class="ph-toast"><i class="bi bi-check-circle-fill me-1"></i>Gespeichert</div>
+                    <div class="ph-card ph-card-live">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                        <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
+                        <span class="ph-type-badge aufbau">Aufbau</span>
+                      </div>
+                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>gerade eben · Dortmund</div>
+                      <div style="display:flex;gap:.6rem">
+                        <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
+                        <span style="font-size:.68rem"><strong style="color:#c8860a">18</strong> <span style="color:#bbb">Kisten</span></span>
+                      </div>
+                    </div>
+                    <div class="ph-card">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                        <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
+                        <span class="ph-type-badge bestell">Bestellung</span>
+                      </div>
+                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · Mannheim</div>
+                      <div style="display:flex;gap:.6rem">
+                        <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
+                        <span style="font-size:.68rem"><strong style="color:#c8860a">60</strong> <span style="color:#bbb">Kisten</span></span>
+                      </div>
+                    </div>
+                    <div class="ph-card">
+                      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                        <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
+                        <span class="ph-type-badge aufbau">Aufbau</span>
+                      </div>
+                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · Nürnberg</div>
+                      <div style="display:flex;gap:.6rem">
+                        <span style="font-size:.68rem"><strong style="color:#1a3a5c">0</strong> <span style="color:#bbb">Displays</span></span>
+                        <span style="font-size:.68rem"><strong style="color:#c8860a">9</strong> <span style="color:#bbb">Kisten</span></span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · KW 24 · Mannheim</div>
-                <div style="display:flex;gap:.6rem">
-                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
-                  <span style="font-size:.68rem"><strong style="color:#c8860a">60</strong> <span style="color:#bbb">Kisten</span></span>
+                <!-- Screen B: Neue Aktivität eintragen -->
+                <div class="phone-screen phone-screen-form">
+                  <div class="phone-app-header">
+                    <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-arrow-left me-1"></i> Neue Aktivität</div>
+                  </div>
+                  <div style="padding:.75rem .7rem">
+                    <div class="ph-form-field">
+                      <label>Verkaufsstelle</label>
+                      <div class="ph-form-value">Getränke Nord</div>
+                    </div>
+                    <div class="ph-form-field">
+                      <label>Aktivitätstyp</label>
+                      <div style="display:flex;gap:.3rem">
+                        <span class="ph-type-pill">Besuch</span>
+                        <span class="ph-type-pill ph-type-selected">Aufbau</span>
+                        <span class="ph-type-pill">Bestellung</span>
+                      </div>
+                    </div>
+                    <div style="display:flex;gap:.5rem">
+                      <div class="ph-form-field" style="flex:1">
+                        <label>Displays</label>
+                        <div class="ph-form-value f2">1</div>
+                      </div>
+                      <div class="ph-form-field" style="flex:1">
+                        <label>Kisten</label>
+                        <div class="ph-form-value f3">18</div>
+                      </div>
+                    </div>
+                    <div class="ph-form-save">Speichern</div>
+                  </div>
                 </div>
               </div>
-              <div class="ph-card">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
-                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
-                  <span class="ph-type-badge aufbau">Aufbau</span>
-                </div>
-                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · KW 23 · Nürnberg</div>
-                <div style="display:flex;gap:.6rem">
-                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">0</strong> <span style="color:#bbb">Displays</span></span>
-                  <span style="font-size:.68rem"><strong style="color:#c8860a">9</strong> <span style="color:#bbb">Kisten</span></span>
-                </div>
+              <div class="phone-nav">
+                <div class="ph-nav-item"><i class="bi bi-speedometer2"></i><span>Dashboard</span></div>
+                <div class="ph-nav-item active"><i class="bi bi-list-ul"></i><span>Aktivitäten</span></div>
+                <div class="ph-nav-item eintragen"><i class="bi bi-plus-circle-fill"></i><span>Eintragen</span></div>
+                <div class="ph-nav-item"><i class="bi bi-box-arrow-right"></i><span>Abmelden</span></div>
               </div>
-              <div class="ph-card">
-                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
-                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Gasthaus Zum Löwen</div>
-                  <span class="ph-type-badge besuch">Besuch</span>
-                </div>
-                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>03.06.26 · KW 23 · München</div>
-                <div style="display:flex;gap:.6rem">
-                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">2</strong> <span style="color:#bbb">Displays</span></span>
-                  <span style="font-size:.68rem"><strong style="color:#c8860a">24</strong> <span style="color:#bbb">Kisten</span></span>
-                </div>
-              </div>
-            </div>
-            <div class="phone-nav">
-              <div class="ph-nav-item"><i class="bi bi-speedometer2"></i><span>Dashboard</span></div>
-              <div class="ph-nav-item active"><i class="bi bi-list-ul"></i><span>Aktivitäten</span></div>
-              <div class="ph-nav-item eintragen"><i class="bi bi-plus-circle-fill"></i><span>Eintragen</span></div>
-              <div class="ph-nav-item"><i class="bi bi-graph-up-arrow"></i><span>Vergleich</span></div>
-              <div class="ph-nav-item"><i class="bi bi-box-arrow-right"></i><span>Abmelden</span></div>
             </div>
           </div>
+
+          <i class="bi bi-arrow-right hero-phones-arrow"></i>
+
+          <!-- Rechtes Handy: Verkaufsleiter sieht die Aktivität live -->
+          <div class="phone-frame-wrap">
+            <div class="phone-frame phone-right" style="position:relative">
+              <div class="phone-notch"><div class="phone-notch-pill"></div></div>
+              <div class="phone-status">
+                <span>08:18</span>
+                <div style="display:flex;gap:3px;align-items:center">
+                  <i class="bi bi-reception-4"></i>
+                  <i class="bi bi-wifi"></i>
+                  <span>90 %</span>
+                </div>
+              </div>
+              <div class="phone-app-header">
+                <div style="font-size:.82rem;font-weight:700;color:#fff"><i class="bi bi-speedometer2 me-1"></i> Team-Dashboard</div>
+                <div style="font-size:.65rem;color:rgba(255,255,255,.6);margin-top:1px">Verkaufsleiter-Ansicht</div>
+              </div>
+              <div class="ph-vkl-toast"><i class="bi bi-bell-fill me-1"></i>Neue Aktivität – Max M.</div>
+              <div class="ph-vkl-list" style="padding:.7rem .65rem;background:#f4f7fb">
+                <div class="ph-kpi-row">
+                  <div class="ph-kpi">
+                    <div class="ph-kpi-num">8<span class="ph-kpi-plus">+1</span></div>
+                    <div class="ph-kpi-label">Besuche heute</div>
+                  </div>
+                  <div class="ph-kpi">
+                    <div class="ph-kpi-num">340<span class="ph-kpi-plus">+18</span></div>
+                    <div class="ph-kpi-label">Kisten</div>
+                  </div>
+                </div>
+                <div class="ph-vkl-section-label">Neueste Aktivität</div>
+                <div class="ph-card ph-card-vkl-new">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                    <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
+                    <span class="ph-type-badge aufbau">Aufbau</span>
+                  </div>
+                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Max Müller · gerade eben</div>
+                </div>
+                <div class="ph-card">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                    <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
+                    <span class="ph-type-badge bestell">Bestellung</span>
+                  </div>
+                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Max Müller · 09:12</div>
+                </div>
+                <div class="ph-card">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                    <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
+                    <span class="ph-type-badge aufbau">Aufbau</span>
+                  </div>
+                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Anna Schmidt · 08:47</div>
+                </div>
+              </div>
+              <div class="phone-nav">
+                <div class="ph-nav-item active"><i class="bi bi-speedometer2"></i><span>Dashboard</span></div>
+                <div class="ph-nav-item"><i class="bi bi-people"></i><span>Team</span></div>
+                <div class="ph-nav-item"><i class="bi bi-graph-up-arrow"></i><span>Vergleich</span></div>
+                <div class="ph-nav-item"><i class="bi bi-box-arrow-right"></i><span>Abmelden</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
-        <div class="text-center mt-3 d-none d-lg-block">
+        <div class="text-center mt-2 d-none d-lg-block">
           <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
              class="btn btn-lg px-4" style="background:#10b981;color:#fff;border:none;font-weight:700">
             <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
