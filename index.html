@@ -207,7 +207,47 @@
       margin: -5px .12rem 0;
       padding-top: .35rem;
     }
-    @media (max-width: 991.98px) { .phone-frame-wrap { display: none; } }
+    @media (max-width: 991.98px) {
+      .phone-frame-wrap { padding: .5rem 0 1rem; }
+      .phone-frame { transform: none; width: 240px; }
+      .phone-frame:hover { transform: none; }
+    }
+
+    /* ── Live-Eintrag-Animation im Phone Mockup: zeigt "Echtzeit" statt es nur zu behaupten ── */
+    .ph-card.ph-card-live {
+      max-height: 0;
+      margin-bottom: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      opacity: 0;
+      overflow: hidden;
+      border-width: 0;
+      animation: phLiveEntry 7s ease-in-out infinite;
+    }
+    @keyframes phLiveEntry {
+      0%, 4%   { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; }
+      10%      { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff8e8; }
+      16%      { background: #fff8e8; }
+      28%      { background: #fff; }
+      88%      { max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; background: #fff; }
+      96%, 100% { max-height: 0; opacity: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; border-width: 0; background: #fff; }
+    }
+    .ph-live-pulse {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #27ae60;
+      margin-right: 4px;
+      animation: phLivePulse 1.6s ease-in-out infinite;
+    }
+    @keyframes phLivePulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(39,174,96,.5); }
+      50%      { opacity: .6; box-shadow: 0 0 0 4px rgba(39,174,96,0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .ph-card-live { animation: none; max-height: 80px; opacity: 1; margin-bottom: .35rem; padding-top: .55rem; padding-bottom: .55rem; border-width: 1px; }
+      .ph-live-pulse { animation: none; }
+    }
 
     /* ── Sections ── */
     section { padding: 80px 0; }
@@ -296,6 +336,25 @@
     .feature-icon.red    { background: #fdecea; color: #c0392b; }
     .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--blau); margin-bottom: .5rem; }
     .feature-card p { font-size: .88rem; color: #666; margin: 0; line-height: 1.6; }
+
+    /* ── Feature-Kacheln auf Mobile: nur Überschrift, antippen zum Aufklappen ── */
+    @media (max-width: 767.98px) {
+      .feature-card { cursor: pointer; padding: 1.35rem 1.5rem; }
+      .feature-card p {
+        max-height: 0; opacity: 0; overflow: hidden; margin-top: 0;
+        transition: max-height .3s ease, opacity .2s ease, margin-top .3s ease;
+      }
+      .feature-card.open p { max-height: 280px; opacity: 1; margin-top: .5rem; }
+      .feature-card h4 { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 0; }
+      .feature-card h4::after {
+        content: "▾";
+        color: #aaa;
+        font-size: 1rem;
+        flex-shrink: 0;
+        transition: transform .25s ease;
+      }
+      .feature-card.open h4::after { transform: rotate(180deg); }
+    }
 
     /* ── Wie es funktioniert ── */
     .how-section { background: var(--blau); color: #fff; }
@@ -595,7 +654,7 @@
           </a>
         </div>
         <div class="mt-4 d-flex flex-wrap gap-4" style="font-size:.83rem;color:rgba(255,255,255,.5)">
-          <span>Ab 99 €/Monat Pauschale – kein Pro-Kopf-Preis</span>
+          <span>Ab 99 €/Monat Pauschale – statt 300–600 € bei nutzungsbasierten Systemen</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
           <span>Monatlich kündbar · 4 Wo. Vorlauf</span>
           <span style="color:rgba(255,255,255,.25)">·</span>
@@ -622,9 +681,20 @@
               <span class="ph-badge active">2026</span>
               <span class="ph-badge">Alle Monate</span>
               <span class="ph-badge">KW Alle</span>
-              <span style="margin-left:auto;font-size:.6rem;color:#999">350 Einträge</span>
+              <span style="margin-left:auto;font-size:.6rem;color:#999"><span class="ph-live-pulse"></span>Live</span>
             </div>
             <div class="phone-list">
+              <div class="ph-card ph-card-live">
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
+                  <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
+                  <span class="ph-type-badge aufbau">Aufbau</span>
+                </div>
+                <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>gerade eben · Dortmund</div>
+                <div style="display:flex;gap:.6rem">
+                  <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
+                  <span style="font-size:.68rem"><strong style="color:#c8860a">18</strong> <span style="color:#bbb">Kisten</span></span>
+                </div>
+              </div>
               <div class="ph-card">
                 <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
                   <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
@@ -668,7 +738,7 @@
             </div>
           </div>
         </div>
-        <div class="text-center mt-3">
+        <div class="text-center mt-3 d-none d-lg-block">
           <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
              class="btn btn-lg px-4" style="background:#10b981;color:#fff;border:none;font-weight:700">
             <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
@@ -839,31 +909,31 @@
           <div id="carousel-ma" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
               <div class="carousel-item active text-center">
-                <img src="img/ma-dashboard.png" alt="MA Dashboard"
+                <img src="img/ma-dashboard.png" alt="Aktions Tracker Dashboard für Außendienst-Mitarbeiter mit Tagesübersicht, offenen Bestellungen und Besuchsplan"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Dashboard</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Tagesübersicht mit offenen Bestellungen und Besuchsplan</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-besuchsplan.png" alt="Besuchsplanung"
+                <img src="img/ma-besuchsplan.png" alt="Aktions Tracker Tagesplan für Außendienst-Mitarbeiter mit sortierten, abhakbaren Stationen"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Tagesplan</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Geplante Stationen für den Tag — sortiert, klar, abgehakt</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-aktivitaeten.png" alt="Aktivitäten"
+                <img src="img/ma-aktivitaeten.png" alt="Aktions Tracker Aktivitätenliste mit allen Einträgen, Notizen und Aktivitätstyp auf einen Blick"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Aktivitäten</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Alle Einträge auf einen Blick — mit Notizen und Typ</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-historie.png" alt="Historie"
+                <img src="img/ma-historie.png" alt="Aktions Tracker Besuchshistorie einer Verkaufsstelle, abrufbar direkt vor dem nächsten Besuch"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Historie</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Verlauf jeder Station abrufbar — direkt vor dem Besuch</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-eintragen.png" alt="Eintragen"
+                <img src="img/ma-eintragen.png" alt="Aktions Tracker Eingabemaske für Aufbau, Bestellung oder Besuch – in 60 Sekunden erledigt"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Aktivität eintragen</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Aufbau, Bestellung oder Besuch — in 60 Sekunden erledigt</div>
@@ -892,25 +962,25 @@
           <div id="carousel-vkl" class="carousel slide" data-bs-interval="5000" style="display:none">
             <div class="carousel-inner">
               <div class="carousel-item active text-center">
-                <img src="img/vkl-dashboard.png" alt="VKL Dashboard"
+                <img src="img/vkl-dashboard.png" alt="Aktions Tracker Team-Dashboard für Verkaufsleiter mit Live-KPIs des gesamten Teams"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Team-Dashboard</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">KPIs des gesamten Teams — live und ohne Nachfragen</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-ziele.png" alt="Zielverfolgung"
+                <img src="img/vkl-ziele.png" alt="Aktions Tracker Zielerreichung je Mitarbeiter im Vergleich Soll gegen Ist"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Zielverfolgung</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Jeder Mitarbeiter auf einen Blick — Soll vs. Ist</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-besuchsplan.png" alt="Besuchsplanung VKL"
+                <img src="img/vkl-besuchsplan.png" alt="Aktions Tracker Besuchsplanung für Verkaufsleiter – wer besucht heute welche Station"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Besuchsplanung</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Wer besucht heute welche Stationen? Übersicht für alle</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-mitarbeiter.png" alt="Mitarbeiter"
+                <img src="img/vkl-mitarbeiter.png" alt="Aktions Tracker Mitarbeiterverwaltung mit Urlaubsanträgen und Vertretungsregelungen"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Mitarbeiter &amp; Urlaub</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Vertretungsregelungen und Urlaubsanträge zentral verwalten</div>
@@ -1156,7 +1226,7 @@ document.addEventListener('keydown', function(e) {
       <div class="col-md-6 col-lg-4">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-calendar-check"></i></div>
-          <h4>Besuchsplan <span class="badge rounded-pill ms-1" style="background:var(--blau);font-size:.6rem;vertical-align:middle;font-weight:600">NEU</span></h4>
+          <h4><span>Besuchsplan <span class="badge rounded-pill ms-1" style="background:var(--blau);font-size:.6rem;vertical-align:middle;font-weight:600">NEU</span></span></h4>
           <p>Stationen für den Tag festlegen, Reihenfolge bestimmen – in 2 Minuten. Aktivität erfasst = Termin automatisch abgehakt. Leitung sieht den Tagesplan aller Mitarbeiter auf einen Blick.</p>
         </div>
       </div>
@@ -1236,6 +1306,9 @@ document.addEventListener('keydown', function(e) {
             <div><i class="bi bi-check2-circle me-2" style="color:#4cdb7a"></i>Bei Bedarf: Live-Dashboard per Klick – auch vom Smartphone, jederzeit</div>
             <div><i class="bi bi-check2-circle me-2" style="color:#4cdb7a"></i>Mehrere Teams: Jeder VKL bekommt den Bericht seines Teams – Sie erhalten einen konsolidierten Gesamtbericht über alle Teams</div>
           </div>
+          <div class="mt-3 pt-3" style="border-top:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.75);font-size:.88rem">
+            <i class="bi bi-clock-history me-2" style="color:#2cc4b0"></i>Der automatische Wochenbericht erspart Ihnen das manuelle Zusammentragen von Excel-Listen und WhatsApp-Meldungen – im Schnitt mehrere Stunden pro Monat.
+          </div>
         </div>
         <div class="col-lg-4 p-4 p-lg-5 d-flex align-items-center justify-content-center"
              style="background:rgba(44,196,176,.1);border-left:1px solid rgba(44,196,176,.2)">
@@ -1254,6 +1327,14 @@ document.addEventListener('keydown', function(e) {
     </a>
   </div>
 </section>
+<script>
+  // Feature-Kacheln: nur auf Mobile antippbar auf-/zuklappen (Desktop zeigt immer alles)
+  document.querySelectorAll('#features .feature-card').forEach(function (card) {
+    card.addEventListener('click', function () {
+      if (window.innerWidth < 768) card.classList.toggle('open');
+    });
+  });
+</script>
 
 <!-- ═══════════════════════════════════════ ZIELGRUPPE ════════════════════════ -->
 <section id="zielgruppe" class="audience-section">
@@ -1587,7 +1668,13 @@ document.addEventListener('keydown', function(e) {
         <div class="section-label">Optionale Erweiterungen</div>
         <h3 class="section-title" style="font-size:1.6rem">Add-ons – zubuchbar zu jedem Paket</h3>
         <p class="section-sub mx-auto mt-1" style="font-size:.95rem">Erweitern Sie Ihren Aktions Tracker jederzeit. Add-ons können beim Einrichten oder nachträglich hinzugefügt werden.</p>
+        <button class="btn btn-outline-secondary btn-sm rounded-pill mt-2" type="button"
+                data-bs-toggle="collapse" data-bs-target="#addonsCollapse"
+                aria-expanded="false" aria-controls="addonsCollapse">
+          <i class="bi bi-plus-circle me-1"></i><span class="addon-toggle-text">Zusatzfunktionen anzeigen</span>
+        </button>
       </div>
+      <div class="collapse" id="addonsCollapse">
       <div class="row g-4 justify-content-center">
 
         <!-- Add-on: Geographische Karte -->
@@ -1640,7 +1727,16 @@ document.addEventListener('keydown', function(e) {
         </div>
 
       </div>
+      </div>
     </div>
+    <script>
+      document.getElementById('addonsCollapse').addEventListener('show.bs.collapse', function () {
+        this.parentElement.querySelector('.addon-toggle-text').textContent = 'Zusatzfunktionen ausblenden';
+      });
+      document.getElementById('addonsCollapse').addEventListener('hide.bs.collapse', function () {
+        this.parentElement.querySelector('.addon-toggle-text').textContent = 'Zusatzfunktionen anzeigen';
+      });
+    </script>
     <!-- ── /Add-ons ── -->
 
     <!-- Ohne-VKL-Hinweis -->
@@ -1728,6 +1824,20 @@ document.addEventListener('keydown', function(e) {
 
           <div class="accordion-item border mb-2 rounded">
             <h2 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k1b">
+                Warum nicht einfach bei Excel und WhatsApp bleiben?
+              </button>
+            </h2>
+            <div id="faq-k1b" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
+              <div class="accordion-body">
+                <p class="mb-2">Kurzfristig geht das – Excel und WhatsApp kosten nichts extra und jeder kennt sie. Das Problem zeigt sich meist erst mit der Zeit: Tabellen laufen auseinander, Fotos verschwinden im Chat-Verlauf, und am Monatsende sitzt jemand stundenlang zusammen, was eigentlich längst online stehen sollte.</p>
+                <p class="mb-0">Der Aktions Tracker ersetzt genau diesen Flickenteppich – nicht mit einer 500-Feature-Plattform, sondern mit einer einzigen App, die das Gleiche leistet wie Excel + WhatsApp zusammen, nur in Echtzeit und ohne Nachfragen.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item border mb-2 rounded">
+            <h2 class="accordion-header">
               <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#faq-k2">
                 Gibt es eine Mindestlaufzeit oder Kündigungsfrist?
               </button>
@@ -1777,7 +1887,7 @@ document.addEventListener('keydown', function(e) {
             </h2>
             <div id="faq-k5" class="accordion-collapse collapse" data-bs-parent="#faqKauf">
               <div class="accordion-body">
-                <p class="mb-2">Der Aktions Tracker ist für Teams von <strong>3 bis 20 Außendienstlern</strong> ausgelegt. Darunter lässt sich die Transparenz oft noch mit einfacheren Mitteln herstellen. Darüber empfehlen sich vollwertige CRM-Systeme.</p>
+                <p class="mb-2">Auch mit 1–2 Außendienstlern lohnt sich der Aktions Tracker bereits, wenn Sie von Anfang an sauber dokumentieren wollen. Ab <strong>3 Außendienstlern</strong> zahlt sich die zentrale Übersicht besonders aus – bis 20 Mitarbeiter ist das Tool passgenau zugeschnitten. Darüber empfehlen sich vollwertige CRM-Systeme.</p>
                 <p class="mb-0">Besonders gut passt das Tool, wenn Ihnen schnelle Übersicht, einfache Bedienung und faires Pricing wichtiger sind als eine 500-Feature-Plattform, die niemand richtig nutzt.</p>
               </div>
             </div>
