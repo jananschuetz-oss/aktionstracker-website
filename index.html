@@ -19,6 +19,9 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="de_DE">
   <link rel="canonical" href="https://aktionstracker.de">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <style>
@@ -27,17 +30,29 @@
       --blau-mid:   #2e6da4;
       --amber:      #c8860a;
       --amber-hell: #f5a623;
+      --teal:       #1c7a6e;
+      --teal-hell:  #2cc4b0;
       --hell:       #f4f7fb;
       --weiss:      #ffffff;
+      --ink:        #16232f;
+      --font-display: 'Bitter', Georgia, serif;
+      --font-body:    'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      color: #1a1a2e;
+      font-family: var(--font-body);
+      color: var(--ink);
       overflow-x: hidden;
+    }
+
+    h1, h2, h3,
+    .hero h1, .section-title, .cta-section h2,
+    .price-val, .stat-val, .stat-num, .step-num {
+      font-family: var(--font-display);
+      letter-spacing: -0.01em;
     }
 
     /* ── Navbar ── */
@@ -52,6 +67,15 @@
       font-weight: 600;
     }
     .btn-amber:hover { background: var(--amber-hell); color: #fff; }
+    .btn-cta {
+      background: var(--teal);
+      color: #fff;
+      border: none;
+      font-weight: 700;
+      transition: background .2s, transform .15s;
+    }
+    .btn-cta:hover { background: #164f47; color: #fff; transform: translateY(-1px); }
+    .btn-cta:active { transform: translateY(0); }
     .btn-ghost-hero { color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.2); background: transparent; font-weight: 500; }
     .btn-ghost-hero:hover { background: rgba(255,255,255,.07); color: #fff; border-color: rgba(255,255,255,.35); }
     .hero-badge-niche { background: rgba(44,122,123,.2); border-color: rgba(44,122,123,.5); color: #7de8e8; }
@@ -80,7 +104,7 @@
       font-weight: 800;
       line-height: 1.15;
     }
-    .hero h1 span { color: var(--amber-hell); }
+    .hero h1 span { color: var(--amber-hell); font-style: italic; font-weight: 600; }
     .hero .lead { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.7; }
     .hero-badge {
       display: inline-flex;
@@ -88,7 +112,7 @@
       gap: .5rem;
       background: rgba(255,255,255,.1);
       border: 1px solid rgba(255,255,255,.2);
-      border-radius: 50px;
+      border-radius: 6px;
       padding: .35rem 1rem;
       font-size: .82rem;
       color: rgba(255,255,255,.9);
@@ -653,12 +677,12 @@
       font-size: .75rem;
       font-weight: 700;
       padding: .25rem 1.25rem;
-      border-radius: 50px;
+      border-radius: 6px;
       white-space: nowrap;
     }
     .price-name { font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; }
     .price-val { font-size: 2.6rem; font-weight: 900; color: var(--blau); line-height: 1.1; }
-    .price-val sub { font-size: .85rem; font-weight: 500; color: #888; }
+    .price-val sub { font-family: var(--font-body); font-size: .85rem; font-weight: 500; color: #888; }
     .price-note { font-size: .78rem; color: #999; }
     .price-feature {
       display: flex;
@@ -840,7 +864,7 @@
         <div class="hero-teaser">Echtzeit-Einblick. Kein Nachfragen mehr.</div>
         <div class="d-flex flex-wrap gap-3 mt-3">
           <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
-             class="btn btn-lg px-4" style="background:#10b981;color:#fff;border:none;font-weight:700;line-height:1.3">
+             class="btn btn-cta btn-lg px-4" style="line-height:1.3">
             <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
             <small class="d-block" style="font-size:.72rem;opacity:.85;font-weight:400">Kostenlos · keine Anmeldung · 5 min</small>
           </a>
@@ -1031,7 +1055,7 @@
         </div>
         <div class="text-center mt-2 d-none d-lg-block">
           <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
-             class="btn btn-lg px-4" style="background:#10b981;color:#fff;border:none;font-weight:700">
+             class="btn btn-cta btn-lg px-4">
             <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
           </a>
           <div style="font-size:.78rem;color:rgba(255,255,255,.4);margin-top:.5rem">
@@ -1200,31 +1224,36 @@
           <div id="carousel-ma" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
             <div class="carousel-inner">
               <div class="carousel-item active text-center">
-                <img src="img/ma-dashboard.png" alt="Aktions Tracker Dashboard für Außendienst-Mitarbeiter mit Tagesübersicht, offenen Bestellungen und Besuchsplan"
+                <img src="img/ma-dashboard.webp" alt="Aktions Tracker Dashboard für Außendienst-Mitarbeiter mit Tagesübersicht, offenen Bestellungen und Besuchsplan"
+                  width="405" height="850"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Dashboard</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Tagesübersicht mit offenen Bestellungen und Besuchsplan</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-besuchsplan.png" alt="Aktions Tracker Tagesplan für Außendienst-Mitarbeiter mit sortierten, abhakbaren Stationen"
+                <img src="img/ma-besuchsplan.webp" alt="Aktions Tracker Tagesplan für Außendienst-Mitarbeiter mit sortierten, abhakbaren Stationen"
+                  width="405" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Tagesplan</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Geplante Stationen für den Tag — sortiert, klar, abgehakt</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-aktivitaeten.png" alt="Aktions Tracker Aktivitätenliste mit allen Einträgen, Notizen und Aktivitätstyp auf einen Blick"
+                <img src="img/ma-aktivitaeten.webp" alt="Aktions Tracker Aktivitätenliste mit allen Einträgen, Notizen und Aktivitätstyp auf einen Blick"
+                  width="406" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Aktivitäten</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Alle Einträge auf einen Blick — mit Notizen und Typ</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-historie.png" alt="Aktions Tracker Besuchshistorie einer Verkaufsstelle, abrufbar direkt vor dem nächsten Besuch"
+                <img src="img/ma-historie.webp" alt="Aktions Tracker Besuchshistorie einer Verkaufsstelle, abrufbar direkt vor dem nächsten Besuch"
+                  width="404" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Historie</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Verlauf jeder Station abrufbar — direkt vor dem Besuch</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/ma-eintragen.png" alt="Aktions Tracker Eingabemaske für Aufbau, Bestellung oder Besuch – in 60 Sekunden erledigt"
+                <img src="img/ma-eintragen.webp" alt="Aktions Tracker Eingabemaske für Aufbau, Bestellung oder Besuch – in 60 Sekunden erledigt"
+                  width="403" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Aktivität eintragen</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Aufbau, Bestellung oder Besuch — in 60 Sekunden erledigt</div>
@@ -1253,25 +1282,29 @@
           <div id="carousel-vkl" class="carousel slide" data-bs-interval="5000" style="display:none">
             <div class="carousel-inner">
               <div class="carousel-item active text-center">
-                <img src="img/vkl-dashboard.png" alt="Aktions Tracker Team-Dashboard für Verkaufsleiter mit Live-KPIs des gesamten Teams"
+                <img src="img/vkl-dashboard.webp" alt="Aktions Tracker Team-Dashboard für Verkaufsleiter mit Live-KPIs des gesamten Teams"
+                  width="402" height="850"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Team-Dashboard</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">KPIs des gesamten Teams — live und ohne Nachfragen</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-ziele.png" alt="Aktions Tracker Zielerreichung je Mitarbeiter im Vergleich Soll gegen Ist"
+                <img src="img/vkl-ziele.webp" alt="Aktions Tracker Zielerreichung je Mitarbeiter im Vergleich Soll gegen Ist"
+                  width="404" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Zielverfolgung</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Jeder Mitarbeiter auf einen Blick — Soll vs. Ist</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-besuchsplan.png" alt="Aktions Tracker Besuchsplanung für Verkaufsleiter – wer besucht heute welche Station"
+                <img src="img/vkl-besuchsplan.webp" alt="Aktions Tracker Besuchsplanung für Verkaufsleiter – wer besucht heute welche Station"
+                  width="401" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Besuchsplanung</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Wer besucht heute welche Stationen? Übersicht für alle</div>
               </div>
               <div class="carousel-item text-center">
-                <img src="img/vkl-mitarbeiter.png" alt="Aktions Tracker Mitarbeiterverwaltung mit Urlaubsanträgen und Vertretungsregelungen"
+                <img src="img/vkl-mitarbeiter.webp" alt="Aktions Tracker Mitarbeiterverwaltung mit Urlaubsanträgen und Vertretungsregelungen"
+                  width="403" height="850" loading="lazy"
                   style="max-height:400px;width:auto;max-width:100%;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.12)">
                 <div style="margin-top:.85rem;font-size:.95rem;color:var(--blau);font-weight:700">Mitarbeiter &amp; Urlaub</div>
                 <div style="font-size:.82rem;color:#666;margin-top:.2rem">Vertretungsregelungen und Urlaubsanträge zentral verwalten</div>
