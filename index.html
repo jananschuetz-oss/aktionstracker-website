@@ -1739,36 +1739,18 @@ document.addEventListener('keydown', function(e) {
         </div>
       </div>
       <div class="col-lg-7">
-        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:2rem">
-          <form class="contact-form" name="demo-anfrage-early" method="POST" data-netlify="true" onsubmit="handleForm(event)">
-            <input type="hidden" name="form-name" value="demo-anfrage-early">
-            <div class="row g-3">
-              <div class="col-sm-6">
-                <label for="early-name" class="form-label small fw-bold" style="color:rgba(255,255,255,.6)">Ihr Name *</label>
-                <input id="early-name" type="text" name="name" class="form-control" placeholder="Max Mustermann" required>
-              </div>
-              <div class="col-sm-6">
-                <label for="early-email" class="form-label small fw-bold" style="color:rgba(255,255,255,.6)">E-Mail *</label>
-                <input id="early-email" type="email" name="email" class="form-control" placeholder="max@firma.de" required>
-              </div>
-              <div class="col-sm-6">
-                <label for="early-telefon" class="form-label small fw-bold" style="color:rgba(255,255,255,.6)">Telefon</label>
-                <input id="early-telefon" type="tel" name="telefon" class="form-control" placeholder="+49 ...">
-              </div>
-              <div class="col-sm-6">
-                <label for="early-teamgroesse" class="form-label small fw-bold" style="color:rgba(255,255,255,.6)">Teamgröße</label>
-                <input id="early-teamgroesse" type="text" name="teamgroesse" class="form-control" placeholder="z. B. 5–10 Mitarbeiter">
-              </div>
-              <div class="col-12">
-                <button type="submit" class="btn btn-amber w-100 py-2 fw-bold" style="font-size:1rem">
-                  <i class="bi bi-chat-dots me-2"></i>Gespräch anfragen
-                </button>
-                <p class="text-center mt-2 mb-0" style="font-size:.82rem;color:rgba(255,255,255,.55)">
-                  <i class="bi bi-clock me-1"></i>20-Minuten-Gespräch &nbsp;&middot;&nbsp; kein Kaufdruck &nbsp;&middot;&nbsp; kein Spam
-                </p>
-              </div>
-            </div>
-          </form>
+        <div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:2.5rem;text-align:center">
+          <i class="bi bi-chat-dots" style="font-size:2.2rem;color:var(--amber-hell)"></i>
+          <p style="color:#fff;font-weight:700;font-size:1.15rem;margin:1rem 0 .5rem">Klingt nach Ihrem Team?</p>
+          <p style="color:rgba(255,255,255,.65);line-height:1.6;margin-bottom:1.75rem">
+            Ein kurzes Formular weiter unten reicht — ich melde mich innerhalb von 24 Stunden.
+          </p>
+          <a href="#kontakt" class="btn btn-amber w-100 py-2 fw-bold" style="font-size:1rem">
+            <i class="bi bi-arrow-down-circle me-2"></i>Zum Kontaktformular
+          </a>
+          <p class="text-center mt-2 mb-0" style="font-size:.82rem;color:rgba(255,255,255,.55)">
+            <i class="bi bi-clock me-1"></i>20-Minuten-Gespräch &nbsp;&middot;&nbsp; kein Kaufdruck &nbsp;&middot;&nbsp; kein Spam
+          </p>
         </div>
       </div>
     </div>
@@ -2966,9 +2948,13 @@ document.addEventListener('keydown', function(e) {
                 <label for="kontakt-email" class="form-label small fw-bold text-secondary">E-Mail *</label>
                 <input id="kontakt-email" type="email" name="email" class="form-control" placeholder="max@musterfirma.de" required>
               </div>
-              <div class="col-12">
+              <div class="col-sm-6">
                 <label for="kontakt-telefon" class="form-label small fw-bold text-secondary">Telefon</label>
                 <input id="kontakt-telefon" type="tel" name="telefon" class="form-control" placeholder="+49 ...">
+              </div>
+              <div class="col-sm-6">
+                <label for="kontakt-teamgroesse" class="form-label small fw-bold text-secondary">Teamgröße</label>
+                <input id="kontakt-teamgroesse" type="text" name="teamgroesse" class="form-control" placeholder="z. B. 5–10 Mitarbeiter">
               </div>
               <div class="col-12">
                 <label for="kontakt-nachricht" class="form-label small fw-bold text-secondary">Kurze Notiz <span class="fw-normal text-muted">(optional)</span></label>
