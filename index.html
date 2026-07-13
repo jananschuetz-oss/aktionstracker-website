@@ -282,6 +282,74 @@
   ]
 }
   </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Aktions Tracker",
+  "description": "Digitales Aktivitäten-Tracking für Außendienstteams im Getränke- und FMCG-Direktvertrieb bis 20 Mitarbeiter. Besuche, Bestellungen und Sonderaufbauten erfassen, Zielerreichung in Echtzeit im Blick, statt Excel und WhatsApp.",
+  "applicationCategory": "BusinessApplication",
+  "applicationSubCategory": "Field Sales Management Software",
+  "operatingSystem": "Web, iOS, Android (PWA)",
+  "url": "https://aktionstracker.de",
+  "image": "https://aktionstracker.de/img/og-image.jpg",
+  "audience": {
+    "@type": "Audience",
+    "audienceType": "Außendienstteams im Getränke- und FMCG-Direktvertrieb, kleine und mittlere Unternehmen"
+  },
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Starter",
+      "price": "99",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "99",
+        "priceCurrency": "EUR",
+        "unitText": "MONTH"
+      },
+      "description": "Bis 5 Außendienstmitarbeiter, einmalige Einrichtungsgebühr 299 €"
+    },
+    {
+      "@type": "Offer",
+      "name": "Team",
+      "price": "159",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "159",
+        "priceCurrency": "EUR",
+        "unitText": "MONTH"
+      },
+      "description": "Bis 12 Außendienstmitarbeiter, einmalige Einrichtungsgebühr 499 €"
+    },
+    {
+      "@type": "Offer",
+      "name": "Pro",
+      "price": "229",
+      "priceCurrency": "EUR",
+      "priceSpecification": {
+        "@type": "UnitPriceSpecification",
+        "price": "229",
+        "priceCurrency": "EUR",
+        "unitText": "MONTH"
+      },
+      "description": "Bis 20 Außendienstmitarbeiter, einmalige Einrichtungsgebühr 699 €"
+    }
+  ],
+  "provider": {
+    "@type": "Organization",
+    "name": "Aktions Tracker",
+    "url": "https://aktionstracker.de",
+    "email": "info@aktionstracker.de",
+    "founder": {
+      "@type": "Person",
+      "name": "Jan Anschütz"
+    }
+  }
+}
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1139,8 +1207,10 @@
             <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
             <small class="d-block" style="font-size:.72rem;opacity:.85;font-weight:400">Kostenlos · keine Anmeldung · 5 min</small>
           </a>
-          <a href="#kontakt" class="btn btn-ghost-hero btn-lg px-4">
-            <i class="bi bi-chat-dots me-2"></i>Gespräch anfragen
+        </div>
+        <div class="mt-3 d-flex flex-wrap gap-3 align-items-center">
+          <a href="#kontakt" style="font-size:.88rem;color:rgba(255,255,255,.72);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3)">
+            <i class="bi bi-chat-dots me-1"></i>Lieber erst reden? Gespräch anfragen
           </a>
         </div>
         <div class="mt-2">
@@ -3145,6 +3215,23 @@ document.querySelectorAll('a[href*="demo.aktionstracker.de"]').forEach(a => {
     gtag('event', 'demo_click', { event_category: 'engagement', event_label: a.closest('section')?.id || 'unbekannt' });
   });
 });
+
+// Scroll-Tiefe-Tracking: zeigt in GA4, wie weit Besucher tatsächlich kommen
+(function () {
+  var marks = [25, 50, 75, 90];
+  var fired = {};
+  window.addEventListener('scroll', function () {
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    if (docH <= 0) return;
+    var pct = Math.round((window.scrollY / docH) * 100);
+    marks.forEach(function (m) {
+      if (pct >= m && !fired[m]) {
+        fired[m] = true;
+        gtag('event', 'scroll_depth', { event_category: 'engagement', event_label: m + '%', value: m });
+      }
+    });
+  }, { passive: true });
+})();
 
 // Smooth scroll for nav links
 document.querySelectorAll('a[href^="#"]').forEach(a => {

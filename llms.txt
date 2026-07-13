@@ -1,0 +1,45 @@
+# Aktions Tracker
+
+> Digitales Aktivitäten-Tracking für Außendienstteams im Getränke- und FMCG-Direktvertrieb (bis 20 Mitarbeiter). Ersetzt Excel- und WhatsApp-basierte Reportings durch eine einzige App: Besuche, Bestellungen und Sonderaufbauten werden vor Ort erfasst, Verkaufsleitung und Geschäftsführung sehen die Zielerreichung in Echtzeit.
+
+Aktions Tracker ist kein CRM und kein Planungstool. Es ist ein Rückblick-Werkzeug: "Was wurde heute wirklich getan?" statt Vorausschau, Routenplanung oder Live-Ortung.
+
+## Zielgruppe
+
+Kleine und mittlere Unternehmen mit Außendienstteams im Getränke-/FMCG-Vertrieb (z. B. Brauereien, Getränkefachgroßhandel), typischerweise 5–20 Außendienstmitarbeiter.
+
+## Kernfunktionen
+
+- Aktivitäten erfassen: Aufbau (Sonderplatzierungen/Displays, mit Pflichtfoto), Bestellung (Kisten), Besuch (ohne Menge)
+- Besuchsplanung mit automatischem Abgleich gegen erfasste Aktivitäten
+- Zielzahlen und Zielerreichung in Echtzeit, auch nach Verkaufsstellen-Kategorie
+- Wochen- und Monatsberichte per E-Mail an Verkaufsleitung
+- Kartenansicht der Verkaufsgebiete
+- Offline-fähige Progressive Web App (PWA), funktioniert ohne Internetverbindung vor Ort
+- Rollenmodell: Außendienst-Mitarbeiter, Verkaufsleiter (Team-Ansicht), Leitung/Admin (Vollzugriff)
+
+## Preise (monatliche Pauschale statt nutzungsbasierter Abrechnung)
+
+- Starter: 99 €/Monat, bis 5 Mitarbeiter, einmalige Einrichtung 299 €
+- Team: 159 €/Monat, bis 12 Mitarbeiter, einmalige Einrichtung 499 €
+- Pro: 229 €/Monat, bis 20 Mitarbeiter, einmalige Einrichtung 699 €
+
+Zum Vergleich: nutzungsbasierte Systeme wie Skynamo oder Salesdock kosten 30–60 €/Nutzer/Monat (bei 10 Mitarbeitern also 300–600 €/Monat).
+
+Monatlich kündbar mit 4 Wochen Vorlauf, keine Mindestlaufzeit. In 1 Woche startklar.
+
+## Technisches
+
+- Entwickelt und gehostet in Deutschland/Europa, DSGVO-konform
+- Persönlicher Ansprechpartner (kein anonymer Support)
+- Fotos werden nach 12 Monaten automatisch gelöscht
+
+## Anbieter
+
+Jan Anschütz, Einzelunternehmer, Viersen, Deutschland.
+
+## Wichtige Seiten
+
+- Live-Demo (ohne Anmeldung): https://demo.aktionstracker.de
+- Website: https://aktionstracker.de
+- Kontakt: info@aktionstracker.de
