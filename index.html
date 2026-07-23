@@ -635,7 +635,7 @@
       font-weight: 700;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--amber);
+      color: #8a5f07;
       margin-bottom: .5rem;
     }
     .section-title {
@@ -678,7 +678,7 @@
     .stat-num { font-size: 2.8rem; font-weight: 800; line-height: 1; }
     .stat-shock.stat-danger .stat-num { color: #f87171; }
     .stat-shock.stat-warn .stat-num { color: #fbbf24; }
-    .stat-shock.stat-muted .stat-num { color: rgba(255,255,255,.3); }
+    .stat-shock.stat-muted .stat-num { color: rgba(255,255,255,.5); }
     .stat-shock.stat-teal { background: rgba(44,196,176,.1); border: 1px solid rgba(44,196,176,.25); }
     .stat-shock.stat-teal .stat-num { color: #2cc4b0; }
     .stat-shock.stat-amber-fact { background: rgba(245,166,35,.1); border: 1px solid rgba(245,166,35,.25); }
@@ -714,6 +714,22 @@
     .feature-icon.teal   { background: #e0f6f6; color: #0e8080; }
     .feature-icon.red    { background: #fdecea; color: #c0392b; }
     .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--blau); margin-bottom: .5rem; }
+    /* ── Feature-Hero-Karten (großformatig, mit echtem Screenshot) ── */
+    .feature-hero {
+      background: #fff;
+      border-radius: 18px;
+      border: 1px solid #e8eef6;
+      box-shadow: 0 4px 28px rgba(26,58,92,.08);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .feature-hero-text { padding: 1.75rem 1.75rem 0; }
+    .feature-hero-text h4 { font-size: 1.2rem; font-weight: 800; color: var(--blau); margin: 0 0 .5rem; font-family: var(--font-display); }
+    .feature-hero-text p { font-size: .92rem; color: #666; line-height: 1.6; margin: 0; }
+    .feature-hero-shot { margin-top: 1.5rem; background: var(--hell); padding: 1.25rem 1.25rem 0; overflow: hidden; }
+    .feature-hero-shot img { width: 100%; display: block; border-radius: 10px 10px 0 0; box-shadow: 0 -2px 24px rgba(26,58,92,.1); }
     .feature-card p { font-size: .88rem; color: #666; margin: 0; line-height: 1.6; }
 
     /* ── Feature-Kacheln auf Mobile: nur Überschrift, antippen zum Aufklappen ── */
@@ -757,7 +773,7 @@
     .step-col-lbl.you { color: #2cc4b0; }
     .step-col-lbl.us  { color: var(--amber); }
     .step-col h4 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
-    .step-col p  { font-size: .82rem; color: rgba(255,255,255,.55); margin: 0; line-height: 1.5; }
+    .step-col p  { font-size: .82rem; color: rgba(255,255,255,.65); margin: 0; line-height: 1.5; }
     @media (max-width: 575px) {
       .step-row { grid-template-columns: 2.5rem 1fr; }
       .step-num { grid-row: span 2; }
@@ -835,10 +851,10 @@
       border-radius: 6px;
       white-space: nowrap;
     }
-    .price-name { font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #888; }
+    .price-name { font-size: .82rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #5a6472; }
     .price-val { font-size: 2.6rem; font-weight: 900; color: var(--blau); line-height: 1.1; }
     .price-val sub { font-family: var(--font-body); font-size: .85rem; font-weight: 500; color: #888; }
-    .price-note { font-size: .78rem; color: #999; }
+    .price-note { font-size: .78rem; color: #6c7684; }
     .price-feature {
       display: flex;
       align-items: center;
@@ -1659,83 +1675,89 @@ document.addEventListener('keydown', function(e) {
       <h2 class="section-title">Alles, was Ihr Außendienstteam braucht</h2>
       <p class="section-sub mx-auto mt-2">Entwickelt für Außendienstteams im Direktvertrieb – einfach zu bedienen, sofort einsatzbereit.</p>
     </div>
+    <!-- Hero-Reihe: 2 großformatige Karten mit echten Screenshots -->
     <div class="row g-4">
-
-      <!-- Reihe 1: Rep-Alltag -->
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon amber"><i class="bi bi-speedometer2"></i></div>
-          <h4>Echtzeit-Dashboard</h4>
-          <p>KPIs auf einen Blick: Displays, Einheiten, Besuche und aktive Mitarbeiter – kumuliert nach Woche oder Jahr.</p>
+      <div class="col-lg-7">
+        <div class="feature-hero">
+          <div class="feature-hero-text">
+            <div class="feature-icon amber"><i class="bi bi-speedometer2"></i></div>
+            <h4>Echtzeit-Dashboard</h4>
+            <p>KPIs auf einen Blick: Displays, Einheiten, Besuche und aktive Mitarbeiter – kumuliert nach Woche oder Jahr.</p>
+          </div>
+          <div class="feature-hero-shot">
+            <img src="img/ma-dashboard.webp" alt="Aktions Tracker Dashboard für Außendienst-Mitarbeiter mit Tagesübersicht, offenen Bestellungen und Besuchsplan" loading="lazy">
+          </div>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
-          <h4>Aktivitäten &amp; Bestellungen</h4>
-          <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst, direkt vor Ort vom Smartphone. Bestellungen von der Aufnahme bis zur Lieferung verfolgt, offene Posten immer im Blick, kein Zettelchaos.</p>
+      <div class="col-lg-5">
+        <div class="feature-hero">
+          <div class="feature-hero-text">
+            <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
+            <h4>Aktivitäten &amp; Bestellungen</h4>
+            <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst. Bestellungen von der Aufnahme bis zur Lieferung verfolgt, kein Zettelchaos.</p>
+          </div>
+          <div class="feature-hero-shot">
+            <img src="img/ma-aktivitaeten.webp" alt="Aktions Tracker Aktivitätenliste mit allen Einträgen, Notizen und Aktivitätstyp auf einen Blick" loading="lazy">
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6 col-lg-4">
+    <!-- Zweite Reihe: 4 kompakte Karten -->
+    <div class="row g-4 mt-1">
+      <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon blue"><i class="bi bi-camera"></i></div>
           <h4>Foto-Dokumentation</h4>
-          <p>Displays direkt beim Besuch fotografieren und zur Aktivität speichern – bis zu 3 Fotos, Nachweis auf Knopfdruck.</p>
+          <p>Displays direkt beim Besuch fotografieren – bis zu 3 Fotos, Nachweis auf Knopfdruck.</p>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-4">
+      <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon green"><i class="bi bi-bullseye"></i></div>
           <h4>Ziele &amp; Zielerreichung</h4>
-          <p>Jahresziele pro Mitarbeiter hinterlegen. Der saisonale Zielkurs zeigt automatisch, ob jemand auf Kurs oder gefährdet ist.</p>
+          <p>Jahresziele pro Mitarbeiter hinterlegen. Der Zielkurs zeigt automatisch, ob jemand auf Kurs ist.</p>
         </div>
       </div>
-
-      <!-- Reihe 2: Planung & Tools -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-calendar-check"></i></div>
           <h4><span>Besuchsplan <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
-          <p>Stationen für den Tag festlegen, Reihenfolge bestimmen – in 2 Minuten. Aktivität erfasst = Termin automatisch abgehakt. Leitung sieht den Tagesplan aller Mitarbeiter auf einen Blick.</p>
+          <p>Stationen für den Tag festlegen. Aktivität erfasst = Termin automatisch abgehakt.</p>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-4">
+      <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-map"></i></div>
           <h4><span>Karte &amp; Heatmap <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
-          <p>Alle Verkaufsstellen auf einer interaktiven Karte – farbig je Mitarbeiter, Zuordnung per Klick oder Bulk-Zuordnung. Heatmap zeigt, wo die meisten Aktivitäten stattfinden (im Starter-Paket als Add-on buchbar).</p>
+          <p>Alle Verkaufsstellen auf einer interaktiven Karte, farbig je Mitarbeiter.</p>
         </div>
       </div>
+    </div>
 
-      <div class="col-md-6 col-lg-4">
+    <!-- Dritte Reihe: 3 breitere Karten -->
+    <div class="row g-4 mt-1">
+      <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon amber"><i class="bi bi-envelope-at"></i></div>
           <h4>Automatischer Wochen- &amp; Monatsbericht</h4>
-          <p>Jeden Montag landet der Wochenbericht im Postfach – Besuche, Einheiten, Displays und Vorwochenvergleich. Am 1. des Monats folgt der Monatsbericht. Empfänger frei konfigurierbar: GF direkt, VKL, oder beide. Kein VKL nötig – und kein manuelles Reporting.</p>
+          <p>Jeden Montag landet der Wochenbericht im Postfach – Besuche, Einheiten, Displays und Vorwochenvergleich. Am 1. des Monats folgt der Monatsbericht. Kein VKL nötig – und kein manuelles Reporting.</p>
         </div>
       </div>
-
-      <!-- Reihe 3: HR-lite & Routenoptimierung -->
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon purple"><i class="bi bi-stopwatch"></i></div>
           <h4><span>Arbeitszeit &amp; Urlaub <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
-          <p>Arbeitsbeginn/-ende je Mitarbeiter mit automatischen Pflichtpausen, Urlaubskonto mit Anspruch und Übertrag, digitaler Urlaubsantrag als PDF direkt ans Lohnbüro (im Starter-Paket als Bundle buchbar).</p>
+          <p>Arbeitsbeginn/-ende mit automatischen Pflichtpausen, Urlaubskonto, digitaler Urlaubsantrag als PDF direkt ans Lohnbüro.</p>
         </div>
       </div>
-
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon amber"><i class="bi bi-signpost-split"></i></div>
           <h4><span>Routenoptimierung <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB PRO</span></span></h4>
-          <p>Automatischer Tourenvorschlag für den Tagesplan mit echten Straßenrouten statt Luftlinie – jederzeit manuell überschreibbar (im Team-Paket als Add-on buchbar).</p>
+          <p>Automatischer Tourenvorschlag mit echten Straßenrouten statt Luftlinie – jederzeit manuell überschreibbar.</p>
         </div>
       </div>
-
     </div>
 
     <!-- GF-Perspektive Callout -->
