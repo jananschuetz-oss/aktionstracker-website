@@ -21,6 +21,7 @@
       gtag('config', 'G-HY5XC0EHJY', { 'anonymize_ip': true });
     }
   </script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231a3a5c'/%3E%3Cpath fill='%23f5a623' d='M9.669.864 8.51 5.44 8.5 5.5h2.44a.5.5 0 0 1 .384.821l-4 5a.5.5 0 0 1-.877-.435l1.156-4.577.01-.06H5.176a.5.5 0 0 1-.384-.822l4-5a.5.5 0 0 1 .877.437'/%3E%3C/svg%3E">
   <title>Aktions Tracker – Außendienst-Software für den Direktvertrieb</title>
   <meta name="description" content="Digitales Aktivitäten-Tracking für Außendienstteams bis 20 Mitarbeiter. Besuche, Bestellungen und Displays erfassen – Zielerreichung in Echtzeit im Blick.">
   <meta property="og:title" content="Aktions Tracker – Außendienst-Software für den Direktvertrieb">
@@ -178,9 +179,11 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap"></noscript>
+  <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+  <link rel="preload" as="style" href="vendor/css/bootstrap-icons.css" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="vendor/css/bootstrap-icons.css"></noscript>
   <style>
     :root {
       --blau:       #1a3a5c;
@@ -220,18 +223,29 @@
     }
 
     /* ── Navbar ── */
-    .navbar-brand span { color: var(--amber); }
+    .navbar-brand span { color: var(--amber-hell); }
     .navbar { background: var(--blau) !important; }
     .navbar .nav-link { color: rgba(255,255,255,.82) !important; font-size:.92rem; }
     .navbar .nav-link:hover { color: #fff !important; }
     .navbar-toggler { padding: .6rem; min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
     .btn-amber {
-      background: var(--amber);
+      background: #96660a;
       color: #fff;
       border: none;
       font-weight: 600;
     }
-    .btn-amber:hover { background: var(--amber-hell); color: #fff; }
+    .btn-amber:hover { background: var(--amber); color: #fff; }
+    .carousel-indicators-touch { align-items: center; }
+    .carousel-indicators-touch button {
+      width: 24px; height: 24px; padding: 0; margin: 0 2px;
+      background: transparent; border: none; opacity: 1;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carousel-indicators-touch button span {
+      display: block; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--blau); opacity: .35; transition: opacity .2s;
+    }
+    .carousel-indicators-touch button.active span { opacity: 1; }
     .btn-cta {
       background: var(--teal);
       color: #fff;
@@ -676,7 +690,7 @@
     .excel-tbl td { padding: .3rem .5rem; color: #e5e5e5; border-bottom: 1px solid rgba(255,255,255,.05); }
     .excel-tbl td.ok { color: #4ade80; }
     .excel-tbl td.miss { color: #f87171; background: rgba(248,113,113,.1); text-align: center; }
-    .excel-footer { font-size: .7rem; color: rgba(255,255,255,.3); margin-top: .75rem; font-style: italic; }
+    .excel-footer { font-size: .7rem; color: rgba(255,255,255,.55); margin-top: .75rem; font-style: italic; }
     .email-inner { padding: .75rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
     .email-meta { font-size: .72rem; color: rgba(255,255,255,.5); line-height: 1.8; }
     .email-text { font-size: .82rem; color: #e5e5e5; line-height: 1.6; padding: .55rem .75rem; background: rgba(245,158,11,.08); border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; }
@@ -723,7 +737,7 @@
     .feature-icon.purple { background: #f3ebfc; color: #7d3c98; }
     .feature-icon.teal   { background: #e0f6f6; color: #0e8080; }
     .feature-icon.red    { background: #fdecea; color: #c0392b; }
-    .feature-card h4 { font-size: 1rem; font-weight: 700; color: var(--blau); margin-bottom: .5rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--blau); margin-bottom: .5rem; }
     /* ── Feature-Hero-Karten (großformatig, mit echtem Screenshot) ── */
     .feature-hero {
       background: #fff;
@@ -736,7 +750,7 @@
       overflow: hidden;
     }
     .feature-hero-text { padding: 1.75rem 1.75rem 0; }
-    .feature-hero-text h4 { font-size: 1.2rem; font-weight: 800; color: var(--blau); margin: 0 0 .5rem; font-family: var(--font-display); }
+    .feature-hero-text h3 { font-size: 1.2rem; font-weight: 800; color: var(--blau); margin: 0 0 .5rem; font-family: var(--font-display); }
     .feature-hero-text p { font-size: .92rem; color: #666; line-height: 1.6; margin: 0; }
     .feature-hero-shot { margin-top: 1.5rem; background: var(--hell); padding: 1.25rem 1.25rem 0; overflow: hidden; }
     .feature-hero-shot img { width: 100%; display: block; border-radius: 10px 10px 0 0; box-shadow: 0 -2px 24px rgba(26,58,92,.1); }
@@ -750,15 +764,15 @@
         transition: max-height .3s ease, opacity .2s ease, margin-top .3s ease;
       }
       .feature-card.open p { max-height: 280px; opacity: 1; margin-top: .5rem; }
-      .feature-card h4 { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 0; }
-      .feature-card h4::after {
+      .feature-card h3 { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-bottom: 0; }
+      .feature-card h3::after {
         content: "▾";
         color: #aaa;
         font-size: 1rem;
         flex-shrink: 0;
         transition: transform .25s ease;
       }
-      .feature-card.open h4::after { transform: rotate(180deg); }
+      .feature-card.open h3::after { transform: rotate(180deg); }
     }
 
     /* ── Wie es funktioniert ── */
@@ -782,7 +796,7 @@
     .step-col-lbl { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: .35rem; }
     .step-col-lbl.you { color: #2cc4b0; }
     .step-col-lbl.us  { color: var(--amber); }
-    .step-col h4 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+    .step-col h3 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
     .step-col p  { font-size: .82rem; color: rgba(255,255,255,.65); margin: 0; line-height: 1.5; }
     @media (max-width: 575px) {
       .step-row { grid-template-columns: 2.5rem 1fr; }
@@ -819,7 +833,7 @@
       flex-shrink: 0;
       margin-top: .1rem;
     }
-    .audience-item h5 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .2rem; }
+    .audience-item h3 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .2rem; }
     .audience-item p  { font-size: .85rem; color: #666; margin: 0; }
 
     /* ── Stats ── */
@@ -832,7 +846,7 @@
       line-height: 1;
     }
     .stat-val span { color: var(--amber); }
-    .stat-lbl { font-size: .9rem; color: #777; margin-top: .4rem; }
+    .stat-lbl { font-size: .9rem; color: #666; margin-top: .4rem; }
 
     /* ── Preise ── */
     .pricing-section { background: var(--hell); }
@@ -1026,8 +1040,8 @@
       cursor: pointer;
       border: 1.5px solid rgba(255,255,255,.3);
     }
-    #consent-accept { background: var(--amber); color: #fff; border-color: var(--amber); }
-    #consent-accept:hover { background: var(--amber-hell); border-color: var(--amber-hell); }
+    #consent-accept { background: #96660a; color: #fff; border-color: #96660a; }
+    #consent-accept:hover { background: var(--amber); border-color: var(--amber); }
     #consent-decline { background: transparent; color: #fff; }
     #consent-decline:hover { background: rgba(255,255,255,.1); }
     @media (max-width: 575.98px) {
@@ -1045,7 +1059,7 @@
       <i class="bi bi-lightning-charge-fill me-1" style="color:var(--amber)"></i>
       Aktions<span>Tracker</span>
     </a>
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Menü öffnen">
       <i class="bi bi-list text-white fs-4"></i>
     </button>
     <div class="collapse navbar-collapse" id="nav">
@@ -1143,7 +1157,7 @@
                         <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
                         <span class="ph-type-badge aufbau">Aufbau</span>
                       </div>
-                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>gerade eben · Dortmund</div>
+                      <div style="font-size:.63rem;color:#767f8c;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>gerade eben · Dortmund</div>
                       <div style="display:flex;gap:.6rem">
                         <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
                         <span style="font-size:.68rem"><strong style="color:#c8860a">18</strong> <span style="color:#bbb">Kisten</span></span>
@@ -1154,7 +1168,7 @@
                         <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
                         <span class="ph-type-badge bestell">Bestellung</span>
                       </div>
-                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · Mannheim</div>
+                      <div style="font-size:.63rem;color:#767f8c;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>09.06.26 · Mannheim</div>
                       <div style="display:flex;gap:.6rem">
                         <span style="font-size:.68rem"><strong style="color:#1a3a5c">1</strong> <span style="color:#bbb">Display</span></span>
                         <span style="font-size:.68rem"><strong style="color:#c8860a">60</strong> <span style="color:#bbb">Kisten</span></span>
@@ -1165,7 +1179,7 @@
                         <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
                         <span class="ph-type-badge aufbau">Aufbau</span>
                       </div>
-                      <div style="font-size:.63rem;color:#aaa;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · Nürnberg</div>
+                      <div style="font-size:.63rem;color:#767f8c;margin-bottom:.32rem"><i class="bi bi-calendar3 me-1"></i>06.06.26 · Nürnberg</div>
                       <div style="display:flex;gap:.6rem">
                         <span style="font-size:.68rem"><strong style="color:#1a3a5c">0</strong> <span style="color:#bbb">Displays</span></span>
                         <span style="font-size:.68rem"><strong style="color:#c8860a">9</strong> <span style="color:#bbb">Kisten</span></span>
@@ -1250,21 +1264,21 @@
                     <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Getränke Nord</div>
                     <span class="ph-type-badge aufbau">Aufbau</span>
                   </div>
-                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Max Müller · gerade eben</div>
+                  <div style="font-size:.63rem;color:#767f8c"><i class="bi bi-person me-1"></i>Max Müller · gerade eben</div>
                 </div>
                 <div class="ph-card">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
                     <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Discountmarkt Westend</div>
                     <span class="ph-type-badge bestell">Bestellung</span>
                   </div>
-                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Max Müller · 09:12</div>
+                  <div style="font-size:.63rem;color:#767f8c"><i class="bi bi-person me-1"></i>Max Müller · 09:12</div>
                 </div>
                 <div class="ph-card">
                   <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.28rem">
                     <div style="font-weight:700;font-size:.76rem;color:#1a3a5c;line-height:1.2">Supermarkt Stadtmitte</div>
                     <span class="ph-type-badge aufbau">Aufbau</span>
                   </div>
-                  <div style="font-size:.63rem;color:#aaa"><i class="bi bi-person me-1"></i>Anna Schmidt · 08:47</div>
+                  <div style="font-size:.63rem;color:#767f8c"><i class="bi bi-person me-1"></i>Anna Schmidt · 08:47</div>
                 </div>
               </div>
               <div class="phone-nav">
@@ -1314,14 +1328,14 @@
     <div class="row align-items-center g-5">
 
       <div class="col-lg-5">
-        <div style="font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);margin-bottom:.85rem">Live-Demo</div>
+        <div style="font-size:.88rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#8a5f07;margin-bottom:.85rem">Live-Demo</div>
         <h2 style="font-size:clamp(2.2rem,4vw,3rem);font-weight:800;color:var(--blau);line-height:1.15;margin-bottom:1.25rem">
           Einfach mal<br>reinschauen.
         </h2>
         <p style="font-size:1.2rem;color:#444;line-height:1.8;margin-bottom:.85rem">
           Wie gut kann Außendienst wirklich funktionieren? Sehen Sie selbst — mit echten Beispieldaten, aus zwei verschiedenen Perspektiven.
         </p>
-        <p style="font-size:1.1rem;color:#777;line-height:1.7;margin-bottom:2rem">
+        <p style="font-size:1.1rem;color:#666;line-height:1.7;margin-bottom:2rem">
           Kein Account. Kein Formular. Einfach draufklicken.
         </p>
         <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
@@ -1356,7 +1370,7 @@
           </div>
           <div class="col-12">
             <div style="background:#f4f7fb;border:1px solid #dde6f3;border-radius:12px;padding:1.25rem 1.5rem;">
-              <div style="font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#999;margin-bottom:.75rem">Was ist drin</div>
+              <div style="font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#666;margin-bottom:.75rem">Was ist drin</div>
               <div class="row g-2" style="font-size:1rem;color:#444;">
                 <div class="col-6"><i class="bi bi-check2 me-1" style="color:#27ae60"></i>Echtzeit-Dashboard</div>
                 <div class="col-6"><i class="bi bi-check2 me-1" style="color:#27ae60"></i>Aktivitäten erfassen</div>
@@ -1378,7 +1392,7 @@
 <section class="problem-section" style="padding:5rem 0">
   <div class="container">
     <div class="text-center mb-5">
-      <div class="section-label">Kennen Sie das?</div>
+      <div class="section-label" style="color:var(--amber-hell)">Kennen Sie das?</div>
       <h2 style="color:#fff;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2">Vom Chaos zur Klarheit</h2>
       <p style="color:rgba(255,255,255,.55);margin-top:.75rem;font-size:1rem">Zwei Perspektiven — für jeden die passende Ansicht.</p>
     </div>
@@ -1439,7 +1453,7 @@
               <i class="bi bi-person-fill me-1"></i>Außendienst
             </button>
             <button onclick="switchCarouselTab('vkl')" id="tab-btn-vkl"
-              style="flex:1;padding:.65rem;border:none;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;background:transparent;color:#999;transition:all .2s">
+              style="flex:1;padding:.65rem;border:none;border-radius:8px;font-weight:700;font-size:.9rem;cursor:pointer;background:transparent;color:#666;transition:all .2s">
               <i class="bi bi-briefcase-fill me-1"></i>Verkaufsleiter
             </button>
           </div>
@@ -1487,18 +1501,20 @@
               <span style="background:var(--blau);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
                 <span class="carousel-control-prev-icon" style="width:16px;height:16px"></span>
               </span>
+              <span class="visually-hidden">Vorheriges Bild</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carousel-ma" data-bs-slide="next" style="width:44px;right:-22px">
               <span style="background:var(--blau);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
                 <span class="carousel-control-next-icon" style="width:16px;height:16px"></span>
               </span>
+              <span class="visually-hidden">Nächstes Bild</span>
             </button>
-            <div class="carousel-indicators" style="position:static;margin-top:1rem">
-              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="0" class="active" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="1" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="2" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="3" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="4" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
+            <div class="carousel-indicators carousel-indicators-touch" style="position:static;margin-top:1rem">
+              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Bild 1 von 5"><span></span></button>
+              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="1" aria-label="Bild 2 von 5"><span></span></button>
+              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="2" aria-label="Bild 3 von 5"><span></span></button>
+              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="3" aria-label="Bild 4 von 5"><span></span></button>
+              <button type="button" data-bs-target="#carousel-ma" data-bs-slide-to="4" aria-label="Bild 5 von 5"><span></span></button>
             </div>
           </div>
 
@@ -1538,17 +1554,19 @@
               <span style="background:var(--blau);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
                 <span class="carousel-control-prev-icon" style="width:16px;height:16px"></span>
               </span>
+              <span class="visually-hidden">Vorheriges Bild</span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#carousel-vkl" data-bs-slide="next" style="width:44px;right:-22px">
               <span style="background:var(--blau);border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center">
                 <span class="carousel-control-next-icon" style="width:16px;height:16px"></span>
               </span>
+              <span class="visually-hidden">Nächstes Bild</span>
             </button>
-            <div class="carousel-indicators" style="position:static;margin-top:1rem">
-              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="0" class="active" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="1" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="2" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
-              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="3" style="background:var(--blau);width:8px;height:8px;border-radius:50%"></button>
+            <div class="carousel-indicators carousel-indicators-touch" style="position:static;margin-top:1rem">
+              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Bild 1 von 4"><span></span></button>
+              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="1" aria-label="Bild 2 von 4"><span></span></button>
+              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="2" aria-label="Bild 3 von 4"><span></span></button>
+              <button type="button" data-bs-target="#carousel-vkl" data-bs-slide-to="3" aria-label="Bild 4 von 4"><span></span></button>
             </div>
           </div>
 
@@ -1568,13 +1586,13 @@ function switchCarouselTab(tab) {
     cma.style.display  = '';
     cvkl.style.display = 'none';
     tma.style.background  = 'var(--blau)'; tma.style.color  = '#fff';
-    tvkl.style.background = 'transparent'; tvkl.style.color = '#999';
+    tvkl.style.background = 'transparent'; tvkl.style.color = '#666';
     bootstrap.Carousel.getOrCreateInstance(cma).cycle();
   } else {
     cvkl.style.display = '';
     cma.style.display  = 'none';
     tvkl.style.background = 'var(--blau)'; tvkl.style.color = '#fff';
-    tma.style.background  = 'transparent'; tma.style.color  = '#999';
+    tma.style.background  = 'transparent'; tma.style.color  = '#666';
     bootstrap.Carousel.getOrCreateInstance(cvkl).cycle();
   }
 }
@@ -1732,7 +1750,7 @@ document.addEventListener('keydown', function(e) {
         <div class="feature-hero">
           <div class="feature-hero-text">
             <div class="feature-icon amber"><i class="bi bi-speedometer2"></i></div>
-            <h4>Echtzeit-Dashboard</h4>
+            <h3>Echtzeit-Dashboard</h3>
             <p>KPIs auf einen Blick: Displays, Einheiten, Besuche und aktive Mitarbeiter – kumuliert nach Woche oder Jahr.</p>
           </div>
           <div class="feature-hero-shot">
@@ -1744,7 +1762,7 @@ document.addEventListener('keydown', function(e) {
         <div class="feature-hero">
           <div class="feature-hero-text">
             <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
-            <h4>Aktivitäten &amp; Bestellungen</h4>
+            <h3>Aktivitäten &amp; Bestellungen</h3>
             <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst. Bestellungen von der Aufnahme bis zur Lieferung verfolgt, kein Zettelchaos.</p>
           </div>
           <div class="feature-hero-shot">
@@ -1759,28 +1777,28 @@ document.addEventListener('keydown', function(e) {
       <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon blue"><i class="bi bi-camera"></i></div>
-          <h4>Foto-Dokumentation</h4>
+          <h3>Foto-Dokumentation</h3>
           <p>Displays direkt beim Besuch fotografieren – bis zu 3 Fotos, Nachweis auf Knopfdruck.</p>
         </div>
       </div>
       <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon green"><i class="bi bi-bullseye"></i></div>
-          <h4>Ziele &amp; Zielerreichung</h4>
+          <h3>Ziele &amp; Zielerreichung</h3>
           <p>Jahresziele pro Mitarbeiter hinterlegen. Der Zielkurs zeigt automatisch, ob jemand auf Kurs ist.</p>
         </div>
       </div>
       <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-calendar-check"></i></div>
-          <h4><span>Besuchsplan <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
+          <h3><span>Besuchsplan <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h3>
           <p>Stationen für den Tag festlegen. Aktivität erfasst = Termin automatisch abgehakt.</p>
         </div>
       </div>
       <div class="col-6 col-lg-3">
         <div class="feature-card">
           <div class="feature-icon teal"><i class="bi bi-map"></i></div>
-          <h4><span>Karte &amp; Heatmap <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
+          <h3><span>Karte &amp; Heatmap <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h3>
           <p>Alle Verkaufsstellen auf einer interaktiven Karte, farbig je Mitarbeiter.</p>
         </div>
       </div>
@@ -1791,21 +1809,21 @@ document.addEventListener('keydown', function(e) {
       <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon amber"><i class="bi bi-envelope-at"></i></div>
-          <h4>Automatischer Wochen- &amp; Monatsbericht</h4>
+          <h3>Automatischer Wochen- &amp; Monatsbericht</h3>
           <p>Jeden Montag landet der Wochenbericht im Postfach – Besuche, Einheiten, Displays und Vorwochenvergleich. Am 1. des Monats folgt der Monatsbericht. Kein VKL nötig – und kein manuelles Reporting.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon purple"><i class="bi bi-stopwatch"></i></div>
-          <h4><span>Arbeitszeit &amp; Urlaub <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h4>
+          <h3><span>Arbeitszeit &amp; Urlaub <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB TEAM</span></span></h3>
           <p>Arbeitsbeginn/-ende mit automatischen Pflichtpausen, Urlaubskonto, digitaler Urlaubsantrag als PDF direkt ans Lohnbüro.</p>
         </div>
       </div>
       <div class="col-md-4">
         <div class="feature-card">
           <div class="feature-icon amber"><i class="bi bi-signpost-split"></i></div>
-          <h4><span>Routenoptimierung <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB PRO</span></span></h4>
+          <h3><span>Routenoptimierung <span class="badge rounded-pill ms-1" style="background:var(--amber);font-size:.6rem;vertical-align:middle;font-weight:600">AB PRO</span></span></h3>
           <p>Automatischer Tourenvorschlag mit echten Straßenrouten statt Luftlinie – jederzeit manuell überschreibbar.</p>
         </div>
       </div>
@@ -1871,28 +1889,28 @@ document.addEventListener('keydown', function(e) {
         <div class="audience-item">
           <i class="bi bi-truck audience-icon"></i>
           <div>
-            <h5>Getränke- & Lebensmittelvertrieb</h5>
+            <h3>Getränke- & Lebensmittelvertrieb</h3>
             <p>Brauereien, Getränkegroßhändler und Hersteller mit Außendienst in Gastronomie und Einzelhandel.</p>
           </div>
         </div>
         <div class="audience-item">
           <i class="bi bi-shop audience-icon"></i>
           <div>
-            <h5>Konsumgüter & FMCG</h5>
+            <h3>Konsumgüter & FMCG</h3>
             <p>Unternehmen, die Produkte aktiv in Supermärkte, Kioske und Fachgeschäfte verkaufen und platzieren.</p>
           </div>
         </div>
         <div class="audience-item">
           <i class="bi bi-people audience-icon"></i>
           <div>
-            <h5>Teams ab 1 Außendienst-Mitarbeiter</h5>
+            <h3>Teams ab 1 Außendienst-Mitarbeiter</h3>
             <p>Auch im Zweier-Team lohnt sich saubere Dokumentation von Anfang an – vom kleinen Familienunternehmen bis zur wachsenden Vertriebsorganisation.</p>
           </div>
         </div>
         <div class="audience-item">
           <i class="bi bi-graph-up audience-icon"></i>
           <div>
-            <h5>Wachsende Vertriebsorganisationen</h5>
+            <h3>Wachsende Vertriebsorganisationen</h3>
             <p>Unternehmen, die Professionalität aufbauen wollen: klare Ziele, transparente Ergebnisse, gerechte Steuerung.</p>
           </div>
         </div>
@@ -1915,12 +1933,12 @@ document.addEventListener('keydown', function(e) {
         <div class="step-num">1</div>
         <div class="step-col you-col">
           <div class="step-col-lbl you">Was Sie tun</div>
-          <h4>Mitarbeiterliste + Kundenadressen schicken</h4>
+          <h3>Mitarbeiterliste + Kundenadressen schicken</h3>
           <p>Einmal als Excel – dauert 30 Minuten auf Ihrer Seite.</p>
         </div>
         <div class="step-col">
           <div class="step-col-lbl us">Was ich tue</div>
-          <h4>Alles einrichten – Sie schauen zu</h4>
+          <h3>Alles einrichten – Sie schauen zu</h3>
           <p>System, Zugänge, Zuordnungen, Stammdaten-Import. Fertig.</p>
         </div>
       </div>
@@ -1929,12 +1947,12 @@ document.addEventListener('keydown', function(e) {
         <div class="step-num">2</div>
         <div class="step-col you-col">
           <div class="step-col-lbl you">Was Ihr Team tut</div>
-          <h4>Besuche, Displays, Bestellungen erfassen</h4>
+          <h3>Besuche, Displays, Bestellungen erfassen</h3>
           <p>60 Sekunden vom Smartphone – vor Ort oder am Abend danach.</p>
         </div>
         <div class="step-col">
           <div class="step-col-lbl us">Was passiert</div>
-          <h4>Sofort im Dashboard sichtbar</h4>
+          <h3>Sofort im Dashboard sichtbar</h3>
           <p>Wochenbericht läuft automatisch – kein Nachfragen mehr.</p>
         </div>
       </div>
@@ -1943,12 +1961,12 @@ document.addEventListener('keydown', function(e) {
         <div class="step-num">3</div>
         <div class="step-col you-col">
           <div class="step-col-lbl you">Was Sie sehen</div>
-          <h4>KPIs nach Mitarbeiter, Woche &amp; Monat</h4>
+          <h3>KPIs nach Mitarbeiter, Woche &amp; Monat</h3>
           <p>Immer aktuell – auch unterwegs per Smartphone.</p>
         </div>
         <div class="step-col">
           <div class="step-col-lbl us">Was Sie nicht mehr tun</div>
-          <h4>Nachfragen, Excel zusammenstellen, warten</h4>
+          <h3>Nachfragen, Excel zusammenstellen, warten</h3>
           <p>Die Zahlen kommen zu Ihnen – jeden Montag automatisch.</p>
         </div>
       </div>
@@ -1965,7 +1983,7 @@ document.addEventListener('keydown', function(e) {
         <div class="stat-item">
           <div class="stat-val"><span>1 – 20</span>+</div>
           <div class="stat-lbl">Außendienst-Mitarbeiter</div>
-          <div style="font-size:.75rem;color:#aaa;margin-top:.2rem">ab 21: Individuell-Paket</div>
+          <div style="font-size:.75rem;color:#666;margin-top:.2rem">ab 21: Individuell-Paket</div>
         </div>
       </div>
       <div class="col-6 col-lg-3">
@@ -1978,7 +1996,7 @@ document.addEventListener('keydown', function(e) {
         <div class="stat-item">
           <div class="stat-val">< <span>1</span> Tag</div>
           <div class="stat-lbl">bis zur Produktivität</div>
-          <div style="font-size:.75rem;color:#aaa;margin-top:.2rem">nach 5–7 Tage Setup</div>
+          <div style="font-size:.75rem;color:#666;margin-top:.2rem">nach 5–7 Tage Setup</div>
         </div>
       </div>
       <div class="col-6 col-lg-3">
@@ -2031,17 +2049,17 @@ document.addEventListener('keydown', function(e) {
           </button>
           <button id="btnAnnual" onclick="setBilling('annual')"
                   style="border:none;border-radius:1.5rem;padding:.45rem 1.4rem;font-weight:600;font-size:.9rem;cursor:pointer;transition:all .2s;background:transparent;color:#555">
-            Jährlich &nbsp;<span style="background:#27ae60;color:#fff;border-radius:1rem;padding:.1rem .55rem;font-size:.75rem">2 Monate gratis</span>
+            Jährlich &nbsp;<span style="background:#1c7a41;color:#fff;border-radius:1rem;padding:.1rem .55rem;font-size:.75rem">2 Monate gratis</span>
           </button>
         </div>
       </div>
 
       <!-- Kündigungshinweis-Badges -->
       <div class="d-flex justify-content-center gap-3 flex-wrap mt-3">
-        <span class="billing-monthly" style="background:rgba(200,134,10,.12);color:#a06a08;border:1px solid rgba(200,134,10,.3);border-radius:2rem;padding:.3rem 1rem;font-size:.85rem;font-weight:600">
+        <span class="billing-monthly" style="background:rgba(200,134,10,.12);color:#8a5f07;border:1px solid rgba(200,134,10,.3);border-radius:2rem;padding:.3rem 1rem;font-size:.85rem;font-weight:600">
           <i class="bi bi-calendar-check me-1"></i>Keine Mindestlaufzeit · mtl. kündbar · 4 Wo. Vorlauf
         </span>
-        <span class="billing-annual" style="display:none;background:rgba(200,134,10,.12);color:#a06a08;border:1px solid rgba(200,134,10,.3);border-radius:2rem;padding:.3rem 1rem;font-size:.85rem;font-weight:600">
+        <span class="billing-annual" style="display:none;background:rgba(200,134,10,.12);color:#8a5f07;border:1px solid rgba(200,134,10,.3);border-radius:2rem;padding:.3rem 1rem;font-size:.85rem;font-weight:600">
           <i class="bi bi-calendar-check me-1"></i>12 Monate Mindestlaufzeit
         </span>
         <span style="background:rgba(26,58,92,.08);color:#1a3a5c;border:1px solid rgba(26,58,92,.2);border-radius:2rem;padding:.3rem 1rem;font-size:.85rem;font-weight:600">
@@ -2196,12 +2214,12 @@ document.addEventListener('keydown', function(e) {
 
     <!-- ── Demo-Hinweis unter Paketen ── -->
     <div class="text-center mt-4 mb-2">
-      <span style="font-size:.9rem;color:#6c757d">Erst ausprobieren?</span>
+      <span style="font-size:.9rem;color:#666">Erst ausprobieren?</span>
       <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener"
          style="font-size:.9rem;color:#2c7a7b;font-weight:600;text-decoration:none;margin-left:.4rem">
         <i class="bi bi-play-circle me-1"></i>Live-Demo testen →
       </a>
-      <span style="font-size:.82rem;color:#adb5bd;margin-left:.5rem">Kein Account nötig · Beispieldaten inklusive</span>
+      <span style="font-size:.82rem;color:#666;margin-left:.5rem">Kein Account nötig · Beispieldaten inklusive</span>
     </div>
 
     <!-- ── Add-ons ── -->
@@ -2212,7 +2230,7 @@ document.addEventListener('keydown', function(e) {
         <p class="section-sub mx-auto mt-1" style="font-size:.95rem">Erweitern Sie Ihren Aktions Tracker jederzeit. Add-ons können beim Einrichten oder nachträglich hinzugefügt werden.</p>
         <button class="btn btn-outline-secondary btn-sm rounded-pill mt-2" type="button"
                 data-bs-toggle="collapse" data-bs-target="#addonsCollapse"
-                aria-expanded="false" aria-controls="addonsCollapse">
+                aria-expanded="false" aria-controls="addonsCollapse" style="color:#666;border-color:#666">
           <i class="bi bi-plus-circle me-1"></i><span class="addon-toggle-text">Zusatzfunktionen anzeigen</span>
         </button>
       </div>
@@ -2381,7 +2399,7 @@ document.addEventListener('keydown', function(e) {
   <div class="container">
     <div class="text-center mb-5">
       <h2 class="section-title">Häufige Fragen</h2>
-      <p class="section-sub mx-auto">Die wichtigsten Fragen vor dem Kauf. Bedienungsfragen beantwortet die <a href="hilfe.html">Hilfe-Seite</a>.</p>
+      <p class="section-sub mx-auto">Die wichtigsten Fragen vor dem Kauf. Bedienungsfragen beantwortet die <a href="hilfe.html" style="color:var(--blau-mid)">Hilfe-Seite</a>.</p>
     </div>
 
     <div class="row justify-content-center">
@@ -2542,7 +2560,7 @@ document.addEventListener('keydown', function(e) {
       </div>
       <div class="col-lg-7">
         <div class="bg-white rounded-xl p-4 p-lg-5">
-          <h4 class="mb-4" style="color:var(--blau);font-weight:700">Kontakt aufnehmen</h4>
+          <h3 class="mb-4" style="color:var(--blau);font-weight:700">Kontakt aufnehmen</h3>
           <form class="contact-form" name="demo-anfrage" method="POST" data-netlify="true" onsubmit="handleForm(event)">
             <input type="hidden" name="form-name" value="demo-anfrage">
             <div class="row g-3">
@@ -2578,7 +2596,7 @@ document.addEventListener('keydown', function(e) {
           </form>
           <div id="formSuccess" style="display:none" class="text-center py-4">
             <i class="bi bi-check-circle-fill text-success fs-1"></i>
-            <h5 class="mt-3" style="color:var(--blau)">Vielen Dank!</h5>
+            <h4 class="mt-3" style="color:var(--blau)">Vielen Dank!</h4>
             <p class="text-muted">Ich melde mich innerhalb von 24 Stunden bei Ihnen.</p>
           </div>
         </div>
@@ -2653,7 +2671,7 @@ document.addEventListener('keydown', function(e) {
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/js/bootstrap.bundle.min.js"></script>
 <script>
 function setBilling(mode) {
   const isAnnual = mode === 'annual';
