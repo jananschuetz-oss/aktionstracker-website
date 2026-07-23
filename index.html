@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-HY5XC0EHJY"></script>
+  <!-- Google tag (gtag.js) – lädt NICHT automatisch. window.dataLayer/gtag() existieren immer
+       (Aufrufe im restlichen Code bleiben harmlose No-ops), aber das eigentliche GA-Skript
+       wird erst per consentLoadAnalytics() nachgeladen – nach aktiver Einwilligung im
+       Cookie-Banner (siehe #consent-banner am Ende von <body>). -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-HY5XC0EHJY', { 'anonymize_ip': true });
+    function consentLoadAnalytics(){
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HY5XC0EHJY';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-HY5XC0EHJY', { 'anonymize_ip': true });
+    }
   </script>
   <title>Aktions Tracker – Außendienst-Software für den Direktvertrieb</title>
   <meta name="description" content="Digitales Aktivitäten-Tracking für Außendienstteams bis 20 Mitarbeiter. Besuche, Bestellungen und Displays erfassen – Zielerreichung in Echtzeit im Blick.">
@@ -983,6 +993,47 @@
     }
     .lb-close:hover { background: rgba(255,255,255,.25); }
     .carousel-item img { cursor: zoom-in; }
+
+    /* ── Cookie-Consent-Banner ── */
+    #consent-banner {
+      display: none;
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      z-index: 9998;
+      background: #0d1f33;
+      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 1rem 1.25rem;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.25);
+    }
+    #consent-banner p {
+      margin: 0;
+      color: rgba(255,255,255,.85);
+      font-size: .88rem;
+      max-width: 640px;
+      line-height: 1.6;
+    }
+    #consent-banner a { color: #7de8e8; text-decoration: underline; }
+    #consent-banner .consent-actions { display: flex; gap: .75rem; flex-shrink: 0; }
+    #consent-banner button {
+      border-radius: 8px;
+      padding: .6rem 1.3rem;
+      font-size: .88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: 1.5px solid rgba(255,255,255,.3);
+    }
+    #consent-accept { background: var(--amber); color: #fff; border-color: var(--amber); }
+    #consent-accept:hover { background: var(--amber-hell); border-color: var(--amber-hell); }
+    #consent-decline { background: transparent; color: #fff; }
+    #consent-decline:hover { background: rgba(255,255,255,.1); }
+    @media (max-width: 575.98px) {
+      #consent-banner { flex-direction: column; align-items: stretch; text-align: center; }
+      #consent-banner .consent-actions { justify-content: center; }
+    }
   </style>
 </head>
 <body>
@@ -2581,8 +2632,8 @@ document.addEventListener('keydown', function(e) {
         <a href="#kontakt" class="me-3">
           <i class="bi bi-envelope me-1"></i>Kontakt
         </a>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#datenschutzModal" class="me-3">Datenschutz</a>
-        <a href="#" data-bs-toggle="modal" data-bs-target="#impressumModal">Impressum</a>
+        <a href="datenschutz.html" class="me-3">Datenschutz</a>
+        <a href="impressum.html">Impressum</a>
       </div>
       <div class="col-md-4 text-md-end">
         <small>© 2026 AktionsTracker · Alle Rechte vorbehalten</small>
@@ -2591,61 +2642,14 @@ document.addEventListener('keydown', function(e) {
   </div>
 </footer>
 
-<!-- ══════════════════════════ MODAL: IMPRESSUM ═══════════════════════════ -->
-<div class="modal fade" id="impressumModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" style="background:var(--blau);color:#fff">
-        <h5 class="modal-title fw-bold"><i class="bi bi-building me-2"></i>Impressum</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body px-4 py-3" style="font-size:.92rem;color:#333;line-height:1.7">
-        <p class="text-muted small mb-3">Angaben gemäß § 5 TMG</p>
-        <h6 class="fw-bold" style="color:var(--blau)">Anbieter</h6>
-        <p>Jan Anschütz<br>Einzelunternehmer<br>Fasanenstr. 21<br>41751 Viersen</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Kontakt</h6>
-        <p>Telefon: +49 151 54607420<br>E-Mail: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a><br>Website: <a href="https://aktionstracker.de" target="_blank" rel="noopener">aktionstracker.de</a></p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Verantwortlich für den Inhalt (§ 18 Abs. 2 MStV)</h6>
-        <p>Jan Anschütz, Fasanenstr. 21, 41751 Viersen</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Steuerlicher Hinweis</h6>
-        <p class="text-muted small">Aktions Tracker ist ein gewerbliches Softwareangebot. Die Abrechnung erfolgt gemäß § 19 UStG ohne Umsatzsteuer (Kleinunternehmerregelung).</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">Online-Streitbeilegung</h6>
-        <p class="text-muted small">Die Europäische Kommission stellt unter <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr/</a> eine Plattform zur Online-Streitbeilegung bereit. Wir sind nicht bereit und nicht verpflichtet, an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen (§ 36 VSBG).</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Schließen</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════════════════ MODAL: DATENSCHUTZ ════════════════════════════ -->
-<div class="modal fade" id="datenschutzModal" tabindex="-1">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header" style="background:var(--blau);color:#fff">
-        <h5 class="modal-title fw-bold"><i class="bi bi-shield-lock me-2"></i>Datenschutzerklärung</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body px-4 py-3" style="font-size:.9rem;color:#333;line-height:1.7">
-        <p class="text-muted small">gemäß Art. 13 DSGVO (EU) 2016/679</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 1 Verantwortlicher</h6>
-        <p>Jan Anschütz · Fasanenstr. 21 · 41751 Viersen<br>
-        E-Mail: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a> · Tel: +49 151 54607420</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 2 Verarbeitete Daten</h6>
-        <p><strong>Kontaktformular:</strong> Wenn Sie das Formular absenden, werden die eingegebenen Daten (Name, Firma, E-Mail, Telefon, Teamgröße, Nachricht) über den Dienst Netlify Forms (Netlify, Inc., 512 2nd Street, San Francisco, CA 94107, USA) an uns übermittelt und dort temporär gespeichert. Netlify verarbeitet die Daten auf Basis von Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen: <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer">netlify.com/privacy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen).</p>
-        <p><strong>Externe Ressourcen (CDN):</strong> Diese Website lädt Gestaltungsressourcen von jsDelivr (jsdelivr.net). Dabei kann Ihre IP-Adresse an deren Server übertragen werden. Weitere Informationen: <a href="https://www.jsdelivr.com/privacy-policy-jsdelivr-net" target="_blank" rel="noopener noreferrer">jsdelivr.com/privacy-policy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.</p>
-        <p><strong>Webanalyse (Google Analytics):</strong> Diese Website nutzt Google Analytics 4 (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Dabei wird Ihre IP-Adresse anonymisiert (IP-Anonymisierung aktiv) und es werden keine personenbezogenen Daten gespeichert. Die Datenübertragung in die USA erfolgt auf Basis der EU-Standardvertragsklauseln (Art. 46 DSGVO). Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Reichweitenmessung). Sie können der Datenerfassung widersprechen unter: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer">Google Analytics Opt-out</a>.</p>
-        <p><strong>Cookies:</strong> Google Analytics setzt technische Cookies zu Analysezwecken (_ga, _ga_*). Diese werden nach 2 Jahren gelöscht.</p>
-        <h6 class="fw-bold" style="color:var(--blau);margin-top:1rem">§ 3 Ihre Rechte</h6>
-        <p>Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18), Widerspruch (Art. 21 DSGVO) sowie Beschwerde bei der zuständigen Aufsichtsbehörde (Art. 77 DSGVO).<br>
-        Kontakt: <a href="mailto:info@aktionstracker.de">info@aktionstracker.de</a></p>
-        <p class="text-muted small mt-3 mb-0">Stand: Juni 2026</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Schließen</button>
-      </div>
-    </div>
+<!-- ══════════════════════════ COOKIE-CONSENT-BANNER ══════════════════════════ -->
+<div id="consent-banner" role="dialog" aria-label="Cookie-Einwilligung">
+  <p>
+    Diese Website nutzt Google Analytics zur anonymisierten Reichweitenmessung. Das läuft nur mit Ihrer Einwilligung – Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.
+  </p>
+  <div class="consent-actions">
+    <button type="button" id="consent-decline">Ablehnen</button>
+    <button type="button" id="consent-accept">Akzeptieren</button>
   </div>
 </div>
 
@@ -2740,6 +2744,31 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
   targets.forEach(function (el) { observer.observe(el); });
+})();
+
+// Cookie-Consent für Google Analytics: GA lädt ausschließlich nach aktiver Zustimmung.
+// "Ablehnen" ist optisch gleichwertig zu "Akzeptieren" (gleiche Größe/Kontrast, kein
+// vorausgewählter Zustand) – rein technische Umsetzung, keine Rechtsberatung.
+(function () {
+  var STORAGE_KEY = 'ga_consent';
+  var banner = document.getElementById('consent-banner');
+  if (!banner) return;
+  var stored = null;
+  try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+  if (stored === 'granted') {
+    consentLoadAnalytics();
+  } else if (stored !== 'denied') {
+    banner.style.display = 'flex';
+  }
+  document.getElementById('consent-accept').addEventListener('click', function () {
+    try { localStorage.setItem(STORAGE_KEY, 'granted'); } catch (e) {}
+    consentLoadAnalytics();
+    banner.style.display = 'none';
+  });
+  document.getElementById('consent-decline').addEventListener('click', function () {
+    try { localStorage.setItem(STORAGE_KEY, 'denied'); } catch (e) {}
+    banner.style.display = 'none';
+  });
 })();
 </script>
 </body>
