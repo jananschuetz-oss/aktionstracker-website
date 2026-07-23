@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Außendienst digitalisieren ohne CRM-Monster – Aktions Tracker</title>
+  <meta name="description" content="Excel und WhatsApp reichen eine Zeit lang – dann laufen Tabellen auseinander und der Wochenbericht kostet Stunden. So digitalisieren Sie Ihren Vertriebsaußendienst, ohne in ein überdimensioniertes CRM zu wechseln.">
+  <meta property="og:title" content="Außendienst digitalisieren ohne CRM-Monster">
+  <meta property="og:description" content="Excel und WhatsApp reichen eine Zeit lang – dann laufen Tabellen auseinander. So digitalisieren Sie Ihren Vertriebsaußendienst, ohne in ein überdimensioniertes CRM zu wechseln.">
+  <meta property="og:url" content="https://aktionstracker.de/aussendienst-digitalisieren.html">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://aktionstracker.de/img/og-image.jpg">
+  <link rel="canonical" href="https://aktionstracker.de/aussendienst-digitalisieren.html">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,600;0,700;0,800;0,900;1,600&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    function consentLoadAnalytics(){
+      if (window.__gaLoaded) return;
+      window.__gaLoaded = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-HY5XC0EHJY';
+      document.head.appendChild(s);
+      gtag('js', new Date());
+      gtag('config', 'G-HY5XC0EHJY', { 'anonymize_ip': true });
+    }
+  </script>
+  <style>
+    :root {
+      --blau: #1a3a5c; --blau-mid: #2e6da4; --amber: #c8860a; --amber-hell: #f5a623;
+      --teal: #1c7a6e; --teal-hell: #2cc4b0; --hell: #f4f7fb; --ink: #16232f;
+      --font-display: 'Bitter', Georgia, serif;
+      --font-body: 'Public Sans', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--ink); overflow-x: hidden; }
+    h1, h2, .section-title { font-family: var(--font-display); letter-spacing: -0.01em; }
+    section { padding: 70px 0; }
+    .navbar { background: var(--blau) !important; }
+    .navbar-brand span { color: var(--amber); }
+    .btn-cta { background: var(--teal); color: #fff; border: none; font-weight: 700; }
+    .btn-cta:hover { background: #164f47; color: #fff; }
+    .section-label { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #8a5f07; margin-bottom: .5rem; }
+    .section-title { font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 800; color: var(--blau); line-height: 1.2; }
+    .section-sub { font-size: 1rem; color: #555; line-height: 1.7; max-width: 640px; }
+
+    .hero-digi { background: linear-gradient(135deg, var(--blau) 0%, #0d2035 60%, #1a3a5c 100%); color: #fff; padding: 90px 0 70px; }
+    .hero-digi h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; line-height: 1.2; max-width: 780px; }
+    .hero-digi h1 span { color: var(--amber-hell); font-style: italic; font-weight: 600; }
+    .hero-digi .lead { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.7; max-width: 640px; }
+
+    .problem-section { background: #09192a; color: #fff; }
+    .chaos-card { background: #0f2237; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; overflow: hidden; height: 100%; }
+    .chaos-card-head { background: rgba(255,255,255,.05); border-bottom: 1px solid rgba(255,255,255,.08); padding: .55rem 1rem; font-size: .78rem; color: rgba(255,255,255,.55); }
+    .chat-thread { padding: .6rem .75rem; display: flex; flex-direction: column; gap: .4rem; }
+    .chat-msg { padding: .4rem .65rem; border-radius: 10px; font-size: .82rem; line-height: 1.5; max-width: 90%; color: #e5e5e5; }
+    .chat-msg.recv { background: rgba(255,255,255,.07); border-radius: 2px 10px 10px 10px; }
+    .chat-msg.sent { background: rgba(46,109,164,.3); border-radius: 10px 2px 10px 10px; align-self: flex-end; }
+    .chat-name { display: block; font-size: .68rem; color: #4ade80; font-weight: 600; margin-bottom: 1px; }
+    .chat-unread { font-size: .72rem; color: rgba(245,166,35,.8); text-align: center; padding: .35rem; border-top: 1px solid rgba(255,255,255,.06); margin-top: .2rem; }
+    .excel-tbl { width: 100%; border-collapse: collapse; font-size: .8rem; }
+    .excel-tbl th { background: rgba(255,255,255,.08); color: rgba(255,255,255,.6); padding: .3rem .5rem; text-align: left; font-size: .72rem; font-weight: 600; }
+    .excel-tbl td { padding: .3rem .5rem; color: #e5e5e5; border-bottom: 1px solid rgba(255,255,255,.05); }
+    .excel-tbl td.ok { color: #4ade80; }
+    .excel-tbl td.miss { color: #f87171; background: rgba(248,113,113,.1); text-align: center; }
+    .excel-footer { font-size: .7rem; color: rgba(255,255,255,.3); margin-top: .75rem; font-style: italic; }
+    .email-inner { padding: .75rem 1rem; display: flex; flex-direction: column; gap: .5rem; }
+    .email-meta { font-size: .72rem; color: rgba(255,255,255,.5); line-height: 1.8; }
+    .email-text { font-size: .82rem; color: #e5e5e5; line-height: 1.6; padding: .55rem .75rem; background: rgba(245,158,11,.08); border-left: 3px solid #f59e0b; border-radius: 0 6px 6px 0; }
+    .email-thread { font-size: .7rem; color: rgba(255,255,255,.5); line-height: 1.9; padding-top: .5rem; border-top: 1px solid rgba(255,255,255,.06); }
+
+    .kipp-card { background: #fff; border-radius: 14px; padding: 1.75rem; height: 100%; border: 1px solid #e8eef6; }
+    .kipp-card.noch { border-top: 4px solid #27ae60; }
+    .kipp-card.kippt { border-top: 4px solid #c0392b; }
+    .kipp-card h4 { font-weight: 800; color: var(--blau); margin-bottom: 1rem; font-size: 1.1rem; }
+    .kipp-card ul { list-style: none; padding: 0; margin: 0; }
+    .kipp-card li { display: flex; gap: .6rem; padding: .4rem 0; font-size: .92rem; color: #444; line-height: 1.5; }
+    .kipp-card.noch li i { color: #27ae60; }
+    .kipp-card.kippt li i { color: #c0392b; }
+
+    .how-section { background: var(--blau); color: #fff; }
+    .how-section .section-title { color: #fff; }
+    .step-row { display: grid; grid-template-columns: 2.5rem 1fr 1fr; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 14px; overflow: hidden; }
+    .step-num { background: var(--amber); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; font-weight: 800; color: #fff; font-family: var(--font-display); }
+    .step-col { padding: 1.1rem 1.4rem; }
+    .step-col.you-col { border-right: 1px solid rgba(255,255,255,.08); }
+    .step-col-lbl { font-size: .68rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; margin-bottom: .35rem; }
+    .step-col-lbl.you { color: #2cc4b0; }
+    .step-col-lbl.us { color: var(--amber); }
+    .step-col h4 { font-size: .9rem; font-weight: 700; color: #fff; margin-bottom: .2rem; }
+    .step-col p { font-size: .82rem; color: rgba(255,255,255,.65); margin: 0; line-height: 1.5; }
+    @media (max-width: 575px) {
+      .step-row { grid-template-columns: 2.5rem 1fr; }
+      .step-num { grid-row: span 2; }
+      .step-col.you-col { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+    }
+
+    .cta-section { background: linear-gradient(135deg, var(--blau) 0%, #0d2035 100%); color: #fff; }
+    .cta-section h2 { font-size: clamp(1.6rem, 3.5vw, 2.3rem); font-weight: 800; }
+
+    footer { background: #0d1f33; color: rgba(255,255,255,.55); padding: 2.5rem 0; font-size: .85rem; }
+    footer a { color: rgba(255,255,255,.55); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    #consent-banner {
+      display: none; position: fixed; left: 0; right: 0; bottom: 0; z-index: 9998;
+      background: #0d1f33; border-top: 1px solid rgba(255,255,255,.12); padding: 1rem 1.25rem;
+      align-items: center; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+      box-shadow: 0 -4px 24px rgba(0,0,0,.25);
+    }
+    #consent-banner p { margin: 0; color: rgba(255,255,255,.85); font-size: .88rem; max-width: 640px; line-height: 1.6; }
+    #consent-banner a { color: #7de8e8; text-decoration: underline; }
+    #consent-banner .consent-actions { display: flex; gap: .75rem; flex-shrink: 0; }
+    #consent-banner button { border-radius: 8px; padding: .6rem 1.3rem; font-size: .88rem; font-weight: 700; cursor: pointer; border: 1.5px solid rgba(255,255,255,.3); }
+    #consent-accept { background: var(--amber); color: #fff; border-color: var(--amber); }
+    #consent-decline { background: transparent; color: #fff; }
+    @media (max-width: 575.98px) { #consent-banner { flex-direction: column; align-items: stretch; text-align: center; } #consent-banner .consent-actions { justify-content: center; } }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+  <div class="container">
+    <a class="navbar-brand text-white fw-800 fs-5" href="index.html">
+      <i class="bi bi-lightning-charge-fill me-1" style="color:var(--amber)"></i>
+      Aktions<span>Tracker</span>
+    </a>
+    <a class="text-white small" href="index.html"><i class="bi bi-arrow-left me-1"></i>Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ════════════════════════════ -->
+<section class="hero-digi">
+  <div class="container">
+    <div class="section-label" style="color:var(--amber-hell)">Außendienst digitalisieren</div>
+    <h1>Excel und WhatsApp reichen – bis sie es <span>nicht mehr tun.</span></h1>
+    <p class="lead mt-3">Sie müssen nicht in ein 500-Feature-CRM wechseln, um Außendienst-Chaos loszuwerden. Hier lesen Sie, wann der Wechsel sich lohnt und wie er in der Praxis abläuft.</p>
+    <div class="d-flex flex-wrap gap-3 mt-4">
+      <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener" class="btn btn-cta btn-lg px-4">
+        <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
+      </a>
+      <a href="index.html#kontakt" class="btn btn-outline-light btn-lg px-4">Gespräch anfragen</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PROBLEM ════════════════════════ -->
+<section class="problem-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Kennen Sie das?</div>
+      <h2 style="color:#fff;font-size:clamp(1.6rem,3.5vw,2.3rem);font-weight:800">So sieht der Alltag ohne System aus</h2>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head"><i class="bi bi-whatsapp me-1" style="color:#25d366"></i>Gruppe "Außendienst" · 17:43</div>
+          <div class="chat-thread">
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Was hat Harald heute gemacht?</div>
+            <div class="chat-msg sent">Weiß nicht, frag ihn direkt 🤷</div>
+            <div class="chat-msg recv"><span class="chat-name">Chef</span>Wo ist die Exceltabelle?!</div>
+            <div class="chat-unread">3 ungelesene Nachrichten ↓</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head"><i class="bi bi-file-earmark-spreadsheet me-1" style="color:#1d7a45"></i>Besuche_KW24_final_v3.xlsx</div>
+          <div class="p-3">
+            <table class="excel-tbl">
+              <thead><tr><th>Name</th><th>KW23</th><th>KW24</th><th>KW25</th></tr></thead>
+              <tbody>
+                <tr><td>Müller</td><td class="ok">3</td><td class="miss">—</td><td class="ok">2</td></tr>
+                <tr><td>Fischer</td><td class="miss">—</td><td class="ok">4</td><td class="miss">—</td></tr>
+                <tr><td>Schmidt</td><td class="miss">—</td><td class="miss">—</td><td class="ok">1</td></tr>
+              </tbody>
+            </table>
+            <div class="excel-footer">Letzte Änderung: Mo 18:34 · "final_v3"</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="chaos-card">
+          <div class="chaos-card-head"><i class="bi bi-envelope me-1"></i>AW: Re: Re: Wochenbericht KW23</div>
+          <div class="email-inner">
+            <div class="email-meta">Von: Chef &lt;gf@firma.de&gt; · Mo 09:12</div>
+            <div class="email-text"><i class="bi bi-exclamation-triangle me-1" style="color:#f59e0b"></i>Ich frage jetzt zum <strong>dritten Mal</strong>. Bitte bis 12 Uhr.</div>
+            <div class="email-thread">— Fischer: hab keine Zahlen · — Müller: kommt noch</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ WANN REICHT'S / WANN KIPPT'S ═════ -->
+<section style="background:var(--hell)">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label">Ehrlich betrachtet</div>
+      <h2 class="section-title">Wann Excel &amp; WhatsApp noch reichen – und wann nicht mehr</h2>
+      <p class="section-sub mx-auto mt-2">Kurzfristig kosten Excel und WhatsApp nichts extra, und jeder kennt sie. Das Problem zeigt sich meist erst mit der Zeit.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="kipp-card noch">
+          <h4><i class="bi bi-check-circle-fill me-2" style="color:#27ae60"></i>Reicht noch, wenn …</h4>
+          <ul>
+            <li><i class="bi bi-dot"></i>Sie 1–2 Außendienstler haben und alles im Blick behalten</li>
+            <li><i class="bi bi-dot"></i>der Wochenbericht noch in 15 Minuten zusammengestellt ist</li>
+            <li><i class="bi bi-dot"></i>niemand nachfragen muss, was diese Woche wo lief</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="kipp-card kippt">
+          <h4><i class="bi bi-x-circle-fill me-2" style="color:#c0392b"></i>Es kippt, wenn …</h4>
+          <ul>
+            <li><i class="bi bi-dot"></i>Tabellen mehrerer Mitarbeiter auseinanderlaufen ("final_v3")</li>
+            <li><i class="bi bi-dot"></i>Fotos und Notizen im WhatsApp-Verlauf verschwinden</li>
+            <li><i class="bi bi-dot"></i>am Monatsende jemand stundenlang zusammenträgt, was längst online stehen sollte</li>
+            <li><i class="bi bi-dot"></i>Sie öfter nachfragen als selbst nachschauen können</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p class="text-center mt-4" style="color:#666;font-size:.92rem;max-width:680px;margin-left:auto;margin-right:auto">
+      Der Aktions Tracker ersetzt genau diesen Flickenteppich – nicht mit einer 500-Feature-Plattform, sondern mit einer einzigen App, die das Gleiche leistet wie Excel + WhatsApp zusammen, nur in Echtzeit und ohne Nachfragen.
+    </p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ WIE DER UMSTIEG ABLÄUFT ═════════ -->
+<section class="how-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <div class="section-label" style="color:var(--amber-hell)">So läuft der Umstieg ab</div>
+      <h2 class="section-title">In 3 Schritten startklar</h2>
+      <p class="section-sub mx-auto mt-2" style="color:rgba(255,255,255,.7)">Setup dauert 5–7 Werktage – danach startet Ihr Team in unter einem Tag.</p>
+    </div>
+    <div class="d-flex flex-column gap-3">
+      <div class="step-row">
+        <div class="step-num">1</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie tun</div>
+          <h4>Mitarbeiterliste + Kundenadressen schicken</h4>
+          <p>Einmal als Excel – dauert 30 Minuten auf Ihrer Seite.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was ich tue</div>
+          <h4>Alles einrichten – Sie schauen zu</h4>
+          <p>System, Zugänge, Zuordnungen, Stammdaten-Import. Fertig.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">2</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Ihr Team tut</div>
+          <h4>Besuche, Displays, Bestellungen erfassen</h4>
+          <p>60 Sekunden vom Smartphone – vor Ort oder am Abend danach.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was passiert</div>
+          <h4>Sofort im Dashboard sichtbar</h4>
+          <p>Wochenbericht läuft automatisch – kein Nachfragen mehr.</p>
+        </div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">3</div>
+        <div class="step-col you-col">
+          <div class="step-col-lbl you">Was Sie sehen</div>
+          <h4>KPIs nach Mitarbeiter, Woche &amp; Monat</h4>
+          <p>Immer aktuell – auch unterwegs per Smartphone.</p>
+        </div>
+        <div class="step-col">
+          <div class="step-col-lbl us">Was Sie nicht mehr tun</div>
+          <h4>Nachfragen, Excel zusammenstellen, warten</h4>
+          <p>Die Zahlen kommen zu Ihnen – jeden Montag automatisch.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ MINI-FAQ ═══════════════════════ -->
+<section style="background:#f7fafc">
+  <div class="container">
+    <div class="text-center mb-4">
+      <h2 class="section-title">Kurz gefragt</h2>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="accordion" id="miniFaq">
+          <div class="accordion-item border mb-2 rounded">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mf1">Warum nicht einfach bei Excel und WhatsApp bleiben?</button>
+            </h3>
+            <div id="mf1" class="accordion-collapse collapse" data-bs-parent="#miniFaq">
+              <div class="accordion-body">Kurzfristig geht das – Excel und WhatsApp kosten nichts extra und jeder kennt sie. Das Problem zeigt sich meist erst mit der Zeit: Tabellen laufen auseinander, Fotos verschwinden im Chat-Verlauf, und am Monatsende sitzt jemand stundenlang zusammen, was eigentlich längst online stehen sollte. Der Aktions Tracker ersetzt genau diesen Flickenteppich – nicht mit einer 500-Feature-Plattform, sondern mit einer einzigen App, die das Gleiche leistet wie Excel + WhatsApp zusammen, nur in Echtzeit und ohne Nachfragen.</div>
+            </div>
+          </div>
+          <div class="accordion-item border mb-2 rounded">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mf2">Wie schnell sind wir startklar?</button>
+            </h3>
+            <div id="mf2" class="accordion-collapse collapse" data-bs-parent="#miniFaq">
+              <div class="accordion-body">In der Regel 5–7 Werktage nach Vertragsabschluss. Ich richte alles ein: System, Ihre Mitarbeiter, Ihre Kundenliste. Sie erhalten fertig konfigurierte Zugangsdaten – kein technisches Vorwissen nötig. Der größte Einmalaufwand ist der Import Ihrer Verkaufsstellen. Schicken Sie mir Ihre Excel-Liste – ich übernehme den Import kostenlos, damit Ihr Team vom ersten Tag an mit den richtigen Standorten loslegen kann.</div>
+            </div>
+          </div>
+          <div class="accordion-item border mb-2 rounded">
+            <h3 class="accordion-header">
+              <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#mf3">Kann ich erst testen, bevor ich buche?</button>
+            </h3>
+            <div id="mf3" class="accordion-collapse collapse" data-bs-parent="#miniFaq">
+              <div class="accordion-body">Ja. Unter <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener">demo.aktionstracker.de</a> steht eine vollständige Demo-Umgebung bereit – mit Beispieldaten, allen Rollen und allen Funktionen. Kein Account, keine E-Mail nötig. Zusätzlich biete ich einen kostenlosen 30-Minuten-Videocall an, in dem ich Ihr konkretes Setup durchspiele.</div>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-4 mb-0">
+          <a href="index.html#faq" style="color:#2e6da4;font-weight:600;text-decoration:none">Alle Kauf-Fragen ansehen <i class="bi bi-arrow-right ms-1"></i></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CTA ═════════════════════════════ -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Bereit für den Umstieg?</h2>
+    <p class="mt-3 mb-4" style="color:rgba(255,255,255,.75);max-width:520px;margin-left:auto;margin-right:auto">
+      Schauen Sie sich die Demo an oder schreiben Sie mir – ich melde mich innerhalb von 24 Stunden.
+    </p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+      <a href="https://demo.aktionstracker.de" target="_blank" rel="noopener" class="btn btn-cta btn-lg px-4">
+        <i class="bi bi-play-circle-fill me-2"></i>Demo öffnen
+      </a>
+      <a href="index.html#kontakt" class="btn btn-outline-light btn-lg px-4">Zum Kontaktformular</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-4">
+        <div class="text-white fw-bold mb-1"><i class="bi bi-lightning-charge-fill me-1" style="color:var(--amber)"></i>AktionsTracker</div>
+        <div>Außendienst-Software für den Direktvertrieb</div>
+      </div>
+      <div class="col-md-4 text-md-center">
+        <a href="index.html#kontakt" class="me-3">Kontakt</a>
+        <a href="datenschutz.html" class="me-3">Datenschutz</a>
+        <a href="impressum.html" class="me-3">Impressum</a>
+        <a href="index.html">Startseite</a>
+      </div>
+      <div class="col-md-4 text-md-end"><small>© 2026 AktionsTracker · Alle Rechte vorbehalten</small></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════════════ COOKIE-CONSENT-BANNER ══════════════════════════ -->
+<div id="consent-banner" role="dialog" aria-label="Cookie-Einwilligung">
+  <p>Diese Website nutzt Google Analytics zur anonymisierten Reichweitenmessung. Das läuft nur mit Ihrer Einwilligung – Details in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
+  <div class="consent-actions">
+    <button type="button" id="consent-decline">Ablehnen</button>
+    <button type="button" id="consent-accept">Akzeptieren</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); }
+    });
+  });
+
+  (function () {
+    var STORAGE_KEY = 'ga_consent';
+    var banner = document.getElementById('consent-banner');
+    var stored = null;
+    try { stored = localStorage.getItem(STORAGE_KEY); } catch (e) {}
+    if (stored === 'granted') {
+      consentLoadAnalytics();
+    } else if (stored !== 'denied') {
+      banner.style.display = 'flex';
+    }
+    document.getElementById('consent-accept').addEventListener('click', function () {
+      try { localStorage.setItem(STORAGE_KEY, 'granted'); } catch (e) {}
+      consentLoadAnalytics();
+      banner.style.display = 'none';
+    });
+    document.getElementById('consent-decline').addEventListener('click', function () {
+      try { localStorage.setItem(STORAGE_KEY, 'denied'); } catch (e) {}
+      banner.style.display = 'none';
+    });
+  })();
+</script>
+</body>
+</html>
