@@ -52,10 +52,23 @@ Alle 4 in `sitemap.xml` aufgenommen.
 | Best Practices | 96 | 96 | **100** |
 | SEO | 100 | 100 | 100 |
 
-**Hinweis zur Performance-Zahl**: Lokal gemessen über Pythons `http.server` (kein Gzip/Brotli, keine Cache-Control-Header, Single-Thread) – das drückt den Wert künstlich, da Netlify in Produktion automatisch Kompression und Cache-Header setzt. Die 73 ist damit eine **Untergrenze**, kein realistischer Produktionswert. Verbleibende Diagnosen (unused CSS/JS, network-dependency-tree) stammen größtenteils aus dem vollen Bootstrap-Bundle, das nur teilweise genutzt wird – eine gezielte Bootstrap-Custom-Build (nur benötigte Komponenten) wäre der nächste Hebel, ist aber nicht Teil dieses Passes.
+**Hinweis zur Performance-Zahl**: Lokal gemessen über Pythons `http.server` (kein Gzip/Brotli, keine Cache-Control-Header, Single-Thread) – das drückt den Wert künstlich, da Netlify in Produktion automatisch Kompression und Cache-Header setzt. Die Werte sind damit eine **Untergrenze**, kein realistischer Produktionswert. Zusätzlich zeigte der lokale Chrome-Headless-Lauf starke Schwankungen von Durchgang zu Durchgang (59–82 bei identischen Assets, vermutlich durch geteilte CPU-Last in der Sandbox) – die Tabelle unten zeigt daher eine Spanne statt eines Einzelwerts.
+
+## CSS-Subset (nach dem ersten Perf-Pass ergänzt)
+- `vendor/css/bootstrap.min.css` per PurgeCSS auf die tatsächlich genutzten Klassen getrimmt: **232 KB → 34,6 KB (–85 %)**. Safelist deckt alle dynamisch von Bootstrap-JS gesetzten Zustandsklassen ab (`show`, `collaps*`, `fade`, `active`, `carousel*`, `accordion*`, `dropdown`, `navbar*`, `modal`, `backdrop`, `disabled`, `invalid`, `valid`, `btn*`, `bg-*`, `text-*`, `d-*`, `col*`, `row*`, `container*`, `nav*`, `form*`, `focus`, `hover`, `visually-hidden`, `offcanvas*`).
+- Regressionstest auf allen 8 Seiten: Konsole fehlerfrei, Accordion (FAQ), Carousel-Tab-Wechsel, Preis-Toggle (monatlich/jährlich) und Navbar funktional geprüft per DOM-/Computed-Style-Check.
+- Lighthouse Performance über mehrere Läufe: 59 / 73 / 82 (identische Assets, siehe Hinweis oben) – tendenziell verbessert gegenüber dem Stand vor dem CSS-Trim (70), aber wegen der Messschwankung kein sauberer Einzelvergleich möglich.
+
+### Lighthouse-Vergleich, ergänzt
+| | Live-Seite (Baseline) | Redesign vor Perf-Pass | Redesign nach Perf-Pass | Redesign nach CSS-Trim |
+|---|---|---|---|---|
+| Performance | 55 | 70 | 73 | 59–82 (Streuung) |
+| Accessibility | 82 | 86 | 100 | 100 |
+| Best Practices | 96 | 96 | 100 | 100 |
+| SEO | 100 | 100 | 100 | 100 |
 
 ## Noch offen
-- CSS-Subset/Custom-Bootstrap-Build zur Reduktion von "unused CSS" (aktuell ~45–312 KiB je nach Seite).
-- Finales Lighthouse-Audit gegen die echte Netlify-Staging-URL (lokale Werte sind nur Richtwerte, siehe oben).
+- Finales, verlässliches Performance-Audit gegen die echte Netlify-Staging-URL (lokale Werte sind Richtwerte mit hoher Streuung, siehe oben – erst dort lässt sich der reale Effekt des CSS-Trims sauber messen).
+- Verbleibende "unused CSS/JS"-Reste stammen jetzt primär aus Bootstrap-JS (Carousel/Collapse/Accordion-Logik, die nicht jede Seite nutzt) – weiteres Trimmen dort ist möglich, aber riskanter (Verhaltensänderung statt nur Optik) und nicht Teil dieses Passes.
 - Vollständiger Layout-Pattern-Audit (aus Schritt 3 zurückgestellt).
 - Icon-Set-Austausch (aus Schritt 3 zurückgestellt).
