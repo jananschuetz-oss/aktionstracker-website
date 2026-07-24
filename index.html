@@ -754,6 +754,13 @@
     .feature-hero-text p { font-size: .92rem; color: #666; line-height: 1.6; margin: 0; }
     .feature-hero-shot { margin-top: 1.5rem; background: var(--hell); padding: 1.25rem 1.25rem 0; overflow: hidden; }
     .feature-hero-shot img { width: 100%; display: block; border-radius: 10px 10px 0 0; box-shadow: 0 -2px 24px rgba(26,58,92,.1); }
+    @media (max-width: 767.98px) {
+      .feature-hero-text { padding: 1rem 1rem 0; }
+      .feature-hero-text h3 { font-size: 1rem; }
+      .feature-hero-text p { font-size: .8rem; line-height: 1.5; }
+      .feature-hero-shot { padding: .75rem .75rem 0; margin-top: 1rem; }
+      .feature-hero .feature-icon { width: 36px; height: 36px; font-size: 1rem; }
+    }
     .feature-card p { font-size: .88rem; color: #666; margin: 0; line-height: 1.6; }
 
     /* ── Feature-Kacheln auf Mobile: nur Überschrift, antippen zum Aufklappen ── */
@@ -1746,7 +1753,7 @@ document.addEventListener('keydown', function(e) {
     </div>
     <!-- Hero-Reihe: 2 großformatige Karten mit echten Screenshots -->
     <div class="row g-4">
-      <div class="col-lg-7">
+      <div class="col-6">
         <div class="feature-hero">
           <div class="feature-hero-text">
             <div class="feature-icon amber"><i class="bi bi-speedometer2"></i></div>
@@ -1758,7 +1765,7 @@ document.addEventListener('keydown', function(e) {
           </div>
         </div>
       </div>
-      <div class="col-lg-5">
+      <div class="col-6">
         <div class="feature-hero">
           <div class="feature-hero-text">
             <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
