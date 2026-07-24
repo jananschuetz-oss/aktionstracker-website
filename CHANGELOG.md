@@ -56,7 +56,7 @@ Beim Bauen der 4 SEO-Subseiten (Schritt 5) wurden Feature-Karten, Zielgruppen-It
 - **`crm-alternative-kleine-teams.html`**: Heading-Order h4→h3 im Enterprise-CRM-vs-Aktions-Tracker-Vergleich korrigiert.
 - **`aussendienst-digitalisieren.html`**: Heading-Order h4→h3 an 8 Stellen korrigiert (Kipp-Punkt-Vergleich + 3-Schritte-Prozess).
 - Automatisierter Check über alle 8 HTML-Seiten bestätigt: keine Heading-Order-Sprünge mehr irgendwo auf der Website.
-- `hilfe.html` geprüft: Kategorietitel sind aktuell nur gestylte `<div>`s statt echter Überschriften – kein Heading-Order-Verstoß (da kein Sprung), aber eine mögliche spätere Verbesserung für Screenreader-Navigation (nicht umgesetzt, da außerhalb des ursprünglichen Audit-Scopes).
+- `hilfe.html`: Kategorietitel von gestylten `<div class="cat-title">` zu echten `<h2 class="cat-title">` gemacht, die 24 Accordion-Fragen von h2 auf h3 herabgestuft. Struktur jetzt h1 → h2 (4 Kategorien) → h3 (24 Fragen), navigierbar für Screenreader. Optik unverändert (CSS-Klasse deckte Font-Size/Weight/Margin bereits vollständig ab).
 
 ## Performance- & Accessibility-Pass (nach Schritt 5)
 - **Kontrast**: 13 weitere WCAG-AA-Fehler gefunden und behoben (u.a. `.btn-amber` weiß-auf-amber 3.06:1 → neuer Button-Ton `#96660a` 5.0:1, Navbar-Brand, Phone-Mockup-Timestamps, Preise-Sektion-Badges, Consent-Button, Hilfe-Seite-Link).
