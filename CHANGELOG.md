@@ -34,6 +34,30 @@ Alle Änderungen liegen ausschließlich auf dem lokalen Branch `redesign`, **nic
 
 Alle 4 in `sitemap.xml` aufgenommen.
 
+## Layout-Pattern-Audit (nach dem Performance-Pass)
+Der Brief verbietet zwei aufeinanderfolgende Sektionen mit demselben Layout. Audit ergab: Hero, Demo-Teaser, "Kennen Sie das?" und Früh-Kontakt nutzten alle **vier direkt hintereinander** exakt denselben `col-lg-5`/`col-lg-7`-Split (Text links, Visual rechts).
+- **Demo-Teaser** umgebaut: zentrierter Header+CTA oben, Stat-Kacheln + Checkliste als eigene volle-Breite-Reihe darunter.
+- **Früh-Kontakt** umgebaut: horizontale 3-Schritte-Leiste über die volle Breite + zentrierte CTA-Box darunter.
+- "Kennen Sie das?" behält den Split bewusst (echter Zwei-Perspektiven-Vergleich, jetzt isoliert zwischen zwei andersartigen Nachbarn).
+- Rest der Seite (Features, Zielgruppe, Wie's funktioniert, Stats, Pilotphase, Preise, Über mich, FAQ, Kontakt) hatte bereits ausreichend Variation, keine weiteren Verstöße gefunden.
+- Nur Struktur/HTML geändert, keine Text-/Copy-Änderungen.
+
+## Icon-Set-Austausch (nach dem Layout-Audit)
+Der Brief nennt "generische Icon-Sets" explizit als zu vermeiden. Statt die komplette Bootstrap-Icons-Bibliothek zu ersetzen (150+ Verwendungen, größtenteils funktionale UI-Chrome wie Checkmarks, Formular-Icons und Icons innerhalb der Phone-Mockup-Screenshots, wo generische App-UI-Icons korrekt sind), wurden gezielt die beiden wirklich markenprägenden Icon-Stellen ersetzt:
+- 9 Feature-Icon-Kreise (Features-Sektion)
+- 4 Zielgruppen-Icons (Truck, Shop, Team, Wachstum)
+
+Alle 13 als konsistente, selbst gezeichnete Inline-SVGs im selben Stroke-Stil (1.75px, runde Caps/Joins, 24er Viewbox) – keine andere Icon-Bibliothek übernommen.
+
+## Konsistenz-Nachzug auf den Subpages
+Beim Bauen der 4 SEO-Subseiten (Schritt 5) wurden Feature-Karten, Zielgruppen-Items und Prozess-Schritte teils aus einer älteren Version von `index.html` übernommen – vor den späteren Accessibility-Fixes. Nachgezogen:
+- **`aussendienst-software-brauereien.html`**: gleicher Icon-Austausch wie auf der Startseite (7 Icons: 3 Zielgruppen + 4 Feature-Karten), Heading-Order h5→h3 und h4→h3 korrigiert.
+- **`pauschalpreis-vertriebssoftware.html`**: Heading-Order h4→h3 in den 3 "Wann lohnt sich Pauschale"-Karten korrigiert.
+- **`crm-alternative-kleine-teams.html`**: Heading-Order h4→h3 im Enterprise-CRM-vs-Aktions-Tracker-Vergleich korrigiert.
+- **`aussendienst-digitalisieren.html`**: Heading-Order h4→h3 an 8 Stellen korrigiert (Kipp-Punkt-Vergleich + 3-Schritte-Prozess).
+- Automatisierter Check über alle 8 HTML-Seiten bestätigt: keine Heading-Order-Sprünge mehr irgendwo auf der Website.
+- `hilfe.html` geprüft: Kategorietitel sind aktuell nur gestylte `<div>`s statt echter Überschriften – kein Heading-Order-Verstoß (da kein Sprung), aber eine mögliche spätere Verbesserung für Screenreader-Navigation (nicht umgesetzt, da außerhalb des ursprünglichen Audit-Scopes).
+
 ## Performance- & Accessibility-Pass (nach Schritt 5)
 - **Kontrast**: 13 weitere WCAG-AA-Fehler gefunden und behoben (u.a. `.btn-amber` weiß-auf-amber 3.06:1 → neuer Button-Ton `#96660a` 5.0:1, Navbar-Brand, Phone-Mockup-Timestamps, Preise-Sektion-Badges, Consent-Button, Hilfe-Seite-Link).
 - **button-name**: Navbar-Toggler und Carousel-Buttons haben jetzt Labels/`aria-label`.

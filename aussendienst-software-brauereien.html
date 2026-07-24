@@ -58,12 +58,14 @@
     .hero-digi .lead { font-size: 1.1rem; color: rgba(255,255,255,.82); line-height: 1.7; max-width: 640px; }
 
     .audience-item { display: flex; align-items: flex-start; gap: 1rem; background: #fff; border-radius: 12px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-bottom: 1rem; }
-    .audience-icon { font-size: 1.5rem; color: var(--amber); flex-shrink: 0; margin-top: .1rem; }
-    .audience-item h5 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .2rem; }
+    .audience-icon { color: var(--amber); flex-shrink: 0; margin-top: .1rem; width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .audience-item h3 { font-size: .95rem; font-weight: 700; color: var(--blau); margin-bottom: .2rem; }
     .audience-item p { font-size: .85rem; color: #666; margin: 0; }
 
     .feature-card { background: #fff; border-radius: 14px; padding: 1.75rem; border: 1px solid #e8eef6; box-shadow: 0 2px 16px rgba(26,58,92,.06); height: 100%; }
     .feature-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1rem; }
+    .feature-icon svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; color: var(--blau); margin-bottom: .5rem; }
     .feature-icon.blue { background: #e8f0fb; color: var(--blau-mid); }
     .feature-icon.amber { background: #fdf3e0; color: var(--amber); }
     .feature-icon.teal { background: #e0f6f6; color: #0e8080; }
@@ -131,16 +133,16 @@
       </div>
       <div class="col-lg-7">
         <div class="audience-item">
-          <i class="bi bi-truck audience-icon"></i>
-          <div><h5>Getränke- &amp; Lebensmittelvertrieb</h5><p>Brauereien, Getränkegroßhändler und Hersteller mit Außendienst in Gastronomie und Einzelhandel.</p></div>
+          <svg class="audience-icon" viewBox="0 0 24 24"><rect x="1" y="7" width="13" height="9"/><path d="M14 10h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+          <div><h3>Getränke- &amp; Lebensmittelvertrieb</h3><p>Brauereien, Getränkegroßhändler und Hersteller mit Außendienst in Gastronomie und Einzelhandel.</p></div>
         </div>
         <div class="audience-item">
-          <i class="bi bi-shop audience-icon"></i>
-          <div><h5>Konsumgüter &amp; FMCG</h5><p>Unternehmen, die Produkte aktiv in Supermärkte, Kioske und Fachgeschäfte verkaufen und platzieren.</p></div>
+          <svg class="audience-icon" viewBox="0 0 24 24"><path d="M4 9l1-5h14l1 5"/><path d="M4 9a2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0 2 2 0 0 0 4 0"/><path d="M5 9v10h14V9"/></svg>
+          <div><h3>Konsumgüter &amp; FMCG</h3><p>Unternehmen, die Produkte aktiv in Supermärkte, Kioske und Fachgeschäfte verkaufen und platzieren.</p></div>
         </div>
         <div class="audience-item">
-          <i class="bi bi-people audience-icon"></i>
-          <div><h5>Teams ab 1 Außendienst-Mitarbeiter</h5><p>Auch im Zweier-Team lohnt sich saubere Dokumentation von Anfang an – vom kleinen Familienunternehmen bis zur wachsenden Vertriebsorganisation.</p></div>
+          <svg class="audience-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.4"/><path d="M15.5 14.2c2.5.4 4.5 2.5 4.5 5.3"/></svg>
+          <div><h3>Teams ab 1 Außendienst-Mitarbeiter</h3><p>Auch im Zweier-Team lohnt sich saubere Dokumentation von Anfang an – vom kleinen Familienunternehmen bis zur wachsenden Vertriebsorganisation.</p></div>
         </div>
       </div>
     </div>
@@ -157,29 +159,29 @@
     <div class="row g-4">
       <div class="col-md-6 col-lg-3">
         <div class="feature-card">
-          <div class="feature-icon blue"><i class="bi bi-clipboard-check"></i></div>
-          <h4>Aktivitäten &amp; Bestellungen</h4>
+          <div class="feature-icon blue"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 13l2 2 4-4"/></svg></div>
+          <h3>Aktivitäten &amp; Bestellungen</h3>
           <p>Besuch, Aufbau oder Bestellung – mit dem richtigen Typ in Sekunden erfasst, direkt vor Ort vom Smartphone.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3">
         <div class="feature-card">
-          <div class="feature-icon blue"><i class="bi bi-camera"></i></div>
-          <h4>Foto-Dokumentation</h4>
+          <div class="feature-icon blue"><svg viewBox="0 0 24 24"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.3"/></svg></div>
+          <h3>Foto-Dokumentation</h3>
           <p>Displays und Sonderaufbauten direkt beim Besuch fotografieren – Nachweis auf Knopfdruck.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3">
         <div class="feature-card">
-          <div class="feature-icon teal"><i class="bi bi-map"></i></div>
-          <h4>Karte &amp; Heatmap</h4>
+          <div class="feature-icon teal"><svg viewBox="0 0 24 24"><path d="M12 21s-6.5-5.7-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.3-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.2"/></svg></div>
+          <h3>Karte &amp; Heatmap</h3>
           <p>Alle Verkaufsstellen auf einer interaktiven Karte – farbig je Mitarbeiter, Zuordnung per Klick.</p>
         </div>
       </div>
       <div class="col-md-6 col-lg-3">
         <div class="feature-card">
-          <div class="feature-icon amber"><i class="bi bi-envelope-at"></i></div>
-          <h4>Automatischer Bericht</h4>
+          <div class="feature-icon amber"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 6.5l9 6.5 9-6.5"/></svg></div>
+          <h3>Automatischer Bericht</h3>
           <p>Wochen- und Monatsbericht landen automatisch im Postfach der Geschäftsführung – kein manuelles Reporting.</p>
         </div>
       </div>
